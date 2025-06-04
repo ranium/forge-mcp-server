@@ -1,10 +1,12 @@
 # Forge MCP Server
 
-This is a minimal Model Context Protocol (MCP) server for Laravel Forge integration. It is designed to be modular and extensible for future API integrations.
+This is a Model Context Protocol (MCP) server for Laravel Forge integration. It is modular, extensible, and supports dynamic registration of Forge API tools.
 
 ## Features
 - MCP-compliant server
+- Dynamic tool registration (add new tools easily)
 - Health check tool: `test_connection`
+- Example Forge tool: `list_servers`
 - Ready for future API tool additions
 
 ## Prerequisites
@@ -39,31 +41,55 @@ This is a minimal Model Context Protocol (MCP) server for Laravel Forge integrat
      npm run dev
      ```
 
-## Usage
+## Configuration & Usage
 
-You can connect to this MCP server using the [MCP Inspector CLI](https://github.com/modelcontextprotocol/inspector-cli) or [MCP Inspector UI](https://inspector.modelcontext.com/).
+A **Forge API key is required** for all Forge tool invocations. You must provide it either as an environment variable or at runtime via the MCP Inspector UI/CLI.
 
-### Health Check Tool
-- Tool name: `test_connection`
-- Parameter: `message` (string)
-- Returns: Echoes the message and a timestamp
+- When using the [MCP Inspector UI](https://inspector.modelcontext.com/) or CLI, you will be prompted to enter your Forge API key as a parameter for the relevant tool if it is not already set in the environment.
+- The server does not store or require the API key in any config file by default, but it must be available at runtime.
 
-Example request:
+### Example: Using the `list_servers` Tool
+When you invoke the `list_servers` tool, you will be prompted for your Forge API key if it is not already set. The tool will use this key to authenticate with the Forge API for that request only.
+
+### Launching the MCP Server with a Configuration Block
+
+If you are using an orchestrator (such as MCP Inspector UI/CLI) that supports launching MCP servers via a configuration block, you **must** specify the Forge API key as shown below:
+
 ```json
 {
-  "tool": "test_connection",
-  "parameters": { "message": "Hello MCP!" }
+  "mcpServers": {
+    "forge-mcp": {
+      "command": "node",
+      "args": [
+        "/path/to/forge_mcp/dist/server.js"
+      ],
+      "cleanup": true,
+      "autoRestart": true,
+      "env": {
+        "FORGE_API_KEY": "your_forge_api_key_here"
+      }
+    }
+  }
 }
 ```
 
+- The `FORGE_API_KEY` in the `env` section is **required**. If not set here, you will be prompted to provide it at runtime via the MCP Inspector UI/CLI when invoking a Forge tool.
+- **Precedence:** If both an environment variable and a runtime parameter are provided, the runtime parameter (entered in the UI/CLI) will take precedence.
+
+**Note:**
+Never commit your real API keys to version control. Use environment variables or secrets management in production.
+
 ## Project Structure
-- `src/server.ts` — Main MCP server entry point
-- `src/core/types/` — Type definitions
+- `src/server.ts` — Main MCP server entry point (dynamically registers all tools)
+- `src/tools/forge/` — All Forge tool definitions and registry
+- `src/core/types/` — Type definitions and protocols
 - `package.json` — Scripts and dependencies
 - `.gitignore` — Ignores build, env, and dependency files
 
-## Extending
-To add new API tools, create a new tool definition and register it in `src/server.ts`.
+## Extending (Adding New Tools)
+1. Export a `ForgeToolDefinition` from the new file.
+2. Import and add the tool to the `forgeTools` array in `src/tools/forge/index.ts`.
+3. No changes needed in `server.ts`—tools are registered automatically.
 
 ---
 

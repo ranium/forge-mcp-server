@@ -2,6 +2,14 @@ import 'dotenv/config';
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
+import { forgeTools } from "./tools/forge/index.js";
+
+// Require FORGE_API_KEY from environment
+const FORGE_API_KEY = process.env.FORGE_API_KEY;
+if (!FORGE_API_KEY) {
+  console.error("Error: FORGE_API_KEY environment variable is required. Please set it before starting the MCP server.");
+  process.exit(1);
+}
 
 const server = new McpServer(
   { name: "forge-mcp", version: "1.0.0" },
@@ -20,7 +28,35 @@ server.tool(
   })
 );
 
-console.log("Forge MCP server: tool registered (test_connection)");
+console.error("Forge MCP server: tool registered (test_connection)");
 
-const transport = new StdioServerTransport();
-await server.connect(transport);
+
+
+
+for (const tool of forgeTools) {
+  server.tool(
+    tool.name,
+    tool.parameters,
+    { description: tool.description },
+    async (params: Record<string, unknown>) => await tool.handler(params, FORGE_API_KEY)
+  );
+  console.error(`Forge MCP server: tool registered (${tool.name})`);
+}
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection:', reason);
+});
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
+});
+
+async function main() {
+  const transport = new StdioServerTransport();
+  console.error("Forge MCP Server running on stdio");
+  await server.connect(transport);
+}
+
+main().catch((error) => {
+  console.error("Fatal error in main():", error);
+  process.exit(1);
+});
