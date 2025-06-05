@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import { ForgeApiRequest } from "../core/types/protocols.js";
 
-export async function callForgeApi(req: ForgeApiRequest, forgeApiKey: string): Promise<any> {
+export async function callForgeApi<T>(req: ForgeApiRequest, forgeApiKey: string): Promise<T> {
   const baseUrl = "https://forge.laravel.com/api/v1";
   const url = baseUrl + req.endpoint;
   
@@ -34,5 +34,5 @@ export async function callForgeApi(req: ForgeApiRequest, forgeApiKey: string): P
     throw new Error(`Forge API error (${response.status}): ${JSON.stringify(result)}`);
   }
 
-  return result;
+  return result as T;
 } 

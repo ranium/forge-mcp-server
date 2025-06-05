@@ -1,5 +1,6 @@
 import { ForgeToolDefinition, HttpMethod, MCPToolResult } from "../../core/types/protocols.js";
 import { callForgeApi } from "../../utils/forgeApi.js";
+import { toMCPToolResult, toMCPToolError } from "../../utils/mcpToolResult.js";
 import { z } from "zod";
 
 const paramsSchema = {
@@ -20,31 +21,17 @@ export const listPhpVersionsTool: ForgeToolDefinition<typeof paramsSchema> = {
     const parsed = paramsZodObject.parse(params);
     const serverId = parsed.serverId;
     if (!serverId) {
-      return {
-        content: [
-          { type: "text", text: `Missing required parameter: serverId. Params received: ${JSON.stringify(params)}` }
-        ]
-      };
+      return toMCPToolError(new Error("Missing required parameter: serverId"));
     }
-    // Debugging output
-    const debugInfo = `DEBUG: Received serverId: ${JSON.stringify(serverId)} (type: ${typeof serverId}), All params: ${JSON.stringify(params)}`;
+   
     try {
-      const data = await callForgeApi({
+      const data = await callForgeApi<object>({
         endpoint: `/servers/${String(serverId)}/php`,
         method: HttpMethod.GET
       }, forgeApiKey);
-      return {
-        content: [
-          { type: "text", text: debugInfo },
-          { type: "text", text: JSON.stringify(data) }
-        ]
-      };
+      return toMCPToolResult(data);
     } catch (err) {
-      return {
-        content: [
-          { type: "text", text: err instanceof Error ? err.message : String(err) }
-        ]
-      };
+      return toMCPToolError(err);
     }
   }
 }; 
