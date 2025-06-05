@@ -1,10 +1,11 @@
 import { ForgeToolDefinition, HttpMethod } from "../../core/types/protocols.js";
 import { callForgeApi } from "../../utils/forgeApi.js";
+import { z } from "zod";
 
 export const listServersTool: ForgeToolDefinition = {
   name: "list_servers",
   description: "List all servers in your Laravel Forge account.",
-  parameters: {}, // No parameters needed, use ZodRawShape
+  parameters: {}, // No parameters needed, use Zod raw shape
   handler: async (_params: Record<string, unknown>, forgeApiKey: string) => {
     try {
       const data = await callForgeApi({
