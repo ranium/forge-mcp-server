@@ -1,19 +1,24 @@
-import { ForgeToolDefinition, HttpMethod } from "../../core/types/protocols.js";
+import { ForgeToolDefinition, HttpMethod, MCPToolResult } from "../../core/types/protocols.js";
 import { callForgeApi } from "../../utils/forgeApi.js";
 import { z } from "zod";
 
-export const listPhpVersionsTool: ForgeToolDefinition = {
+const paramsSchema = {
+  serverId: z.union([
+    z.string(),
+    z.number(),
+    z.object({ value: z.union([z.string(), z.number()]) }).transform(obj => obj.value)
+  ]).describe("The ID of the server to list PHP versions for (string, number, or { value: string|number })"),
+};
+
+const paramsZodObject = z.object(paramsSchema);
+
+export const listPhpVersionsTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: "list_php_versions",
   description: "List all available PHP versions for a specific server in Laravel Forge.",
-  parameters: {
-    serverId: z.union([
-      z.string(),
-      z.number(),
-      z.object({ value: z.union([z.string(), z.number()]) }).transform(obj => obj.value)
-    ]).describe("The ID of the server to list PHP versions for (string, number, or { value: string|number })"),
-  },
-  handler: async (params: Record<string, unknown>, forgeApiKey: string) => {
-    const serverId = params.serverId;
+  parameters: paramsSchema,
+  handler: async (params, forgeApiKey): Promise<MCPToolResult> => {
+    const parsed = paramsZodObject.parse(params);
+    const serverId = parsed.serverId;
     if (!serverId) {
       return {
         content: [

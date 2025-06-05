@@ -1,10 +1,21 @@
-import { z, ZodRawShape } from "zod";
+import { z, ZodRawShape, TypeOf } from "zod";
 
-export interface ForgeToolDefinition {
+export type MCPToolContent =
+  | { type: "text"; text: string }
+  | { type: "image"; data: string; mimeType: string }
+  | { type: "audio"; data: string; mimeType: string };
+
+export interface MCPToolResult {
+  content: MCPToolContent[];
+  isError?: boolean;
+  [key: string]: unknown;
+}
+
+export interface ForgeToolDefinition<TParams extends ZodRawShape> {
   name: string;
   description: string;
-  parameters: ZodRawShape;
-  handler: (params: any, forgeApiKey: string) => Promise<any>;
+  parameters: TParams;
+  handler: (params: Record<string, unknown>, forgeApiKey: string) => Promise<MCPToolResult>;
 }
 
 export enum HttpMethod {
