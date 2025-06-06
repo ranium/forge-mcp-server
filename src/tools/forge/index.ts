@@ -9,6 +9,7 @@ import { showDaemonTool } from "./showDaemon.js";
 import { listDeploymentsTool } from "./listDeployments.js";
 import { showDeploymentTool } from "./showDeployment.js";
 import { getComposerPackagesAuthTool } from "./getComposerPackagesAuth.js";
+import { checkLaravelMaintenanceStatusTool } from "./checkLaravelMaintenanceStatus.js";
 // Import other tools here as you add them
 
 export const forgeTools = [
@@ -23,5 +24,6 @@ export const forgeTools = [
   listDeploymentsTool,
   showDeploymentTool,
   getComposerPackagesAuthTool,
+  checkLaravelMaintenanceStatusTool,
   // Add new tools here
 ]; 
