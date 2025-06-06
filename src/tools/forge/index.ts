@@ -8,6 +8,7 @@ import { listDaemonsTool } from "./listDaemons.js";
 import { showDaemonTool } from "./showDaemon.js";
 import { listDeploymentsTool } from "./listDeployments.js";
 import { getDeploymentLogTool } from "./getDeploymentLog.js";
+import { getDeploymentTool } from "./getDeployment.js";
 import { getComposerPackagesAuthTool } from "./getComposerPackagesAuth.js";
 import { checkLaravelMaintenanceStatusTool } from "./checkLaravelMaintenanceStatus.js";
 import { checkPulseDaemonStatusTool } from "./checkPulseDaemonStatus.js";
@@ -24,6 +25,7 @@ export const forgeTools = [
   showDaemonTool,
   listDeploymentsTool,
   getDeploymentLogTool,
+  getDeploymentTool,
   getComposerPackagesAuthTool,
   checkLaravelMaintenanceStatusTool,
   checkPulseDaemonStatusTool,
