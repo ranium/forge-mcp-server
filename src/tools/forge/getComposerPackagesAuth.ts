@@ -8,19 +8,19 @@ const paramsSchema = {
     z.string(),
     z.number(),
     z.object({ value: z.union([z.string(), z.number()]) }).transform(obj => obj.value)
-  ]).describe("The ID of the server to get the deployment log for (string, number, or { value: string|number })"),
+  ]).describe("The ID of the server to get Composer packages authentication for (string, number, or { value: string|number })"),
   siteId: z.union([
     z.string(),
     z.number(),
     z.object({ value: z.union([z.string(), z.number()]) }).transform(obj => obj.value)
-  ]).describe("The ID of the site to get the deployment log for (string, number, or { value: string|number })"),
+  ]).describe("The ID of the site to get Composer packages authentication for (string, number, or { value: string|number })"),
 };
 
 const paramsZodObject = z.object(paramsSchema);
 
-export const showDeploymentTool: ForgeToolDefinition<typeof paramsSchema> = {
-  name: "show_deployment",
-  description: "Get the deployment log for the most recent deployment of a site in your Laravel Forge account.",
+export const getComposerPackagesAuthTool: ForgeToolDefinition<typeof paramsSchema> = {
+  name: "get_composer_packages_auth",
+  description: "Get Composer packages authentication credentials for a specific site in your Laravel Forge account.",
   parameters: paramsSchema,
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params);
@@ -31,7 +31,7 @@ export const showDeploymentTool: ForgeToolDefinition<typeof paramsSchema> = {
     }
     try {
       const data = await callForgeApi<object>({
-        endpoint: `/servers/${String(serverId)}/sites/${String(siteId)}/deployment-log`,
+        endpoint: `/servers/${String(serverId)}/sites/${String(siteId)}/packages`,
         method: HttpMethod.GET
       }, forgeApiKey);
       return toMCPToolResult(data);
