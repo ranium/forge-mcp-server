@@ -15,6 +15,7 @@ import { getComposerPackagesAuthTool } from "./getComposerPackagesAuth.js";
 import { checkLaravelMaintenanceStatusTool } from "./checkLaravelMaintenanceStatus.js";
 import { checkPulseDaemonStatusTool } from "./checkPulseDaemonStatus.js";
 import { checkInertiaDaemonStatusTool } from "./checkInertiaDaemonStatus.js";
+import { checkLaravelSchedulerStatusTool } from "./checkLaravelSchedulerStatus.js";
 // Import other tools here as you add them
 
 export const forgeTools = [
@@ -35,5 +36,6 @@ export const forgeTools = [
   checkLaravelMaintenanceStatusTool,
   checkPulseDaemonStatusTool,
   checkInertiaDaemonStatusTool,
+  checkLaravelSchedulerStatusTool,
   // Add new tools here
 ]; 
