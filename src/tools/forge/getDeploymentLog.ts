@@ -18,9 +18,9 @@ const paramsSchema = {
 
 const paramsZodObject = z.object(paramsSchema);
 
-export const showDeploymentTool: ForgeToolDefinition<typeof paramsSchema> = {
-  name: "show_deployment",
-  description: "Get the deployment log for the most recent deployment of a site in your Laravel Forge account.",
+export const getDeploymentLogTool: ForgeToolDefinition<typeof paramsSchema> = {
+  name: "get_deployment_log",
+  description: "Retrieve the deployment log for the most recent deployment of a site in your Laravel Forge account.",
   parameters: paramsSchema,
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params);
