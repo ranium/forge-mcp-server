@@ -6,6 +6,7 @@ import { listSitesTool } from "./listSites.js";
 import { showSiteTool } from "./showSite.js";
 import { listDaemonsTool } from "./listDaemons.js";
 import { showDaemonTool } from "./showDaemon.js";
+import { listDeploymentsTool } from "./listDeployments.js";
 // Import other tools here as you add them
 
 export const forgeTools = [
@@ -17,5 +18,6 @@ export const forgeTools = [
   showSiteTool,
   listDaemonsTool,
   showDaemonTool,
+  listDeploymentsTool,
   // Add new tools here
 ]; 
