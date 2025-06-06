@@ -10,6 +10,7 @@ import { listDeploymentsTool } from "./listDeployments.js";
 import { getDeploymentLogTool } from "./getDeploymentLog.js";
 import { getDeploymentTool } from "./getDeployment.js";
 import { getDeploymentOutputTool } from "./getDeploymentOutput.js";
+import { getServerLogsTool } from "./getServerLogs.js";
 import { getComposerPackagesAuthTool } from "./getComposerPackagesAuth.js";
 import { checkLaravelMaintenanceStatusTool } from "./checkLaravelMaintenanceStatus.js";
 import { checkPulseDaemonStatusTool } from "./checkPulseDaemonStatus.js";
@@ -28,6 +29,7 @@ export const forgeTools = [
   getDeploymentLogTool,
   getDeploymentTool,
   getDeploymentOutputTool,
+  getServerLogsTool,
   getComposerPackagesAuthTool,
   checkLaravelMaintenanceStatusTool,
   checkPulseDaemonStatusTool,
