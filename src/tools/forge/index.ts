@@ -8,6 +8,7 @@ import { listDaemonsTool } from "./listDaemons.js";
 import { showDaemonTool } from "./showDaemon.js";
 import { listDeploymentsTool } from "./listDeployments.js";
 import { showDeploymentTool } from "./showDeployment.js";
+import { getComposerPackagesAuthTool } from "./getComposerPackagesAuth.js";
 // Import other tools here as you add them
 
 export const forgeTools = [
@@ -21,5 +22,6 @@ export const forgeTools = [
   showDaemonTool,
   listDeploymentsTool,
   showDeploymentTool,
+  getComposerPackagesAuthTool,
   // Add new tools here
 ]; 
