@@ -35,3 +35,33 @@ export const listPhpVersionsTool: ForgeToolDefinition<typeof paramsSchema> = {
     }
   }
 }; 
+
+// Static PHP versions list for server creation (update as per Forge documentation)
+const staticPhpVersions = [
+  { id: "8.3", name: "PHP 8.3" },
+  { id: "8.2", name: "PHP 8.2" },
+  { id: "8.1", name: "PHP 8.1" },
+  { id: "8.0", name: "PHP 8.0" },
+  { id: "7.4", name: "PHP 7.4" }
+];
+
+export const listStaticPhpVersionsTool: ForgeToolDefinition<{}> = {
+  name: "list_static_php_versions",
+  description: "List supported PHP versions for new server creation (static, as per Forge documentation). Also allows custom/free-text entry.",
+  parameters: {},
+  handler: async (_params, _forgeApiKey, options?: { parsed?: boolean }) => {
+    if (options?.parsed) {
+      return {
+        messages: [
+          {
+            role: "assistant",
+            content: { type: "text", text: "Select PHP version:" }
+          }
+        ],
+        choices: staticPhpVersions.map((v) => ({ name: v.name, value: v.id })),
+        default: staticPhpVersions[0]?.id
+      };
+    }
+    return toMCPToolResult({ phpVersions: staticPhpVersions, allowCustom: true });
+  }
+}; 

@@ -22,3 +22,23 @@ export interface ForgeToolResponse {
   result?: any;
   error?: string;
 } 
+
+// Shared prompt-driven orchestration types
+export type PromptOption = { id: string; name: string };
+
+export type ServerCreationState = {
+  provider?: string;
+  credential?: string;
+  region?: string;
+  size?: string;
+  ubuntuVersion?: string;
+  serverName?: string;
+  phpVersion?: string;
+  databaseType?: string;
+  databaseName?: string;
+};
+
+export interface ProvidersResult { providers: PromptOption[]; }
+export interface RegionsResult { regions: PromptOption[]; }
+export interface PhpVersionsResult { phpVersions: PromptOption[]; }
+export interface DatabaseTypesResult { databaseTypes: PromptOption[]; } 

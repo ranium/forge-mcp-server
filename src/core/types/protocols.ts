@@ -11,11 +11,29 @@ export interface MCPToolResult {
   [key: string]: unknown;
 }
 
+export interface PromptChoice {
+  name: string;
+  value: string;
+  description?: string;
+  disabled?: boolean;
+}
+
+export interface MCPPromptResult {
+  messages: { role: "assistant" | "user", content: MCPToolContent }[];
+  choices?: PromptChoice[];
+  default?: PromptChoice['value'];
+  [key: string]: unknown;
+}
+
 export interface ForgeToolDefinition<TParams extends ZodRawShape> {
   name: string;
   description: string;
   parameters: TParams;
-  handler: (params: Record<string, unknown>, forgeApiKey: string) => Promise<MCPToolResult>;
+  handler: (
+    params: Record<string, unknown>,
+    forgeApiKey: string,
+    options?: { parsed?: boolean }
+  ) => Promise<MCPToolResult | MCPPromptResult>;
 }
 
 export enum HttpMethod {
