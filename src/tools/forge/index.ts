@@ -51,16 +51,16 @@ export const forgeTools = [
   getDeploymentTool,
   getDeploymentOutputTool,
   getServerLogsTool,
-  // listProvidersTool,
-  // listDataTypesTool,
-  // listCredentialsTool,
-  // listRegionsTool,
+  listProvidersTool,
+  listDataTypesTool,
+  listCredentialsTool,
+  listRegionsTool,
   getComposerPackagesAuthTool,
   checkLaravelMaintenanceStatusTool,
   checkPulseDaemonStatusTool,
   checkInertiaDaemonStatusTool,
   checkLaravelSchedulerStatusTool,
-  // listSizesTool,
+  listSizesTool,
   createServerTool
 ];
 
