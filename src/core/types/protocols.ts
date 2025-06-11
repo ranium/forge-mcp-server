@@ -15,7 +15,10 @@ export interface ForgeToolDefinition<TParams extends ZodRawShape> {
   name: string;
   description: string;
   parameters: TParams;
-  handler: (params: Record<string, unknown>, forgeApiKey: string) => Promise<MCPToolResult>;
+  handler: (
+    params: Record<string, unknown>,
+    forgeApiKey: string,
+  ) => Promise<MCPToolResult>;
 }
 
 export enum HttpMethod {

@@ -22,3 +22,6 @@ export interface ForgeToolResponse {
   result?: any;
   error?: string;
 } 
+
+// Shared prompt-driven orchestration types
+export type PromptOption = { id: string; name: string };

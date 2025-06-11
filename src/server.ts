@@ -3,6 +3,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 import { forgeTools } from "./tools/forge/index.js";
+import { MCPToolResult } from "./core/types/protocols.js";
 
 // Require FORGE_API_KEY from environment
 const FORGE_API_KEY = process.env.FORGE_API_KEY;
@@ -30,10 +31,9 @@ server.tool(
 
 console.error("Forge MCP server: tool registered (test_connection)");
 
-
-
-
+// Register all tools (including create_server) as MCP tools
 for (const tool of forgeTools) {
+  // Ensure parameters is always a ZodRawShape
   server.tool(
     tool.name,
     tool.parameters,
