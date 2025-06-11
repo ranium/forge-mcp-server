@@ -49,19 +49,7 @@ export const listStaticPhpVersionsTool: ForgeToolDefinition<{}> = {
   name: "list_static_php_versions",
   description: "List supported PHP versions for new server creation (static, as per Forge documentation). Also allows custom/free-text entry.",
   parameters: {},
-  handler: async (_params, _forgeApiKey, options?: { parsed?: boolean }) => {
-    if (options?.parsed) {
-      return {
-        messages: [
-          {
-            role: "assistant",
-            content: { type: "text", text: "Select PHP version:" }
-          }
-        ],
-        choices: staticPhpVersions.map((v) => ({ name: v.name, value: v.id })),
-        default: staticPhpVersions[0]?.id
-      };
-    }
+  handler: async (_params, _forgeApiKey) => {
     return toMCPToolResult({ phpVersions: staticPhpVersions, allowCustom: true });
   }
 }; 

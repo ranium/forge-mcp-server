@@ -13,7 +13,7 @@ import { getDeploymentTool } from "./getDeployment.js";
 import { getDeploymentOutputTool } from "./getDeploymentOutput.js";
 import { getServerLogsTool } from "./getServerLogs.js";
 import { listProvidersTool } from "./listProviders.js";
-import { listDataTypesTool } from "./listDataTypes.js";
+import { listDatabaseTypesTool } from "./listDatabaseTypes.js";
 import { listCredentialsTool } from "./listCredentials.js";
 import { listRegionsTool } from "./listRegions.js";
 import { getComposerPackagesAuthTool } from "./getComposerPackagesAuth.js";
@@ -42,7 +42,7 @@ export const forgeTools = [
   getDeploymentOutputTool,
   getServerLogsTool,
   listProvidersTool,
-  listDataTypesTool,
+  listDatabaseTypesTool,
   listCredentialsTool,
   listRegionsTool,
   getComposerPackagesAuthTool,

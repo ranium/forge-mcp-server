@@ -14,7 +14,7 @@ export const listSizesTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: "list_sizes",
   description: "List available sizes for a given provider and region using the Forge API. Also allows custom/free-text entry.",
   parameters: paramsSchema,
-  handler: async (params, forgeApiKey, options?: { parsed?: boolean }) => {
+  handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params);
       const provider = parsed.provider;
@@ -27,18 +27,6 @@ export const listSizesTool: ForgeToolDefinition<typeof paramsSchema> = {
       const providerRegions = data?.regions?.[provider] || [];
       const regionObj = providerRegions.find((r: any) => r.id === region);
       const sizes = regionObj?.sizes || [];
-      if (options?.parsed) {
-        return {
-          messages: [
-            {
-              role: "assistant",
-              content: { type: "text", text: "Select a server size:" }
-            }
-          ],
-          choices: sizes.map((s: any) => ({ name: s.name, value: s.id || s.name })),
-          default: sizes[0]?.id || sizes[0]?.name
-        };
-      }
       return toMCPToolResult({ sizes, allowCustom: true });
     } catch (err) {
       return toMCPToolError(err);

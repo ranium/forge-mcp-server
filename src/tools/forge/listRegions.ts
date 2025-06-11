@@ -13,7 +13,7 @@ export const listRegionsTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: "list_regions",
   description: "List available regions for a given provider using the Forge API. Also allows custom/free-text entry.",
   parameters: paramsSchema,
-  handler: async (params, forgeApiKey, options?: { parsed?: boolean }) => {
+  handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params);
       const provider = parsed.provider;
@@ -23,18 +23,6 @@ export const listRegionsTool: ForgeToolDefinition<typeof paramsSchema> = {
         method: HttpMethod.GET
       }, forgeApiKey);
       const providerRegions = data?.regions?.[provider] || [];
-      if (options?.parsed) {
-        return {
-          messages: [
-            {
-              role: "assistant",
-              content: { type: "text", text: "Select a region:" }
-            }
-          ],
-          choices: providerRegions.map((r: any) => ({ name: r.name, value: r.id })),
-          default: providerRegions[0]?.id
-        };
-      }
       return toMCPToolResult({ regions: providerRegions, allowCustom: true });
     } catch (err) {
       return toMCPToolError(err);

@@ -18,13 +18,6 @@ export interface PromptChoice {
   disabled?: boolean;
 }
 
-export interface MCPPromptResult {
-  messages: { role: "assistant" | "user", content: MCPToolContent }[];
-  choices?: PromptChoice[];
-  default?: PromptChoice['value'];
-  [key: string]: unknown;
-}
-
 export interface ForgeToolDefinition<TParams extends ZodRawShape> {
   name: string;
   description: string;
@@ -32,8 +25,7 @@ export interface ForgeToolDefinition<TParams extends ZodRawShape> {
   handler: (
     params: Record<string, unknown>,
     forgeApiKey: string,
-    options?: { parsed?: boolean }
-  ) => Promise<MCPToolResult | MCPPromptResult>;
+  ) => Promise<MCPToolResult>;
 }
 
 export enum HttpMethod {

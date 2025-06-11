@@ -11,19 +11,7 @@ export const listUbuntuVersionsTool: ForgeToolDefinition<{}> = {
   name: "list_ubuntu_versions",
   description: "List supported Ubuntu versions for new server creation (static, as per Forge documentation). 24.04 is the default if not specified.",
   parameters: {},
-  handler: async (_params, _forgeApiKey, options?: { parsed?: boolean }) => {
-    if (options?.parsed) {
-      return {
-        messages: [
-          {
-            role: "assistant",
-            content: { type: "text", text: "Select Ubuntu version:" }
-          }
-        ],
-        choices: ubuntuVersions.map((v) => ({ name: v.name, value: v.id })),
-        default: "24.04"
-      };
-    }
+  handler: async (_params, _forgeApiKey) => {
     return toMCPToolResult({ ubuntuVersions, default: "24.04" });
   }
 }; 

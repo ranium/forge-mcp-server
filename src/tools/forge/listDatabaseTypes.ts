@@ -1,7 +1,7 @@
 import { ForgeToolDefinition } from "../../core/types/protocols.js";
 import { toMCPToolResult } from "../../utils/mcpToolResult.js";
 
-const dataTypes = [
+const databaseTypes = [
   { id: "mysql8", name: "MySQL 8" },
   { id: "mariadb106", name: "MariaDB 10.6" },
   { id: "mariadb1011", name: "MariaDB 10.11" },
@@ -14,23 +14,11 @@ const dataTypes = [
   { id: "postgres17", name: "PostgreSQL 17" }
 ];
 
-export const listDataTypesTool: ForgeToolDefinition<{}> = {
-  name: "list_data_types",
+export const listDatabaseTypesTool: ForgeToolDefinition<{}> = {
+  name: "list_database_types",
   description: "List valid database types for new server creation (static, as per Forge documentation).",
   parameters: {},
-  handler: async (_params, _forgeApiKey, options?: { parsed?: boolean }) => {
-    if (options?.parsed) {
-      return {
-        messages: [
-          {
-            role: "assistant",
-            content: { type: "text", text: "Select database type:" }
-          }
-        ],
-        choices: dataTypes.map((d) => ({ name: d.name, value: d.id })),
-        default: dataTypes[0]?.id
-      };
-    }
-    return toMCPToolResult({ dataTypes });
+  handler: async (_params, _forgeApiKey) => {
+    return toMCPToolResult({ databaseTypes });
   }
 }; 

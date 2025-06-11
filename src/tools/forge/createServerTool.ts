@@ -22,29 +22,30 @@ export const createServerTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'create_server',
   description: `Creates a new server in Laravel Forge.
 
-All parameters are required and must be collected via the corresponding prompts:
-- provider: Use the 'providerPrompt'
-- credential: Use the 'credentialPrompt'
-- region: Use the 'regionPrompt'
-- size: Use the 'sizePrompt'
-- ubuntuVersion: Use the 'ubuntuVersionPrompt'
-- databaseType: Use the 'databaseTypePrompt'
-- phpVersion: Use the 'phpVersionPrompt'
-- serverName: Use the 'serverNamePrompt'
+All parameters are required and must be provided by the client. The client should use the following tools to collect the necessary parameters:
+- list_providers
+- list_credentials
+- list_regions
+- list_sizes
+- list_ubuntu_versions
+- list_database_types
+- list_php_versions
+- confirm_server_creation (for confirmation)
 
 Before calling this tool, the client MUST call the 'confirm_server_creation' tool with the same parameters and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool.
 
-The client should sequentially prompt the user for each parameter using the above prompts, then call 'confirm_server_creation', and finally call this tool with the collected values only after confirmation.`,
+The client should collect all required parameters using the above tools, call 'confirm_server_creation', and finally call this tool with the collected values and confirmationId only after confirmation.`,
   parameters: paramsSchema,
   handler: async (params, forgeApiKey) => {
     try {
-      const { confirmationId, ...rest } = params;
+      const parsed = paramsZodObject.parse(params);
+      const { confirmationId, ...rest } = parsed;
       const confirmation = confirmationStore.get(confirmationId);
       if (!confirmation || confirmation.used) {
         return toMCPToolResult(false);
       }
       // Check if all params match
-      for (const key of Object.keys(rest)) {
+      for (const key of Object.keys(rest) as Array<keyof typeof rest>) {
         if (confirmation[key] !== rest[key]) {
           return toMCPToolResult(false);
         }
