@@ -24,6 +24,8 @@ import { checkLaravelSchedulerStatusTool } from "./checkLaravelSchedulerStatus.j
 import { listSizesTool } from "./listSizes.js";
 import { createServerTool } from './createServerTool.js';
 import { confirmServerCreationTool } from './confirmServerCreationTool.js';
+import { confirmServerDeletionTool } from './confirmServerDeletionTool.js';
+import { deleteServerTool } from './deleteServerTool.js';
 // Import other tools here as you add them
 
 export const forgeTools = [
@@ -53,4 +55,6 @@ export const forgeTools = [
   listSizesTool,
   confirmServerCreationTool,
   createServerTool,
+  confirmServerDeletionTool,
+  deleteServerTool,
 ];
