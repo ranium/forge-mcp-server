@@ -34,6 +34,7 @@ import {
   confirmationPrompt
 } from './promptDrivenServerCreation.js';
 import { createServerTool } from './createServerTool.js';
+import { confirmServerCreationTool } from './confirmServerCreationTool.js';
 // Import other tools here as you add them
 
 export const forgeTools = [
@@ -61,7 +62,8 @@ export const forgeTools = [
   checkInertiaDaemonStatusTool,
   checkLaravelSchedulerStatusTool,
   listSizesTool,
-  createServerTool
+  confirmServerCreationTool,
+  createServerTool,
 ];
 
 // Export all prompts for MCP registration
