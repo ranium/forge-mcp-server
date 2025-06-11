@@ -57,8 +57,23 @@ The client should sequentially prompt the user for each parameter using the abov
       }
       confirmation.used = true;
       confirmationStore.set(confirmationId, confirmation);
-      // For testing: just echo the params
-      return toMCPToolResult(`Server would be created with: ${JSON.stringify(params, null, 2)}`);
+      // Real API call
+      const payload = {
+        provider: rest.provider,
+        credential_id: rest.credentialId,
+        region: rest.region,
+        size: rest.size,
+        php_version: rest.phpVersion,
+        database_type: rest.databaseType,
+        name: rest.serverName,
+        ubuntu_version: rest.ubuntuVersion
+      };
+      const data = await callForgeApi<object>({
+        endpoint: "/servers",
+        method: HttpMethod.POST,
+        data: payload
+      }, forgeApiKey);
+      return toMCPToolResult(data);
     } catch (err) {
       return toMCPToolError(err);
     }
