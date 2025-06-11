@@ -14,7 +14,7 @@ if (!FORGE_API_KEY) {
 
 const server = new McpServer(
   { name: "forge-mcp", version: "1.0.0" },
-  { capabilities: { tools: {}, prompts: {} } }
+  { capabilities: { tools: {} } }
 );
 
 // Register test_connection tool (for health check)
@@ -38,7 +38,7 @@ for (const tool of forgeTools) {
     tool.name,
     tool.parameters,
     { description: tool.description },
-    async (params: Record<string, unknown>) => await tool.handler(params, FORGE_API_KEY) as MCPToolResult
+    async (params: Record<string, unknown>) => await tool.handler(params, FORGE_API_KEY)
   );
   console.error(`Forge MCP server: tool registered (${tool.name})`);
 }

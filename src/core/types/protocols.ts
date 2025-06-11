@@ -11,13 +11,6 @@ export interface MCPToolResult {
   [key: string]: unknown;
 }
 
-export interface PromptChoice {
-  name: string;
-  value: string;
-  description?: string;
-  disabled?: boolean;
-}
-
 export interface ForgeToolDefinition<TParams extends ZodRawShape> {
   name: string;
   description: string;
