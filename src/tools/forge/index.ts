@@ -28,8 +28,8 @@ import { confirmServerCreationTool } from './confirmServerCreationTool.js';
 
 export const forgeTools = [
   listServersTool,
-  listPhpVersionsTool,
   listStaticPhpVersionsTool,
+  listPhpVersionsTool,
   getUserTool,
   showServerTool,
   listSitesTool,
