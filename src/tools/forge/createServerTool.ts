@@ -29,8 +29,10 @@ All parameters are required and must be provided by the client. The client shoul
 - list_sizes
 - list_ubuntu_versions
 - list_database_types
-- list_php_versions
+- list_static_php_versions (returns valid php_version IDs: php84, php83, php82, php81, php80, php74, php73, php72, php70, php56)
 - confirm_server_creation (for confirmation)
+
+The php_version parameter must be one of the valid Forge API IDs as provided by the list_static_php_versions tool, not a raw version string.
 
 Before calling this tool, the client MUST call the 'confirm_server_creation' tool with the same parameters and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool.
 
