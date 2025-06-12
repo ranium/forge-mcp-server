@@ -3,6 +3,7 @@ import { callForgeApi } from "../../utils/forgeApi.js";
 import { toMCPToolResult, toMCPToolError } from "../../utils/mcpToolResult.js";
 import { z } from "zod";
 import { deletionConfirmationStore } from "./confirmServerDeletionTool.js";
+import { validateConfirmation, markConfirmationUsed } from "../../utils/confirmationStore.js";
 
 const paramsSchema = {
   serverId: z.union([z.string(), z.number()]).describe("The ID of the server to delete (string or number)."),
@@ -19,18 +20,16 @@ export const deleteServerTool: ForgeToolDefinition<typeof paramsSchema> = {
     try {
       const parsed = paramsZodObject.parse(params);
       const { serverId, confirmationId } = parsed;
-      const confirmation = deletionConfirmationStore.get(confirmationId);
-      if (!confirmation || confirmation.used || String(confirmation.serverId) !== String(serverId)) {
+      // Validate confirmation using generic utility
+      const confirmation = validateConfirmation(
+        deletionConfirmationStore,
+        confirmationId,
+        (stored: Record<string, any>) => String(stored.serverId) === String(serverId)
+      );
+      if (!confirmation) {
         return toMCPToolResult(false);
       }
-      // Optionally: check expiry (e.g., 10 min)
-      const now = Date.now();
-      if (now - confirmation.createdAt > 10 * 60 * 1000) {
-        deletionConfirmationStore.delete(confirmationId);
-        return toMCPToolResult(false);
-      }
-      confirmation.used = true;
-      deletionConfirmationStore.set(confirmationId, confirmation);
+      markConfirmationUsed(deletionConfirmationStore, confirmationId);
       // Real API call
       const data = await callForgeApi<object>({
         endpoint: `/servers/${String(serverId)}`,

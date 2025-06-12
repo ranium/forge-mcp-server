@@ -1,7 +1,11 @@
 import { ForgeToolDefinition } from "../../core/types/protocols.js";
 import { toMCPToolResult } from "../../utils/mcpToolResult.js";
 import { z } from "zod";
-import { randomUUID } from "crypto";
+import {
+  createConfirmationStore,
+  createConfirmation,
+  ConfirmationEntry
+} from "../../utils/confirmationStore.js";
 
 const paramsSchema = {
   provider: z.string().describe('The cloud provider to use (e.g., akamai, ocean2, aws, hetzner, vultr2, custom).'),
@@ -15,16 +19,17 @@ const paramsSchema = {
   confirmationId: z.string().optional().describe('A unique confirmation ID for this server creation.'),
 };
 
-// Temporary in-memory store for confirmation IDs
-export const confirmationStore = new Map();
+// Use the generic confirmation store
+export const confirmationStore = createConfirmationStore<Omit<typeof paramsSchema, 'confirmationId'>>();
 
 export const confirmServerCreationTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'confirm_server_creation',
   description: `Confirms the server creation parameters and returns a summary for user confirmation. This tool does not create the server, but returns a summary and expects the client to handle the confirmation logic.`,
   parameters: paramsSchema,
   handler: async (params) => {
-    const confirmationId = randomUUID();
-    confirmationStore.set(confirmationId, { ...params, confirmationId, used: false, createdAt: Date.now() });
+    // Remove confirmationId from params for storage
+    const { confirmationId, ...rest } = params;
+    const entry = createConfirmation(confirmationStore, rest);
     const summary =
       `Please confirm the server creation with the following settings:\n` +
       `Provider: ${params.provider}\n` +
@@ -35,8 +40,8 @@ export const confirmServerCreationTool: ForgeToolDefinition<typeof paramsSchema>
       `Database: ${params.databaseType}\n` +
       `PHP: ${params.phpVersion}\n` +
       `Name: ${params.serverName}\n` +
-      `Confirmation ID: ${confirmationId}\n` +
+      `Confirmation ID: ${entry.confirmationId}\n` +
       `\nType \"yes\" to confirm or \"no\" to cancel.`;
-    return toMCPToolResult({ summary, confirmationId });
+    return toMCPToolResult({ summary, confirmationId: entry.confirmationId });
   }
 }; 
