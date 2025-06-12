@@ -3,7 +3,6 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 import { forgeTools } from "./tools/forge/index.js";
-import { MCPToolResult } from "./core/types/protocols.js";
 
 // Require FORGE_API_KEY from environment
 const FORGE_API_KEY = process.env.FORGE_API_KEY;

@@ -26,6 +26,8 @@ import { createServerTool } from './createServerTool.js';
 import { confirmServerCreationTool } from './confirmServerCreationTool.js';
 import { confirmServerDeletionTool } from './confirmServerDeletionTool.js';
 import { deleteServerTool } from './deleteServerTool.js';
+import { confirmServerRebootTool } from './confirmServerRebootTool.js';
+import { rebootServerTool } from './rebootServerTool.js';
 // Import other tools here as you add them
 
 export const forgeTools = [
@@ -57,4 +59,6 @@ export const forgeTools = [
   createServerTool,
   confirmServerDeletionTool,
   deleteServerTool,
+  confirmServerRebootTool,
+  rebootServerTool,
 ];
