@@ -29,6 +29,7 @@ import { deleteServerTool } from './deleteServerTool.js';
 import { confirmServerRebootTool } from './confirmServerRebootTool.js';
 import { rebootServerTool } from './rebootServerTool.js';
 import { rebootNginxTool } from './rebootNginxTool.js';
+import { rebootPhpTool } from './rebootPhpTool.js';
 // Import other tools here as you add them
 
 export const forgeTools = [
@@ -63,4 +64,5 @@ export const forgeTools = [
   confirmServerRebootTool,
   rebootServerTool,
   rebootNginxTool,
+  rebootPhpTool,
 ];
