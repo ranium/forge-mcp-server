@@ -32,6 +32,9 @@ import { rebootNginxTool } from './rebootNginxTool.js';
 import { rebootPhpTool } from './rebootPhpTool.js';
 import { rebootMysqlTool } from './rebootMysqlTool.js';
 import { rebootPostgresTool } from './rebootPostgresTool.js';
+import { confirmSiteCreationTool } from './confirmSiteCreationTool.js';
+import { createSiteTool } from './createSiteTool.js';
+import { listProjectTypesTool } from './listProjectTypesTool.js';
 // Import other tools here as you add them
 
 export const forgeTools = [
@@ -69,4 +72,7 @@ export const forgeTools = [
   rebootPhpTool,
   rebootMysqlTool,
   rebootPostgresTool,
+  listProjectTypesTool,
+  confirmSiteCreationTool,
+  createSiteTool,
 ];
