@@ -2,7 +2,13 @@ import { ForgeToolDefinition, HttpMethod } from "../../core/types/protocols.js";
 import { callForgeApi } from "../../utils/forgeApi.js";
 import { toMCPToolResult, toMCPToolError } from "../../utils/mcpToolResult.js";
 import { z } from "zod";
-import { confirmationStore } from "./confirmServerCreationTool.js";
+import {
+  confirmationStore
+} from "./confirmServerCreationTool.js";
+import {
+  validateConfirmation,
+  markConfirmationUsed
+} from "../../utils/confirmationStore.js";
 
 const paramsSchema = {
   provider: z.string().describe('The cloud provider to use (e.g., akamai, ocean2, aws, hetzner, vultr2, custom).'),
@@ -42,24 +48,22 @@ The client should collect all required parameters using the above tools, call 'c
     try {
       const parsed = paramsZodObject.parse(params);
       const { confirmationId, ...rest } = parsed;
-      const confirmation = confirmationStore.get(confirmationId);
-      if (!confirmation || confirmation.used) {
-        return toMCPToolResult(false);
-      }
-      // Check if all params match
-      for (const key of Object.keys(rest) as Array<keyof typeof rest>) {
-        if (confirmation[key] !== rest[key]) {
-          return toMCPToolResult(false);
+      // Validate confirmation using generic utility
+      const confirmation = validateConfirmation(
+        confirmationStore,
+        confirmationId,
+        (stored: Record<string, any>) => {
+          const restObj = rest as Record<string, any>;
+          // All params except confirmationId must match
+          return Object.keys(restObj).every(
+            (key) => stored[key] === restObj[key]
+          );
         }
-      }
-      // Optionally: check expiry (e.g., 10 min)
-      const now = Date.now();
-      if (now - confirmation.createdAt > 10 * 60 * 1000) {
-        confirmationStore.delete(confirmationId);
+      );
+      if (!confirmation) {
         return toMCPToolResult(false);
       }
-      confirmation.used = true;
-      confirmationStore.set(confirmationId, confirmation);
+      markConfirmationUsed(confirmationStore, confirmationId);
       // Real API call
       const payload = {
         provider: rest.provider,
