@@ -37,6 +37,8 @@ import { createSiteTool } from './createSiteTool.js';
 import { listProjectTypesTool } from './listProjectTypesTool.js';
 import { confirmChangeSitePhpVersionTool } from './confirmChangeSitePhpVersionTool.js';
 import { changeSitePhpVersionTool } from './changeSitePhpVersionTool.js';
+import { confirmAddSiteAliasesTool } from './confirmAddSiteAliasesTool.js';
+import { addSiteAliasesTool } from './addSiteAliasesTool.js';
 // Import other tools here as you add them
 
 export const forgeTools = [
@@ -79,4 +81,6 @@ export const forgeTools = [
   createSiteTool,
   confirmChangeSitePhpVersionTool,
   changeSitePhpVersionTool,
+  confirmAddSiteAliasesTool,
+  addSiteAliasesTool,
 ];
