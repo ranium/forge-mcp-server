@@ -42,6 +42,8 @@ import { addSiteAliasesTool } from './addSiteAliasesTool.js';
 import { confirmSiteDeletionTool } from './confirmSiteDeletionTool.js';
 import { deleteSiteTool } from './deleteSiteTool.js';
 import { getSiteLogTool } from './getSiteLogTool.js';
+import { clearSiteLogTool } from './clearSiteLogTool.js';
+import { confirmClearSiteLogTool } from './confirmClearSiteLogTool.js';
 // Import other tools here as you add them
 
 export const forgeTools = [
@@ -89,4 +91,6 @@ export const forgeTools = [
   confirmSiteDeletionTool,
   deleteSiteTool,
   getSiteLogTool,
+  confirmClearSiteLogTool,
+  clearSiteLogTool,
 ];
