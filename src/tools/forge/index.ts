@@ -63,6 +63,7 @@ import { deleteDatabaseTool } from './deleteDatabaseTool.js';
 import { confirmCreateDatabaseUserTool } from './confirmCreateDatabaseUserTool.js';
 import { createDatabaseUserTool } from './createDatabaseUserTool.js';
 import { listDatabaseUsersTool } from './listDatabaseUsersTool.js';
+import { getDatabaseUserTool } from './getDatabaseUserTool.js';
 // Import other tools here as you add them
 
 export const forgeTools = [
@@ -102,6 +103,7 @@ export const forgeTools = [
   confirmCreateDatabaseUserTool,
   createDatabaseUserTool,
   listDatabaseUsersTool,
+  getDatabaseUserTool,
   confirmServerDeletionTool,
   deleteServerTool,
   confirmServerRebootTool,
