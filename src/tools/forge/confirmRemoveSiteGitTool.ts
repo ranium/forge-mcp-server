@@ -1,0 +1,28 @@
+import { ForgeToolDefinition } from "../../core/types/protocols.js";
+import { toMCPToolResult } from "../../utils/mcpToolResult.js";
+import { z } from "zod";
+import { createConfirmationStore, createConfirmation } from "../../utils/confirmationStore.js";
+
+const paramsSchema = {
+  serverId: z.union([z.string(), z.number()]).describe("The ID of the server (string or number). The client MUST validate this value against the available servers from listServersTool before passing it."),
+  siteId: z.union([z.string(), z.number()]).describe("The ID of the site (string or number). The client MUST validate this value against the available sites from listSitesTool before passing it."),
+  serverName: z.string().describe("The name of the server. The client MUST validate this value against the available servers from listServersTool before passing it."),
+  siteName: z.string().describe("The name of the site. The client MUST validate this value against the available sites from listSitesTool before passing it."),
+};
+
+export const removeSiteGitConfirmationStore = createConfirmationStore<typeof paramsSchema>();
+
+export const confirmRemoveSiteGitTool: ForgeToolDefinition<typeof paramsSchema> = {
+  name: "confirm_remove_site_git",
+  description: `Confirms the request to detach the Git project from a site and returns a summary for user confirmation. This tool does not perform the operation, but returns a summary and expects the client to handle the confirmation logic.`,
+  parameters: paramsSchema,
+  handler: async (params) => {
+    const entry = createConfirmation(removeSiteGitConfirmationStore, params);
+    const summary =
+      `Are you sure you want to detach the Git project from the site?\n` +
+      `Server: ${params.serverName} (ID: ${params.serverId})\n` +
+      `Site: ${params.siteName} (ID: ${params.siteId})\n` +
+      `\nType \"yes\" to confirm or \"no\" to cancel.`;
+    return toMCPToolResult({ summary, confirmationId: entry.confirmationId });
+  }
+}; 

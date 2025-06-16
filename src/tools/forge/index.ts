@@ -46,6 +46,8 @@ import { clearSiteLogTool } from './clearSiteLogTool.js';
 import { confirmClearSiteLogTool } from './confirmClearSiteLogTool.js';
 import { installOrUpdateSiteGitTool } from './installOrUpdateSiteGitTool.js';
 import { confirmInstallOrUpdateSiteGitTool } from './confirmInstallOrUpdateSiteGitTool.js';
+import { confirmRemoveSiteGitTool } from './confirmRemoveSiteGitTool.js';
+import { removeSiteGitTool } from './removeSiteGitTool.js';
 // Import other tools here as you add them
 
 export const forgeTools = [
@@ -88,6 +90,8 @@ export const forgeTools = [
   createSiteTool,
   confirmInstallOrUpdateSiteGitTool,
   installOrUpdateSiteGitTool,
+  confirmRemoveSiteGitTool,
+  removeSiteGitTool,
   confirmChangeSitePhpVersionTool,
   changeSitePhpVersionTool,
   confirmAddSiteAliasesTool,
