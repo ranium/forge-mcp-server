@@ -53,6 +53,8 @@ import { confirmDisableQuickDeploymentTool } from './confirmDisableQuickDeployme
 import { disableQuickDeploymentTool } from './disableQuickDeploymentTool.js';
 import { confirmDeployNowTool } from './confirmDeployNowTool.js';
 import { deployNowTool } from './deployNowTool.js';
+import { confirmCreateDatabaseTool } from './confirmCreateDatabaseTool.js';
+import { createDatabaseTool } from './createDatabaseTool.js';
 // Import other tools here as you add them
 
 export const forgeTools = [
@@ -82,6 +84,8 @@ export const forgeTools = [
   listSizesTool,
   confirmServerCreationTool,
   createServerTool,
+  confirmCreateDatabaseTool,
+  createDatabaseTool,
   confirmServerDeletionTool,
   deleteServerTool,
   confirmServerRebootTool,
