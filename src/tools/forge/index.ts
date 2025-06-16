@@ -44,10 +44,12 @@ import { deleteSiteTool } from './deleteSiteTool.js';
 import { getSiteLogTool } from './getSiteLogTool.js';
 import { clearSiteLogTool } from './clearSiteLogTool.js';
 import { confirmClearSiteLogTool } from './confirmClearSiteLogTool.js';
+import { installOrUpdateSiteGitTool } from './installOrUpdateSiteGitTool.js';
+import { confirmInstallOrUpdateSiteGitTool } from './confirmInstallOrUpdateSiteGitTool.js';
 // Import other tools here as you add them
 
 export const forgeTools = [
-  listServersTool,
+  listServersTool,    
   listStaticPhpVersionsTool,
   listPhpVersionsTool,
   getUserTool,
@@ -84,6 +86,8 @@ export const forgeTools = [
   listProjectTypesTool,
   confirmSiteCreationTool,
   createSiteTool,
+  confirmInstallOrUpdateSiteGitTool,
+  installOrUpdateSiteGitTool,
   confirmChangeSitePhpVersionTool,
   changeSitePhpVersionTool,
   confirmAddSiteAliasesTool,
