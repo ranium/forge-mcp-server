@@ -58,6 +58,8 @@ import { createDatabaseTool } from './createDatabaseTool.js';
 import { syncDatabaseTool } from './syncDatabaseTool.js';
 import { listDatabasesTool } from './listDatabasesTool.js';
 import { getDatabaseTool } from './getDatabaseTool.js';
+import { confirmDeleteDatabaseTool } from './confirmDeleteDatabaseTool.js';
+import { deleteDatabaseTool } from './deleteDatabaseTool.js';
 // Import other tools here as you add them
 
 export const forgeTools = [
@@ -92,6 +94,8 @@ export const forgeTools = [
   syncDatabaseTool,
   listDatabasesTool,
   getDatabaseTool,
+  confirmDeleteDatabaseTool,
+  deleteDatabaseTool,
   confirmServerDeletionTool,
   deleteServerTool,
   confirmServerRebootTool,
