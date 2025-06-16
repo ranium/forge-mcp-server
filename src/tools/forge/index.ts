@@ -51,6 +51,8 @@ import { removeSiteGitTool } from './removeSiteGitTool.js';
 import { enableQuickDeploymentTool } from './enableQuickDeploymentTool.js';
 import { confirmDisableQuickDeploymentTool } from './confirmDisableQuickDeploymentTool.js';
 import { disableQuickDeploymentTool } from './disableQuickDeploymentTool.js';
+import { confirmDeployNowTool } from './confirmDeployNowTool.js';
+import { deployNowTool } from './deployNowTool.js';
 // Import other tools here as you add them
 
 export const forgeTools = [
@@ -98,6 +100,8 @@ export const forgeTools = [
   enableQuickDeploymentTool,
   confirmDisableQuickDeploymentTool,
   disableQuickDeploymentTool,
+  confirmDeployNowTool,
+  deployNowTool,
   confirmChangeSitePhpVersionTool,
   changeSitePhpVersionTool,
   confirmAddSiteAliasesTool,
