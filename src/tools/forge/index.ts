@@ -69,7 +69,7 @@ import { deleteDatabaseUserTool } from './deleteDatabaseUserTool.js';
 // Import other tools here as you add them
 
 export const forgeTools = [
-  listServersTool,    
+  listServersTool,
   listStaticPhpVersionsTool,
   listPhpVersionsTool,
   getUserTool,

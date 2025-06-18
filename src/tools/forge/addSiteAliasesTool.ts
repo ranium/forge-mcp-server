@@ -6,8 +6,8 @@ import { addSiteAliasesConfirmationStore } from "./confirmAddSiteAliasesTool.js"
 import { validateConfirmation, markConfirmationUsed } from "../../utils/confirmationStore.js";
 
 const paramsSchema = {
-  serverId: z.union([z.string(), z.number()]).describe("The ID of the server (string or number). The client MUST validate this value against the available servers from listServersTool before passing it, as this is plain text from the user."),
-  siteId: z.union([z.string(), z.number()]).describe("The ID of the site (string or number). The client MUST validate this value against the available sites from listSitesTool before passing it, as this is plain text from the user."),
+  serverId: z.string().describe("The ID of the server. The client MUST validate this value against the available servers from listServersTool before passing it, as this is plain text from the user."),
+  siteId: z.string().describe("The ID of the site. The client MUST validate this value against the available sites from listSitesTool before passing it, as this is plain text from the user."),
   aliases: z.array(z.string()).describe("The aliases to add to the site. The client MUST validate these are valid domain names."),
   confirmationId: z.string().describe("This confirmationId must be obtained from confirmAddSiteAliasesTool after explicit user confirmation. If an invalid or mismatched confirmationId is provided, the alias addition will be rejected."),
 };

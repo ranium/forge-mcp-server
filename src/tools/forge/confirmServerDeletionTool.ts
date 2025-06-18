@@ -7,7 +7,7 @@ import {
 } from "../../utils/confirmationStore.js";
 
 const paramsSchema = {
-  serverId: z.union([z.string(), z.number()]).describe("The ID of the server to delete (string or number)."),
+  serverId: z.string().describe("The ID of the server to delete."),
   serverName: z.string().describe("The name of the server to delete."),
 };
 

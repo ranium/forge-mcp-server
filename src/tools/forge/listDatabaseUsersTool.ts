@@ -4,7 +4,7 @@ import { toMCPToolResult, toMCPToolError } from "../../utils/mcpToolResult.js";
 import { z } from "zod";
 
 const paramsSchema = {
-  serverId: z.union([z.string(), z.number()]).describe("The ID of the server to list database users for (string or number). The client MUST validate this value against the available servers from listServersTool before passing it."),
+  serverId: z.string().describe("The ID of the server to list database users for. The client MUST validate this value against the available servers from listServersTool before passing it."),
 };
 
 const paramsZodObject = z.object(paramsSchema);

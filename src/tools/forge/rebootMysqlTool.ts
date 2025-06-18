@@ -4,7 +4,7 @@ import { toMCPToolResult, toMCPToolError } from "../../utils/mcpToolResult.js";
 import { z } from "zod";
 
 const paramsSchema = {
-  serverId: z.union([z.string(), z.number()]).describe("The ID of the server to reboot MySQL (string or number)."),
+  serverId: z.string().describe("The ID of the server to reboot MySQL."),
 };
 
 const paramsZodObject = z.object(paramsSchema);

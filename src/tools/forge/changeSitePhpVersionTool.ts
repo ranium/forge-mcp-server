@@ -6,8 +6,8 @@ import { changeSitePhpVersionConfirmationStore } from "./confirmChangeSitePhpVer
 import { validateConfirmation, markConfirmationUsed } from "../../utils/confirmationStore.js";
 
 const paramsSchema = {
-  serverId: z.union([z.string(), z.number()]).describe("The ID of the server (string or number). The client MUST validate this value against the available servers from listServersTool before passing it, as this is plain text from the user."),
-  siteId: z.union([z.string(), z.number()]).describe("The ID of the site (string or number). The client MUST validate this value against the available sites from listSitesTool before passing it, as this is plain text from the user."),
+  serverId: z.string().describe("The ID of the server. The client MUST validate this value against the available servers from listServersTool before passing it, as this is plain text from the user."),
+  siteId: z.string().describe("The ID of the site. The client MUST validate this value against the available sites from listSitesTool before passing it, as this is plain text from the user."),
   phpVersion: z.string().describe("The PHP version to set for the site. The client MUST validate this value against the available PHP versions from listPhpVersionsTool before passing it, as this is plain text from the user."),
   confirmationId: z.string().describe("This confirmationId must be obtained from confirmChangeSitePhpVersionTool after explicit user confirmation. If an invalid or mismatched confirmationId is provided, the PHP version change will be rejected."),
 };

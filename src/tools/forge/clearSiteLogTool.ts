@@ -6,16 +6,8 @@ import { clearSiteLogConfirmationStore } from "./confirmClearSiteLogTool.js";
 import { validateConfirmation, markConfirmationUsed } from "../../utils/confirmationStore.js";
 
 const paramsSchema = {
-  serverId: z.union([
-    z.string(),
-    z.number(),
-    z.object({ value: z.union([z.string(), z.number()]) }).transform(obj => obj.value)
-  ]).describe("The ID of the server to clear the site log for (string, number, or { value: string|number })"),
-  siteId: z.union([
-    z.string(),
-    z.number(),
-    z.object({ value: z.union([z.string(), z.number()]) }).transform(obj => obj.value)
-  ]).describe("The ID of the site to clear the log for (string, number, or { value: string|number })"),
+  serverId: z.string().describe("The ID of the server to clear the site log for."),
+  siteId: z.string().describe("The ID of the site to clear the log for."),
   confirmationId: z.string().describe("This confirmationId must be obtained from confirmClearSiteLogTool after explicit user confirmation. If an invalid or mismatched confirmationId is provided, the log clear will be rejected."),
 };
 

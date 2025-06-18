@@ -6,8 +6,8 @@ import { deployNowConfirmationStore } from "./confirmDeployNowTool.js";
 import { validateConfirmation, markConfirmationUsed } from "../../utils/confirmationStore.js";
 
 const paramsSchema = {
-  serverId: z.union([z.string(), z.number()]).describe("The ID of the server (string or number). The client MUST validate this value against the available servers from listServersTool before passing it."),
-  siteId: z.union([z.string(), z.number()]).describe("The ID of the site (string or number). The client MUST validate this value against the available sites from listSitesTool before passing it."),
+  serverId: z.string().describe("The ID of the server. The client MUST validate this value against the available servers from listServersTool before passing it."),
+  siteId: z.string().describe("The ID of the site. The client MUST validate this value against the available sites from listSitesTool before passing it."),
   serverName: z.string().describe("The name of the server. The client MUST validate this value against the available servers from listServersTool before passing it."),
   siteName: z.string().describe("The name of the site. The client MUST validate this value against the available sites from listSitesTool before passing it."),
   confirmationId: z.string().describe("This confirmationId must be obtained from confirmDeployNowTool after explicit user confirmation. If an invalid or mismatched confirmationId is provided, the operation will be rejected."),

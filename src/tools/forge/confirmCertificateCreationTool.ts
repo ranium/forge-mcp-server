@@ -4,8 +4,8 @@ import { z } from "zod";
 import { createConfirmationStore, createConfirmation } from "../../utils/confirmationStore.js";
 
 const paramsSchema = {
-  serverId: z.union([z.string(), z.number()]).describe("The ID of the server to create the certificate on (string or number). The client MUST validate this value against the available servers from listServersTool before passing it, as this is plain text from the user."),
-  siteId: z.union([z.string(), z.number()]).describe("The ID of the site to create the certificate for (string or number). The client MUST validate this value against the available sites from listSitesTool before passing it, as this is plain text from the user."),
+  serverId: z.string().describe("The ID of the server to create the certificate on. The client MUST validate this value against the available servers from listServersTool before passing it, as this is plain text from the user."),
+  siteId: z.string().describe("The ID of the site to create the certificate for. The client MUST validate this value against the available sites from listSitesTool before passing it, as this is plain text from the user."),
   type: z.string().describe("The type of certificate to create (e.g., 'new', 'letsencrypt', 'custom'). The client MUST validate this value against the available certificate types from listCertificateTypesTool before passing it, as this is plain text from the user."),
   domain: z.string().describe("The domain for the certificate. The client MUST validate this is a valid domain name."),
   country: z.string().describe("The country code for the certificate. The client MUST validate this is a valid country code."),

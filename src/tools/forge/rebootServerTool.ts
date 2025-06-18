@@ -6,7 +6,7 @@ import { rebootConfirmationStore } from "./confirmServerRebootTool.js";
 import { validateConfirmation, markConfirmationUsed } from "../../utils/confirmationStore.js";
 
 const paramsSchema = {
-  serverId: z.union([z.string(), z.number()]).describe("The ID of the server to reboot (string or number)."),
+  serverId: z.string().describe("The ID of the server to reboot."),
   confirmationId: z.string().describe("This confirmationId must be obtained from confirmServerRebootTool after explicit user confirmation. If an invalid or mismatched confirmationId is provided, server reboot will be rejected."),
 };
 

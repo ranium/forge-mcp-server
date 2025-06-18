@@ -4,21 +4,9 @@ import { toMCPToolResult, toMCPToolError } from "../../utils/mcpToolResult.js";
 import { z } from "zod";
 
 const paramsSchema = {
-  serverId: z.union([
-    z.string(),
-    z.number(),
-    z.object({ value: z.union([z.string(), z.number()]) }).transform(obj => obj.value)
-  ]).describe("The ID of the server to get the deployment output for (string, number, or { value: string|number })"),
-  siteId: z.union([
-    z.string(),
-    z.number(),
-    z.object({ value: z.union([z.string(), z.number()]) }).transform(obj => obj.value)
-  ]).describe("The ID of the site to get the deployment output for (string, number, or { value: string|number })"),
-  deploymentId: z.union([
-    z.string(),
-    z.number(),
-    z.object({ value: z.union([z.string(), z.number()]) }).transform(obj => obj.value)
-  ]).describe("The ID of the deployment to get the output for (string, number, or { value: string|number })"),
+  serverId: z.string().describe("The ID of the server to get the deployment output for."),
+  siteId: z.string().describe("The ID of the site to get the deployment output for."),
+  deploymentId: z.string().describe("The ID of the deployment to get the output for."),
 };
 
 const paramsZodObject = z.object(paramsSchema);

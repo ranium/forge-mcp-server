@@ -6,7 +6,7 @@ import { deletionConfirmationStore } from "./confirmServerDeletionTool.js";
 import { validateConfirmation, markConfirmationUsed } from "../../utils/confirmationStore.js";
 
 const paramsSchema = {
-  serverId: z.union([z.string(), z.number()]).describe("The ID of the server to delete (string or number)."),
+  serverId: z.string().describe("The ID of the server to delete."),
   confirmationId: z.string().describe("This confirmationId must be obtained from confirmServerDeletionTool after explicit user confirmation. If an invalid or mismatched confirmationId is provided, server deletion will be rejected."),
 };
 

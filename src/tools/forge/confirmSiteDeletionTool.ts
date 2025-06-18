@@ -4,8 +4,8 @@ import { z } from "zod";
 import { createConfirmationStore, createConfirmation } from "../../utils/confirmationStore.js";
 
 const paramsSchema = {
-  serverId: z.union([z.string(), z.number()]).describe("The ID of the server (string or number). The client MUST validate this value against the available servers from listServersTool before passing it, as this is plain text from the user."),
-  siteId: z.union([z.string(), z.number()]).describe("The ID of the site (string or number). The client MUST validate this value against the available sites from listSitesTool before passing it, as this is plain text from the user."),
+  serverId: z.string().describe("The ID of the server. The client MUST validate this value against the available servers from listServersTool before passing it, as this is plain text from the user."),
+  siteId: z.string().describe("The ID of the site. The client MUST validate this value against the available sites from listSitesTool before passing it, as this is plain text from the user."),
 };
 
 export const siteDeletionConfirmationStore = createConfirmationStore<Omit<typeof paramsSchema, never>>();

@@ -4,7 +4,7 @@ import { z } from "zod";
 import { createConfirmationStore, createConfirmation } from "../../utils/confirmationStore.js";
 
 const paramsSchema = {
-  serverId: z.union([z.string(), z.number()]).describe("The ID of the server to create the site on (string or number). The client MUST validate this value against the available servers from listServersTool before passing it, as this is plain text from the user."),
+  serverId: z.string().describe("The ID of the server to create the site on. The client MUST validate this value against the available servers from listServersTool before passing it, as this is plain text from the user."),
   domain: z.string().describe("The domain name for the new site. The client MUST validate this is a valid domain name before passing it, as this is plain text from the user."),
   projectType: z.string().describe("The project type (e.g., 'php', 'html'). The client MUST validate this value against the available project types from listProjectTypesTool before passing it, as this is plain text from the user."),
   directory: z.string().optional().describe("The directory for the site (optional). The client MUST validate this is a valid directory name if provided."),

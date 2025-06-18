@@ -4,16 +4,8 @@ import { toMCPToolResult, toMCPToolError } from "../../utils/mcpToolResult.js";
 import { z } from "zod";
 
 const paramsSchema = {
-  serverId: z.union([
-    z.string(),
-    z.number(),
-    z.object({ value: z.union([z.string(), z.number()]) }).transform(obj => obj.value)
-  ]).describe("The ID of the server to show the daemon for (string, number, or { value: string|number })"),
-  daemonId: z.union([
-    z.string(),
-    z.number(),
-    z.object({ value: z.union([z.string(), z.number()]) }).transform(obj => obj.value)
-  ]).describe("The ID of the daemon to show (string, number, or { value: string|number })"),
+  serverId: z.string().describe("The ID of the server to show the daemon for."),
+  daemonId: z.string().describe("The ID of the daemon to show."),
 };
 
 const paramsZodObject = z.object(paramsSchema);

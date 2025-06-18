@@ -6,8 +6,8 @@ import { certificateCreationConfirmationStore } from "./confirmCertificateCreati
 import { validateConfirmation, markConfirmationUsed } from "../../utils/confirmationStore.js";
 
 const paramsSchema = {
-  serverId: z.union([z.string(), z.number()]).describe("The ID of the server to create the certificate on (string or number)."),
-  siteId: z.union([z.string(), z.number()]).describe("The ID of the site to create the certificate for (string or number)."),
+  serverId: z.string().describe("The ID of the server to create the certificate on."),
+  siteId: z.string().describe("The ID of the site to create the certificate for."),
   type: z.string().describe("The type of certificate to create (e.g., 'new', 'letsencrypt', 'custom')."),
   domain: z.string().describe("The domain for the certificate."),
   country: z.string().describe("The country code for the certificate."),

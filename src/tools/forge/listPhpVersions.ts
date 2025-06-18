@@ -4,11 +4,7 @@ import { toMCPToolResult, toMCPToolError } from "../../utils/mcpToolResult.js";
 import { z } from "zod";
 
 const paramsSchema = {
-  serverId: z.union([
-    z.string(),
-    z.number(),
-    z.object({ value: z.union([z.string(), z.number()]) }).transform(obj => obj.value)
-  ]).describe("The ID of the server to list PHP versions for (string, number, or { value: string|number })"),
+  serverId: z.string().describe("The ID of the server to list PHP versions for."),
 };
 
 const paramsZodObject = z.object(paramsSchema);

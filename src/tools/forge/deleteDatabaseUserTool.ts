@@ -6,8 +6,8 @@ import { deleteDatabaseUserConfirmationStore } from "./confirmDeleteDatabaseUser
 import { validateConfirmation, markConfirmationUsed } from "../../utils/confirmationStore.js";
 
 const paramsSchema = {
-  serverId: z.union([z.string(), z.number()]).describe("The ID of the server (string or number). The client MUST validate this value against the available servers from listServersTool before passing it."),
-  userId: z.union([z.string(), z.number()]).describe("The ID of the database user (string or number). The client MUST validate this value against the available users from listDatabaseUsersTool before passing it."),
+  serverId: z.string().describe("The ID of the server. The client MUST validate this value against the available servers from listServersTool before passing it."),
+  userId: z.string().describe("The ID of the database user. The client MUST validate this value against the available users from listDatabaseUsersTool before passing it."),
   serverName: z.string().describe("The name of the server. The client MUST validate this value against the available servers from listServersTool before passing it."),
   userName: z.string().describe("The name of the database user. The client MUST validate this value against the available users from listDatabaseUsersTool before passing it."),
   confirmationId: z.string().describe("This confirmationId must be obtained from confirmDeleteDatabaseUserTool after explicit user confirmation. If an invalid or mismatched confirmationId is provided, the operation will be rejected."),

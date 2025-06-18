@@ -6,7 +6,7 @@ import { siteCreationConfirmationStore } from "./confirmSiteCreationTool.js";
 import { validateConfirmation, markConfirmationUsed } from "../../utils/confirmationStore.js";
 
 const paramsSchema = {
-  serverId: z.union([z.string(), z.number()]).describe("The ID of the server to create the site on (string or number)."),
+  serverId: z.string().describe("The ID of the server to create the site on."),
   domain: z.string().describe("The domain name for the new site."),
   projectType: z.string().describe("The project type (e.g., 'php', 'html')."),
   directory: z.string().optional().describe("The directory for the site (optional)."),
