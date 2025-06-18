@@ -1,3 +1,4 @@
+import { listUbuntuVersionsTool } from './listUbuntuVersions.js';
 import { listServersTool } from "./listServers.js";
 import { listPhpVersionsTool } from "./listPhpVersions.js";
 import { listStaticPhpVersionsTool } from "./listPhpVersions.js";
@@ -87,6 +88,7 @@ export const forgeTools = [
   listDatabaseTypesTool,
   listCredentialsTool,
   listRegionsTool,
+  listUbuntuVersionsTool,
   getComposerPackagesAuthTool,
   checkLaravelMaintenanceStatusTool,
   checkPulseDaemonStatusTool,
