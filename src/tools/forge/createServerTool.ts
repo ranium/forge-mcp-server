@@ -65,22 +65,22 @@ The client should collect all required parameters using the above tools, call 'c
       }
       markConfirmationUsed(confirmationStore, confirmationId);
       // Real API call
-      // const payload = {
-      //   provider: rest.provider,
-      //   credential_id: rest.credentialId,
-      //   region: rest.region,
-      //   size: rest.size,
-      //   php_version: rest.phpVersion,
-      //   database_type: rest.databaseType,
-      //   name: rest.serverName,
-      //   ubuntu_version: rest.ubuntuVersion
-      // };
-      // const data = await callForgeApi<object>({
-      //   endpoint: "/servers",
-      //   method: HttpMethod.POST,
-      //   data: payload
-      // }, forgeApiKey);
-      return toMCPToolResult({success: true, data: {serverId: "123"}});
+      const payload = {
+        provider: rest.provider,
+        credential_id: rest.credentialId,
+        region: rest.region,
+        size: rest.size,
+        php_version: rest.phpVersion,
+        database_type: rest.databaseType,
+        name: rest.serverName,
+        ubuntu_version: rest.ubuntuVersion
+      };
+      const data = await callForgeApi<object>({
+        endpoint: "/servers",
+        method: HttpMethod.POST,
+        data: payload
+      }, forgeApiKey);
+      return toMCPToolResult(data);
     } catch (err) {
       return toMCPToolError(err);
     }
