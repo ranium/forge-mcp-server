@@ -73,6 +73,8 @@ import { listCertificatesTool } from './listCertificatesTool.js';
 import { getCertificateTool } from "./getCertificateTool.js";
 import { confirmActivateCertificateTool } from "./confirmActivateCertificateTool.js";
 import { activateCertificateTool } from "./activateCertificateTool.js";
+import { confirmDeleteCertificateTool } from "./confirmDeleteCertificateTool.js";
+import { deleteCertificateTool } from "./deleteCertificateTool.js";
 // Import other tools here as you add them
 
 export const forgeTools = [
@@ -150,5 +152,7 @@ export const forgeTools = [
   listCertificatesTool,
   getCertificateTool,
   confirmActivateCertificateTool,
-  activateCertificateTool
+  activateCertificateTool,
+  confirmDeleteCertificateTool,
+  deleteCertificateTool
 ];
