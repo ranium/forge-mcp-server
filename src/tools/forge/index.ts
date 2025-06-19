@@ -71,6 +71,8 @@ import { confirmLetsEncryptCertificateCreationTool } from './confirmLetsEncryptC
 import { createLetsEncryptCertificateTool } from './createLetsEncryptCertificateTool.js';
 import { listCertificatesTool } from './listCertificatesTool.js';
 import { getCertificateTool } from "./getCertificateTool.js";
+import { confirmActivateCertificateTool } from "./confirmActivateCertificateTool.js";
+import { activateCertificateTool } from "./activateCertificateTool.js";
 // Import other tools here as you add them
 
 export const forgeTools = [
@@ -146,12 +148,7 @@ export const forgeTools = [
   confirmLetsEncryptCertificateCreationTool,
   createLetsEncryptCertificateTool,
   listCertificatesTool,
-  getCertificateTool
+  getCertificateTool,
+  confirmActivateCertificateTool,
+  activateCertificateTool
 ];
-
-export const forgeMCPTools = {
-  list_certificates: listCertificatesTool,
-  get_certificate: getCertificateTool,
-  confirm_lets_encrypt_certificate_creation: confirmLetsEncryptCertificateCreationTool,
-  create_lets_encrypt_certificate: createLetsEncryptCertificateTool,
-} as const;
