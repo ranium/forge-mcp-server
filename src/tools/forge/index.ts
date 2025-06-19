@@ -69,6 +69,7 @@ import { confirmDeleteDatabaseUserTool } from './confirmDeleteDatabaseUserTool.j
 import { deleteDatabaseUserTool } from './deleteDatabaseUserTool.js';
 import { confirmLetsEncryptCertificateCreationTool } from './confirmLetsEncryptCertificateCreationTool.js';
 import { createLetsEncryptCertificateTool } from './createLetsEncryptCertificateTool.js';
+import { listCertificatesTool } from './listCertificatesTool.js';
 // Import other tools here as you add them
 
 export const forgeTools = [
@@ -143,4 +144,5 @@ export const forgeTools = [
   clearSiteLogTool,
   confirmLetsEncryptCertificateCreationTool,
   createLetsEncryptCertificateTool,
+  listCertificatesTool
 ];
