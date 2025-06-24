@@ -4,7 +4,7 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 // Helper function to create a server instance for testing
 function createTestServer(): McpServer {
   return new McpServer(
-    { name: 'forge-mcp', version: '1.0.0' },
+    { name: 'forge-mcp', version: '0.1.0' },
     { capabilities: { tools: {} } }
   )
 }

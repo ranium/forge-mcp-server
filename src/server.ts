@@ -22,7 +22,7 @@ if (!FORGE_API_KEY) {
 }
 
 const server = new McpServer(
-  { name: 'forge-mcp', version: '1.0.0' },
+  { name: 'forge-mcp', version: '0.1.0' },
   { capabilities: { tools: {} } }
 )
 

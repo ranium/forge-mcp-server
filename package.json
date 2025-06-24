@@ -1,7 +1,7 @@
 {
-  "name": "@ranium/forge-mcp",
+  "name": "@raniumsys/forge-mcp",
   "homepage": "https://github.com/ranium/forge-mcp",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "MCP Server for Laravel Forge",
   "main": "dist/server.js",
   "type": "module",
@@ -55,6 +55,6 @@
     "laravel-forge",
     "mcp-server"
   ],
-  "author": "Ranium <info@ranium.in> (https://ranium.in/)",
+  "author": "Ranium Systems <info@ranium.in> (https://ranium.in/)",
   "license": "MIT"
 }
