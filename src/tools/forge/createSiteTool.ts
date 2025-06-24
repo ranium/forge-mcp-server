@@ -41,8 +41,8 @@ export const createSiteTool: ForgeToolDefinition<typeof paramsSchema> = {
       const confirmation = validateConfirmation(
         siteCreationConfirmationStore,
         confirmationId,
-        (stored: Record<string, any>) => {
-          const restObj = rest as Record<string, any>;
+        (stored: Record<string, unknown>) => {
+          const restObj = rest as Record<string, unknown>;
           return Object.keys(restObj).every(
             (key) => stored[key] === restObj[key]
           );
@@ -53,7 +53,7 @@ export const createSiteTool: ForgeToolDefinition<typeof paramsSchema> = {
       }
       markConfirmationUsed(siteCreationConfirmationStore, confirmationId);
       // Prepare payload for Forge API
-      const payload: Record<string, any> = {
+      const payload: Record<string, unknown> = {
         domain: rest.domain,
         project_type: rest.projectType,
       };

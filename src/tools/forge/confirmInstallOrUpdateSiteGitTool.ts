@@ -30,7 +30,7 @@ export const confirmInstallOrUpdateSiteGitTool: ForgeToolDefinition<typeof param
       `Branch: ${params.branch}\n` +
       (params.composer !== undefined ? `Composer: ${params.composer}\n` : "") +
       (params.database ? `Database: ${params.database}\n` : "") +
-      `\nType \"yes\" to confirm or \"no\" to cancel.`;
+      `\nType "yes" to confirm or "no" to cancel.`;
     return toMCPToolResult({ summary, confirmationId: entry.confirmationId });
   }
 }; 

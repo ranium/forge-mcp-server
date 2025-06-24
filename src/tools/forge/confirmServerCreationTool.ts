@@ -3,8 +3,7 @@ import { toMCPToolResult } from "../../utils/mcpToolResult.js";
 import { z } from "zod";
 import {
   createConfirmationStore,
-  createConfirmation,
-  ConfirmationEntry
+  createConfirmation
 } from "../../utils/confirmationStore.js";
 
 const paramsSchema = {
@@ -28,7 +27,7 @@ export const confirmServerCreationTool: ForgeToolDefinition<typeof paramsSchema>
   parameters: paramsSchema,
   handler: async (params) => {
     // Remove confirmationId from params for storage
-    const { confirmationId, ...rest } = params;
+    const { ...rest } = params;
     const entry = createConfirmation(confirmationStore, rest);
     const summary =
       `Please confirm the server creation with the following settings:\n` +
@@ -41,7 +40,7 @@ export const confirmServerCreationTool: ForgeToolDefinition<typeof paramsSchema>
       `PHP: ${params.phpVersion}\n` +
       `Name: ${params.serverName}\n` +
       `Confirmation ID: ${entry.confirmationId}\n` +
-      `\nType \"yes\" to confirm or \"no\" to cancel.`;
+      `\nType "yes" to confirm or "no" to cancel.`;
     return toMCPToolResult({ summary, confirmationId: entry.confirmationId });
   }
 }; 

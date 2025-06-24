@@ -42,7 +42,7 @@ for (const tool of forgeTools) {
   console.error(`Forge MCP server: tool registered (${tool.name})`);
 }
 
-process.on('unhandledRejection', (reason, promise) => {
+process.on('unhandledRejection', (reason, _promise) => {
   console.error('Unhandled Rejection:', reason);
 });
 process.on('uncaughtException', (err) => {

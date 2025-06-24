@@ -25,7 +25,7 @@ export const confirmCreateDatabaseUserTool: ForgeToolDefinition<typeof paramsSch
       `Username: ${params.name}\n` +
       `Password: ${params.password}\n` +
       `Databases: ${Array.isArray(params.databases) ? params.databases.join(", ") : ""}\n` +
-      `\nType \"yes\" to confirm or \"no\" to cancel.`;
+      `\nType "yes" to confirm or "no" to cancel.`;
     return toMCPToolResult({ summary, confirmationId: entry.confirmationId });
   }
 }; 

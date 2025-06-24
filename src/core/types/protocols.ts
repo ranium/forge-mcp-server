@@ -1,4 +1,4 @@
-import { z, ZodRawShape, TypeOf } from "zod";
+import { ZodRawShape } from "zod";
 
 export type MCPToolContent =
   | { type: "text"; text: string }
@@ -31,6 +31,6 @@ export enum HttpMethod {
 export interface ForgeApiRequest {
   endpoint: string;
   method: HttpMethod;
-  data?: any;
-  params?: any;
+  data?: unknown;
+  params?: unknown;
 } 

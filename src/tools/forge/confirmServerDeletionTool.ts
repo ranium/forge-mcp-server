@@ -23,7 +23,7 @@ export const confirmServerDeletionTool: ForgeToolDefinition<typeof paramsSchema>
       `Please confirm deletion of server:\n` +
       `Server ID: ${params.serverId}\n` +
       `Server Name: ${params.serverName}\n` +
-      `\nType \"yes\" to confirm or \"no\" to cancel.`;
+      `\nType "yes" to confirm or "no" to cancel.`;
     return toMCPToolResult({ summary, confirmationId: entry.confirmationId });
   }
 }; 

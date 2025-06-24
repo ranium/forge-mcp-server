@@ -20,7 +20,7 @@ export const confirmServerRebootTool: ForgeToolDefinition<typeof paramsSchema> =
       `Please confirm reboot of server:\n` +
       `Server ID: ${params.serverId}\n` +
       `Server Name: ${params.serverName}\n` +
-      `\nType \"yes\" to confirm or \"no\" to cancel.`;
+      `\nType "yes" to confirm or "no" to cancel.`;
     return toMCPToolResult({ summary, confirmationId: entry.confirmationId });
   }
 }; 

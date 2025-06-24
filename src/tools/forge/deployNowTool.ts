@@ -27,7 +27,7 @@ export const deployNowTool: ForgeToolDefinition<typeof paramsSchema> = {
       const confirmation = validateConfirmation(
         deployNowConfirmationStore,
         confirmationId,
-        (stored: Record<string, any>) =>
+        (stored: Record<string, unknown>) =>
           stored.serverId == serverId &&
           stored.siteId == siteId &&
           stored.serverName === serverName &&

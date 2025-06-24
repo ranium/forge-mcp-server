@@ -46,10 +46,12 @@ const staticPhpVersions = [
   { id: "php56", name: "PHP 5.6", default: false }
 ];
 
-export const listStaticPhpVersionsTool: ForgeToolDefinition<{}> = {
+const staticParamsSchema = {};
+
+export const listStaticPhpVersionsTool: ForgeToolDefinition<typeof staticParamsSchema> = {
   name: "list_static_php_versions",
   description: "List supported PHP versions for new server creation (static, as per Forge documentation). Also allows custom/free-text entry.",
-  parameters: {},
+  parameters: staticParamsSchema,
   handler: async (_params, _forgeApiKey) => {
     return toMCPToolResult({ phpVersions: staticPhpVersions });
   }

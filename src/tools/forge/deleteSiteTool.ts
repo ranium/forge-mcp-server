@@ -25,7 +25,7 @@ export const deleteSiteTool: ForgeToolDefinition<typeof paramsSchema> = {
       const confirmation = validateConfirmation(
         siteDeletionConfirmationStore,
         confirmationId,
-        (stored: Record<string, any>) =>
+        (stored: Record<string, unknown>) =>
           stored.serverId == serverId &&
           stored.siteId == siteId
       );

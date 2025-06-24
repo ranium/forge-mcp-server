@@ -6,10 +6,12 @@ const projectTypes = [
   { key: "html", description: "Static HTML / Nuxt.js / Next.js", default: false },
 ];
 
-export const listProjectTypesTool: ForgeToolDefinition<{}> = {
+const paramsSchema = {};
+
+export const listProjectTypesTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: "list_project_types",
   description: "Lists available project types for site creation in Laravel Forge. The 'php' type is the default.",
-  parameters: {},
+  parameters: paramsSchema,
   handler: async () => {
     return toMCPToolResult(projectTypes);
   }

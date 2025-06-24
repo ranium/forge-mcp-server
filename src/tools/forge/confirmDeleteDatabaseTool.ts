@@ -22,7 +22,7 @@ export const confirmDeleteDatabaseTool: ForgeToolDefinition<typeof paramsSchema>
       `Are you sure you want to delete the following database?\n` +
       `Server: ${params.serverName} (ID: ${params.serverId})\n` +
       `Database: ${params.databaseName} (ID: ${params.databaseId})\n` +
-      `\nType \"yes\" to confirm or \"no\" to cancel.`;
+      `\nType "yes" to confirm or "no" to cancel.`;
     return toMCPToolResult({ summary, confirmationId: entry.confirmationId });
   }
 }; 

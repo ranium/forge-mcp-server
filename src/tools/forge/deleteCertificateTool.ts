@@ -29,7 +29,7 @@ export const deleteCertificateTool: ForgeToolDefinition<typeof paramsSchema> = {
             const confirmation = validateConfirmation(
                 deleteCertificateConfirmationStore,
                 confirmationId,
-                (stored: Record<string, any>) =>
+                (stored: Record<string, unknown>) =>
                     stored.serverId === serverId &&
                     stored.siteId === siteId &&
                     stored.certificateId === certificateId &&

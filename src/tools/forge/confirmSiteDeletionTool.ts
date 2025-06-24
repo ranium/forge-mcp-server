@@ -21,7 +21,7 @@ export const confirmSiteDeletionTool: ForgeToolDefinition<typeof paramsSchema> =
       `Server ID: ${params.serverId}\n` +
       `Site ID: ${params.siteId}\n` +
       `Confirmation ID: ${entry.confirmationId}\n` +
-      `\nType \"yes\" to confirm or \"no\" to cancel.`;
+      `\nType "yes" to confirm or "no" to cancel.`;
     return toMCPToolResult({ summary, confirmationId: entry.confirmationId });
   }
 }; 

@@ -27,7 +27,7 @@ export const deleteDatabaseTool: ForgeToolDefinition<typeof paramsSchema> = {
       const confirmation = validateConfirmation(
         deleteDatabaseConfirmationStore,
         confirmationId,
-        (stored: Record<string, any>) =>
+        (stored: Record<string, unknown>) =>
           stored.serverId == serverId &&
           stored.databaseId == databaseId &&
           stored.serverName === serverName &&

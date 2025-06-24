@@ -30,8 +30,8 @@ export const installOrUpdateSiteGitTool: ForgeToolDefinition<typeof paramsSchema
       const confirmation = validateConfirmation(
         installOrUpdateSiteGitConfirmationStore,
         confirmationId,
-        (stored: Record<string, any>) => {
-          const restObj = rest as Record<string, any>;
+        (stored: Record<string, unknown>) => {
+          const restObj = rest as Record<string, unknown>;
           // All params except confirmationId must match
           return Object.keys(restObj).every(
             (key) => stored[key] === restObj[key]
@@ -43,7 +43,7 @@ export const installOrUpdateSiteGitTool: ForgeToolDefinition<typeof paramsSchema
       }
       markConfirmationUsed(installOrUpdateSiteGitConfirmationStore, confirmationId);
       // Prepare payload for Forge API
-      const payload: Record<string, any> = {
+      const payload: Record<string, unknown> = {
         provider: rest.provider,
         repository: rest.repository,
         branch: rest.branch,

@@ -28,7 +28,7 @@ export const createDatabaseUserTool: ForgeToolDefinition<typeof paramsSchema> = 
       const confirmation = validateConfirmation(
         createDatabaseUserConfirmationStore,
         confirmationId,
-        (stored: Record<string, any>) =>
+        (stored: Record<string, unknown>) =>
           stored.serverId == serverId &&
           stored.serverName === serverName &&
           stored.name === name &&
@@ -36,7 +36,7 @@ export const createDatabaseUserTool: ForgeToolDefinition<typeof paramsSchema> = 
           Array.isArray(stored.databases) &&
           Array.isArray(databases) &&
           stored.databases.length === databases.length &&
-          stored.databases.every((id: any, i: number) => String(id) === String(databases[i]))
+          (stored.databases as unknown[]).every((id: unknown, i: number) => String(id) === String(databases[i]))
       );
       if (!confirmation) {
         return toMCPToolResult(false);

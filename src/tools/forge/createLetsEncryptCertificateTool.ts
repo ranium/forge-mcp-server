@@ -53,7 +53,7 @@ export const createLetsEncryptCertificateTool: ForgeToolDefinition<typeof params
             const confirmation = validateConfirmation(
                 createLetsEncryptCertificateConfirmationStore,
                 confirmationId,
-                (stored: Record<string, any>) =>
+                (stored: Record<string, unknown>) =>
                     stored.serverId === serverId &&
                     stored.serverName === serverName &&
                     stored.siteId === siteId &&

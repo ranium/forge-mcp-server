@@ -12,6 +12,6 @@ export interface MCPTool {
 }
 
 export interface MCPResponse {
-  result?: any;
+  result?: unknown; // Specify a more precise type if known
   error?: string;
 } 

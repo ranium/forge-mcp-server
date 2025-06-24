@@ -20,7 +20,7 @@ export const confirmClearSiteLogTool: ForgeToolDefinition<typeof paramsSchema> =
       `Please confirm clearing the log for the following site (this cannot be undone):\n` +
       `Server ID: ${params.serverId}\n` +
       `Site ID: ${params.siteId}\n` +
-      `\nType \"yes\" to confirm or \"no\" to cancel.`;
+      `\nType "yes" to confirm or "no" to cancel.`;
     return toMCPToolResult({ summary, confirmationId: entry.confirmationId });
   }
 }; 

@@ -24,7 +24,7 @@ export const clearSiteLogTool: ForgeToolDefinition<typeof paramsSchema> = {
     const confirmation = validateConfirmation(
       clearSiteLogConfirmationStore,
       confirmationId,
-      (stored: Record<string, any>) =>
+      (stored: Record<string, unknown>) =>
         stored.serverId == serverId &&
         stored.siteId == siteId
     );

@@ -1,7 +1,6 @@
 import { ForgeToolDefinition, HttpMethod } from "../../core/types/protocols.js";
 import { callForgeApi } from "../../utils/forgeApi.js";
 import { toMCPToolResult, toMCPToolError } from "../../utils/mcpToolResult.js";
-import { z } from "zod";
 
 const params = {};
 

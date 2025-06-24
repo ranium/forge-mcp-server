@@ -52,8 +52,8 @@ The client should collect all required parameters using the above tools, call 'c
       const confirmation = validateConfirmation(
         confirmationStore,
         confirmationId,
-        (stored: Record<string, any>) => {
-          const restObj = rest as Record<string, any>;
+        (stored: Record<string, unknown>) => {
+          const restObj = rest as Record<string, unknown>;
           // All params except confirmationId must match
           return Object.keys(restObj).every(
             (key) => stored[key] === restObj[key]

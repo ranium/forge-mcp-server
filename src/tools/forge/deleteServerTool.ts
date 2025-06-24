@@ -24,7 +24,7 @@ export const deleteServerTool: ForgeToolDefinition<typeof paramsSchema> = {
       const confirmation = validateConfirmation(
         deletionConfirmationStore,
         confirmationId,
-        (stored: Record<string, any>) => String(stored.serverId) === String(serverId)
+        (stored: Record<string, unknown>) => String(stored.serverId) === String(serverId)
       );
       if (!confirmation) {
         return toMCPToolResult(false);

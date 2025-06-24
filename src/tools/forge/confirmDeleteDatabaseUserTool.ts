@@ -22,7 +22,7 @@ export const confirmDeleteDatabaseUserTool: ForgeToolDefinition<typeof paramsSch
       `Are you sure you want to delete the following database user?\n` +
       `Server: ${params.serverName} (ID: ${params.serverId})\n` +
       `User: ${params.userName} (ID: ${params.userId})\n` +
-      `\nType \"yes\" to confirm or \"no\" to cancel.`;
+      `\nType "yes" to confirm or "no" to cancel.`;
     return toMCPToolResult({ summary, confirmationId: entry.confirmationId });
   }
 }; 

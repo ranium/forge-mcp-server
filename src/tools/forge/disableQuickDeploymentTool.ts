@@ -27,7 +27,7 @@ export const disableQuickDeploymentTool: ForgeToolDefinition<typeof paramsSchema
       const confirmation = validateConfirmation(
         disableQuickDeploymentConfirmationStore,
         confirmationId,
-        (stored: Record<string, any>) =>
+        (stored: Record<string, unknown>) =>
           stored.serverId == serverId &&
           stored.siteId == siteId &&
           stored.serverName === serverName &&

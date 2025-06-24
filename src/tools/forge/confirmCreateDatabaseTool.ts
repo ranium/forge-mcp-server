@@ -29,7 +29,7 @@ export const confirmCreateDatabaseTool: ForgeToolDefinition<typeof paramsSchema>
     if (params.password) {
       summary += `Password: ${params.password}\n`;
     }
-    summary += `\nType \"yes\" to confirm or \"no\" to cancel.`;
+    summary += `\nType "yes" to confirm or "no" to cancel.`;
     return toMCPToolResult({ summary, confirmationId: entry.confirmationId });
   }
 }; 

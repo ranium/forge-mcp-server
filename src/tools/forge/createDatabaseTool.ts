@@ -28,7 +28,7 @@ export const createDatabaseTool: ForgeToolDefinition<typeof paramsSchema> = {
       const confirmation = validateConfirmation(
         createDatabaseConfirmationStore,
         confirmationId,
-        (stored: Record<string, any>) =>
+        (stored: Record<string, unknown>) =>
           stored.serverId == serverId &&
           stored.serverName === serverName &&
           stored.name === name &&
@@ -39,7 +39,7 @@ export const createDatabaseTool: ForgeToolDefinition<typeof paramsSchema> = {
       }
       markConfirmationUsed(createDatabaseConfirmationStore, confirmationId);
       // Prepare payload for Forge API
-      const payload: Record<string, any> = { name };
+      const payload: Record<string, unknown> = { name };
       if (user) {
         if (!password) {
           return toMCPToolError(new Error("Password is required when user is provided."));

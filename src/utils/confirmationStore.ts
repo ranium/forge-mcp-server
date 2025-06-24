@@ -1,6 +1,6 @@
 import { randomUUID } from "crypto";
 
-export interface ConfirmationEntry<T = any> {
+export interface ConfirmationEntry<T = unknown> {
   confirmationId: string;
   used: boolean;
   createdAt: number;

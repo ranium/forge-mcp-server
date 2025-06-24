@@ -53,7 +53,7 @@ export const confirmSiteCreationTool: ForgeToolDefinition<typeof paramsSchema> =
       (params.environment ? `Environment: ${params.environment}\n` : "") +
       (params.recipeId ? `Recipe ID: ${params.recipeId}\n` : "") +
       `Confirmation ID: ${entry.confirmationId}\n` +
-      `\nType \"yes\" to confirm or \"no\" to cancel.`;
+      `\nType "yes" to confirm or "no" to cancel.`;
     return toMCPToolResult({ summary, confirmationId: entry.confirmationId });
   }
 }; 

@@ -22,7 +22,7 @@ export const confirmDeployNowTool: ForgeToolDefinition<typeof paramsSchema> = {
       `Are you sure you want to trigger a deployment (Deploy Now) for the site?\n` +
       `Server: ${params.serverName} (ID: ${params.serverId})\n` +
       `Site: ${params.siteName} (ID: ${params.siteId})\n` +
-      `\nType \"yes\" to confirm or \"no\" to cancel.`;
+      `\nType "yes" to confirm or "no" to cancel.`;
     return toMCPToolResult({ summary, confirmationId: entry.confirmationId });
   }
 }; 

@@ -26,7 +26,7 @@ export const changeSitePhpVersionTool: ForgeToolDefinition<typeof paramsSchema> 
       const confirmation = validateConfirmation(
         changeSitePhpVersionConfirmationStore,
         confirmationId,
-        (stored: Record<string, any>) =>
+        (stored: Record<string, unknown>) =>
           stored.serverId == serverId &&
           stored.siteId == siteId &&
           stored.phpVersion == phpVersion

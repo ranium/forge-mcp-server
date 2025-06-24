@@ -14,10 +14,12 @@ const databaseTypes = [
   { id: "postgres17", name: "PostgreSQL 17" }
 ];
 
-export const listDatabaseTypesTool: ForgeToolDefinition<{}> = {
+const paramsSchema = {};
+
+export const listDatabaseTypesTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: "list_database_types",
   description: "List valid database types for new server creation (static, as per Forge documentation).",
-  parameters: {},
+  parameters: paramsSchema,
   handler: async (_params, _forgeApiKey) => {
     return toMCPToolResult({ databaseTypes });
   }

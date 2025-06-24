@@ -10,10 +10,12 @@ const providers = [
   { id: "custom", name: "Custom" }
 ];
 
-export const listProvidersTool: ForgeToolDefinition<{}> = {
+const paramsSchema = {};
+
+export const listProvidersTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: "list_providers",
   description: "List all available server providers for Laravel Forge.",
-  parameters: {},
+  parameters: paramsSchema,
   handler: async (_params, _forgeApiKey) => {
     return toMCPToolResult({ providers });
   }

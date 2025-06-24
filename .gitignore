@@ -31,3 +31,6 @@ build/
 
 # Misc
 coverage/
+
+# ESLint
+.eslintcache

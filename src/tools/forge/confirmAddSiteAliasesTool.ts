@@ -23,7 +23,7 @@ export const confirmAddSiteAliasesTool: ForgeToolDefinition<typeof paramsSchema>
       `Site ID: ${params.siteId}\n` +
       `Aliases: ${(Array.isArray(params.aliases) && params.aliases.length > 0) ? params.aliases.join(", ") : "[none]"}\n` +
       `Confirmation ID: ${entry.confirmationId}\n` +
-      `\nType \"yes\" to confirm or \"no\" to cancel.`;
+      `\nType "yes" to confirm or "no" to cancel.`;
     return toMCPToolResult({ summary, confirmationId: entry.confirmationId });
   }
 }; 

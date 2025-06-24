@@ -26,13 +26,13 @@ export const addSiteAliasesTool: ForgeToolDefinition<typeof paramsSchema> = {
       const confirmation = validateConfirmation(
         addSiteAliasesConfirmationStore,
         confirmationId,
-        (stored: Record<string, any>) =>
+        (stored: Record<string, unknown>) =>
           stored.serverId == serverId &&
           stored.siteId == siteId &&
           Array.isArray(stored.aliases) &&
           Array.isArray(aliases) &&
           stored.aliases.length === aliases.length &&
-          stored.aliases.every((a: string, i: number) => a === aliases[i])
+          (stored.aliases as string[]).every((a: string, i: number) => a === aliases[i])
       );
       if (!confirmation) {
         return toMCPToolResult(false);

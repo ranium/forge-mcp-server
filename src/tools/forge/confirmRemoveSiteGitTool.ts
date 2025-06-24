@@ -22,7 +22,7 @@ export const confirmRemoveSiteGitTool: ForgeToolDefinition<typeof paramsSchema> 
       `Are you sure you want to detach the Git project from the site?\n` +
       `Server: ${params.serverName} (ID: ${params.serverId})\n` +
       `Site: ${params.siteName} (ID: ${params.siteId})\n` +
-      `\nType \"yes\" to confirm or \"no\" to cancel.`;
+      `\nType "yes" to confirm or "no" to cancel.`;
     return toMCPToolResult({ summary, confirmationId: entry.confirmationId });
   }
 }; 

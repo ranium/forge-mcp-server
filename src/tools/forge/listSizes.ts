@@ -20,12 +20,12 @@ export const listSizesTool: ForgeToolDefinition<typeof paramsSchema> = {
       const provider = parsed.provider;
       const region = parsed.region;
       // Fetch all regions from Forge API
-      const data = await callForgeApi<any>({
+      const data = await callForgeApi<{ regions?: Record<string, Array<{ id: string; sizes?: unknown[] }>> }>({
         endpoint: "/regions",
         method: HttpMethod.GET
       }, forgeApiKey);
       const providerRegions = data?.regions?.[provider] || [];
-      const regionObj = providerRegions.find((r: any) => r.id === region);
+      const regionObj = providerRegions.find((r) => r.id === region);
       const sizes = regionObj?.sizes || [];
       return toMCPToolResult({ sizes, allowCustom: true });
     } catch (err) {

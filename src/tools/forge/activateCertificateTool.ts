@@ -29,7 +29,7 @@ export const activateCertificateTool: ForgeToolDefinition<typeof paramsSchema> =
             const confirmation = validateConfirmation(
                 activateCertificateConfirmationStore,
                 confirmationId,
-                (stored: Record<string, any>) =>
+                (stored: Record<string, unknown>) =>
                     stored.serverId === serverId &&
                     stored.serverName === serverName &&
                     stored.siteId === siteId &&

@@ -18,7 +18,7 @@ export const listRegionsTool: ForgeToolDefinition<typeof paramsSchema> = {
       const parsed = paramsZodObject.parse(params);
       const provider = parsed.provider;
       // Fetch all regions from Forge API
-      const data = await callForgeApi<any>({
+      const data = await callForgeApi<{ regions?: Record<string, unknown[]> }>({
         endpoint: "/regions",
         method: HttpMethod.GET
       }, forgeApiKey);
