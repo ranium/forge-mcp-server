@@ -1,9 +1,13 @@
 {
-  "name": "forge-mcp",
+  "name": "@ranium/forge-mcp",
+  "homepage": "https://github.com/ranium/forge-mcp",
   "version": "1.0.0",
-  "description": "MCP server for Forge integration",
+  "description": "MCP Server for Laravel Forge",
   "main": "dist/server.js",
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "start": "node dist/server.js",
     "dev": "ts-node-dev src/server.ts",
@@ -43,5 +47,14 @@
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.2.2",
     "typescript-eslint": "^8.35.0"
-  }
+  },
+  "keywords": [
+    "mcp",
+    "modelcontextprotocol",
+    "forge",
+    "laravel-forge",
+    "mcp-server"
+  ],
+  "author": "Ranium <info@ranium.in> (https://ranium.in/)",
+  "license": "MIT"
 }
