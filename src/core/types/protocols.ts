@@ -1,36 +1,36 @@
-import { ZodRawShape } from "zod";
+import { ZodRawShape } from 'zod'
 
 export type MCPToolContent =
-  | { type: "text"; text: string }
-  | { type: "image"; data: string; mimeType: string }
-  | { type: "audio"; data: string; mimeType: string };
+  | { type: 'text'; text: string }
+  | { type: 'image'; data: string; mimeType: string }
+  | { type: 'audio'; data: string; mimeType: string }
 
 export interface MCPToolResult {
-  content: MCPToolContent[];
-  isError?: boolean;
-  [key: string]: unknown;
+  content: MCPToolContent[]
+  isError?: boolean
+  [key: string]: unknown
 }
 
 export interface ForgeToolDefinition<TParams extends ZodRawShape> {
-  name: string;
-  description: string;
-  parameters: TParams;
+  name: string
+  description: string
+  parameters: TParams
   handler: (
     params: Record<string, unknown>,
-    forgeApiKey: string,
-  ) => Promise<MCPToolResult>;
+    forgeApiKey: string
+  ) => Promise<MCPToolResult>
 }
 
 export enum HttpMethod {
-  GET = "get",
-  POST = "post",
-  PUT = "put",
-  DELETE = "delete"
+  GET = 'get',
+  POST = 'post',
+  PUT = 'put',
+  DELETE = 'delete',
 }
 
 export interface ForgeApiRequest {
-  endpoint: string;
-  method: HttpMethod;
-  data?: unknown;
-  params?: unknown;
-} 
+  endpoint: string
+  method: HttpMethod
+  data?: unknown
+  params?: unknown
+}

@@ -1,28 +1,50 @@
-import { ForgeToolDefinition, HttpMethod } from "../../core/types/protocols.js";
-import { callForgeApi } from "../../utils/forgeApi.js";
-import { toMCPToolResult, toMCPToolError } from "../../utils/mcpToolResult.js";
-import { z } from "zod";
-import {
-  confirmationStore
-} from "./confirmServerCreationTool.js";
+import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
+import { callForgeApi } from '../../utils/forgeApi.js'
+import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
+import { z } from 'zod'
+import { confirmationStore } from './confirmServerCreationTool.js'
 import {
   validateConfirmation,
-  markConfirmationUsed
-} from "../../utils/confirmationStore.js";
+  markConfirmationUsed,
+} from '../../utils/confirmationStore.js'
 
 const paramsSchema = {
-  provider: z.string().describe('The cloud provider to use (e.g., akamai, ocean2, aws, hetzner, vultr2, custom).'),
-  credentialId: z.string().describe('The ID of the credential to use for the selected provider.'),
-  region: z.string().describe('The region ID where the server will be created (e.g., ap-southeast for Sydney, AU).'),
-  size: z.string().describe('The size ID for the server (RAM, CPU, SSD, etc.).'),
-  ubuntuVersion: z.string().describe('The Ubuntu version to use (e.g., 22.04).'),
-  databaseType: z.string().describe('The database type to install (e.g., mysql8, postgres15, mariadb106, etc.).'),
-  phpVersion: z.string().describe('The PHP version to install (e.g., 8.3, 8.2, 8.1, 8.0, 7.4).'),
+  provider: z
+    .string()
+    .describe(
+      'The cloud provider to use (e.g., akamai, ocean2, aws, hetzner, vultr2, custom).'
+    ),
+  credentialId: z
+    .string()
+    .describe('The ID of the credential to use for the selected provider.'),
+  region: z
+    .string()
+    .describe(
+      'The region ID where the server will be created (e.g., ap-southeast for Sydney, AU).'
+    ),
+  size: z
+    .string()
+    .describe('The size ID for the server (RAM, CPU, SSD, etc.).'),
+  ubuntuVersion: z
+    .string()
+    .describe('The Ubuntu version to use (e.g., 22.04).'),
+  databaseType: z
+    .string()
+    .describe(
+      'The database type to install (e.g., mysql8, postgres15, mariadb106, etc.).'
+    ),
+  phpVersion: z
+    .string()
+    .describe('The PHP version to install (e.g., 8.3, 8.2, 8.1, 8.0, 7.4).'),
   serverName: z.string().describe('A name for the new server.'),
-  confirmationId: z.string().describe('This confirmationId must be obtained from confirmServerCreationTool after explicit user confirmation. If an invalid or mismatched confirmationId is provided, server creation will be rejected.'),
-};
+  confirmationId: z
+    .string()
+    .describe(
+      'This confirmationId must be obtained from confirmServerCreationTool after explicit user confirmation. If an invalid or mismatched confirmationId is provided, server creation will be rejected.'
+    ),
+}
 
-const paramsZodObject = z.object(paramsSchema);
+const paramsZodObject = z.object(paramsSchema)
 
 export const createServerTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'create_server',
@@ -46,24 +68,22 @@ The client should collect all required parameters using the above tools, call 'c
   parameters: paramsSchema,
   handler: async (params, forgeApiKey) => {
     try {
-      const parsed = paramsZodObject.parse(params);
-      const { confirmationId, ...rest } = parsed;
+      const parsed = paramsZodObject.parse(params)
+      const { confirmationId, ...rest } = parsed
       // Validate confirmation using generic utility
       const confirmation = validateConfirmation(
         confirmationStore,
         confirmationId,
         (stored: Record<string, unknown>) => {
-          const restObj = rest as Record<string, unknown>;
+          const restObj = rest as Record<string, unknown>
           // All params except confirmationId must match
-          return Object.keys(restObj).every(
-            (key) => stored[key] === restObj[key]
-          );
+          return Object.keys(restObj).every(key => stored[key] === restObj[key])
         }
-      );
+      )
       if (!confirmation) {
-        return toMCPToolResult(false);
+        return toMCPToolResult(false)
       }
-      markConfirmationUsed(confirmationStore, confirmationId);
+      markConfirmationUsed(confirmationStore, confirmationId)
       // Real API call
       const payload = {
         provider: rest.provider,
@@ -73,16 +93,19 @@ The client should collect all required parameters using the above tools, call 'c
         php_version: rest.phpVersion,
         database_type: rest.databaseType,
         name: rest.serverName,
-        ubuntu_version: rest.ubuntuVersion
-      };
-      const data = await callForgeApi<object>({
-        endpoint: "/servers",
-        method: HttpMethod.POST,
-        data: payload
-      }, forgeApiKey);
-      return toMCPToolResult(data);
+        ubuntu_version: rest.ubuntuVersion,
+      }
+      const data = await callForgeApi<object>(
+        {
+          endpoint: '/servers',
+          method: HttpMethod.POST,
+          data: payload,
+        },
+        forgeApiKey
+      )
+      return toMCPToolResult(data)
     } catch (err) {
-      return toMCPToolError(err);
+      return toMCPToolError(err)
     }
-  }
-}; 
+  },
+}
