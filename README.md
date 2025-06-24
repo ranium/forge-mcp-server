@@ -37,7 +37,7 @@ Add the following to your `claude_desktop_config.json`. See [here](https://model
       "command": "npx",
       "args": [
         "-y",
-        "@ranium/forge-mcp-server"
+        "@ranium/forge-mcp"
       ],
       "env": {
         "FORGE_API_KEY": "your_forge_api_key_here"
@@ -56,7 +56,7 @@ Add the following to your `claude_desktop_config.json`. See [here](https://model
       "command": "npx",
       "args": [
         "-y",
-        "@ranium/forge-mcp-server",
+        "@ranium/forge-mcp",
         "--api-key=your_forge_api_key_here"
       ]
     }
