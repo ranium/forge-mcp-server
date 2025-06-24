@@ -1,58 +1,60 @@
 # Forge MCP Server
 
-This is a Model Context Protocol (MCP) server for Laravel Forge integration. It is modular, extensible, and supports dynamic registration of Forge API tools.
+This is a Model Context Protocol (MCP) server for Laravel Forge integration. It provides comprehensive access to Laravel Forge's official API through MCP-compliant tools, enabling seamless server and site management.
+
+For more information about the Laravel Forge API, see the [official API documentation](https://forge.laravel.com/api-documentation).
 
 ## Features
 - MCP-compliant server
-- Dynamic tool registration (add new tools easily)
+- Comprehensive Laravel Forge API integration
 - Health check tool: `test_connection`
-- Example Forge tool: `list_servers`
-- Ready for future API tool additions
+- Extensive tool coverage for server and site management
+- Built on Laravel Forge's official API
 
 ## Prerequisites
 - Node.js (v18+ recommended)
 - npm (v9+ recommended)
 
-## Setup
-
-1. **Clone the repository:**
-   ```sh
-   git clone <your-repo-url>
-   cd forge_mcp
-   ```
-
-2. **Install dependencies:**
-   ```sh
-   npm install
-   ```
-
-3. **Build the project:**
-   ```sh
-   npm run build
-   ```
-
-4. **Run the MCP server:**
-   - For production (after build):
-     ```sh
-     npm start
-     ```
-   - For development (hot-reload):
-     ```sh
-     npm run dev
-     ```
 
 ## Configuration & Usage
 
 A **Forge API key is required** for all Forge tool invocations. You must provide it as an environment variable.
 
-- The server does require the API key in config file by default.
+### Usage with Claude Desktop
 
-### Example: Using the list_servers Tool
-When you invoke the list_servers tool, the Forge MCP Server will authenticate using the FORGE_API_KEY provided in the environment configuration. If the API key is set via environment variables (like in an orchestrator config block), the tool will use it automatically. If the key is not set, the server won't start.
+Add the following to your `claude_desktop_config.json`. See [here](https://modelcontextprotocol.io/quickstart/user) for more details.
 
-### Launching the MCP Server with a Configuration Block
+#### Option 1: Using npx (Recommended)
 
-If you are using an orchestrator (such as MCP Inspector UI/CLI) that supports launching MCP servers via a configuration block, you **must** specify the Forge API key as shown below:
+```json
+{
+  "mcpServers": {
+    "forge-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@ranium/forge-mcp-server"
+      ],
+      "env": {
+        "FORGE_API_KEY": "your_forge_api_key_here"
+      }
+    }
+  }
+}
+```
+
+#### Option 2: Using node directly
+
+First, clone the repository and build the project:
+
+```sh
+git clone https://github.com/ranium/forge-mcp-server
+cd forge_mcp
+npm install
+npm run build
+```
+
+Then add the following to your `claude_desktop_config.json`:
 
 ```json
 {
@@ -62,8 +64,6 @@ If you are using an orchestrator (such as MCP Inspector UI/CLI) that supports la
       "args": [
         "/path/to/forge_mcp/dist/server.js"
       ],
-      "cleanup": true,
-      "autoRestart": true,
       "env": {
         "FORGE_API_KEY": "your_forge_api_key_here"
       }
@@ -72,10 +72,7 @@ If you are using an orchestrator (such as MCP Inspector UI/CLI) that supports la
 }
 ```
 
-- The `FORGE_API_KEY` in the `env` section is **required**.
-
-**Note:**
-Never commit your real API keys to version control. Use environment variables or secrets management in production.
+**Note:** Never commit your real API keys to version control. Use environment variables or secrets management in production.
 
 ## Screenshots
 
@@ -195,7 +192,7 @@ All destructive operations include confirmation tools to ensure safe execution:
 - **`confirm_site_log_clear`** - Confirm site log clearing
 
 ## Project Structure
-- `src/server.ts` — Main MCP server entry point (dynamically registers all tools)
+- `src/server.ts` — Main MCP server entry point
 - `src/tools/forge/` — All Forge tool definitions and registry
 - `src/core/types/` — Type definitions and protocols
 - `package.json` — Scripts and dependencies
@@ -204,8 +201,8 @@ All destructive operations include confirmation tools to ensure safe execution:
 ## Extending (Adding New Tools)
 1. Export a `ForgeToolDefinition` from the new file.
 2. Import and add the tool to the `forgeTools` array in `src/tools/forge/index.ts`.
-3. No changes needed in `server.ts`—tools are registered automatically.
+3. The tools will be registered when the server starts.
 
 ---
 
-For more information on MCP, see the [Model Context Protocol documentation](https://modelcontextprotocol.org/). 
+For more information on MCP, see the [Model Context Protocol documentation](https://modelcontextprotocol.org/).
