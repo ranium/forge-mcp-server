@@ -43,10 +43,9 @@ This is a Model Context Protocol (MCP) server for Laravel Forge integration. It 
 
 ## Configuration & Usage
 
-A **Forge API key is required** for all Forge tool invocations. You must provide it either as an environment variable or at runtime via the MCP Inspector UI/CLI.
+A **Forge API key is required** for all Forge tool invocations. You must provide it as an environment variable.
 
-- When using the [MCP Inspector UI](https://inspector.modelcontext.com/) or CLI, you will be prompted to enter your Forge API key as a parameter for the relevant tool if it is not already set in the environment.
-- The server does not store or require the API key in any config file by default, but it must be available at runtime.
+- The server does require the API key in config file by default.
 
 ### Example: Using the list_servers Tool
 When you invoke the list_servers tool, the Forge MCP Server will authenticate using the FORGE_API_KEY provided in the environment configuration. If the API key is set via environment variables (like in an orchestrator config block), the tool will use it automatically. If the key is not set, the server won't start.
@@ -73,8 +72,7 @@ If you are using an orchestrator (such as MCP Inspector UI/CLI) that supports la
 }
 ```
 
-- The `FORGE_API_KEY` in the `env` section is **required**. If not set here, you will be prompted to provide it at runtime via the MCP Inspector UI/CLI when invoking a Forge tool.
-- **Precedence:** If both an environment variable and a runtime parameter are provided, the runtime parameter (entered in the UI/CLI) will take precedence.
+- The `FORGE_API_KEY` in the `env` section is **required**.
 
 **Note:**
 Never commit your real API keys to version control. Use environment variables or secrets management in production.
