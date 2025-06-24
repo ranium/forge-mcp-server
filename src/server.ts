@@ -4,11 +4,19 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { z } from 'zod'
 import { forgeTools } from './tools/forge/index.js'
 
-// Require FORGE_API_KEY from environment
-const FORGE_API_KEY = process.env.FORGE_API_KEY
+// Support --api-key argument as well as FORGE_API_KEY env variable
+function getForgeApiKey(): string | undefined {
+  const arg = process.argv.find(arg => arg.startsWith('--api-key='))
+  if (arg) {
+    return arg.split('=')[1]
+  }
+  return process.env.FORGE_API_KEY
+}
+
+const FORGE_API_KEY = getForgeApiKey()
 if (!FORGE_API_KEY) {
   console.error(
-    'Error: FORGE_API_KEY environment variable is required. Please set it before starting the MCP server.'
+    'Error: FORGE_API_KEY environment variable or --api-key argument is required. Please set it before starting the MCP server.'
   )
   process.exit(1)
 }

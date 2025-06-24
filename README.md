@@ -18,13 +18,17 @@ For more information about the Laravel Forge API, see the [official API document
 
 ## Configuration & Usage
 
-A **Forge API key is required** for all Forge tool invocations. You must provide it as an environment variable.
+A **Forge API key is required** for all Forge tool invocations. You must provide it as either:
+- the `FORGE_API_KEY` environment variable, **or**
+- the `--api-key` command-line argument
 
 ### Usage with Claude Desktop
 
 Add the following to your `claude_desktop_config.json`. See [here](https://modelcontextprotocol.io/quickstart/user) for more details.
 
 #### Option 1: Using npx (Recommended)
+
+**Using environment variable:**
 
 ```json
 {
@@ -43,6 +47,23 @@ Add the following to your `claude_desktop_config.json`. See [here](https://model
 }
 ```
 
+**Using command-line argument:**
+
+```json
+{
+  "mcpServers": {
+    "forge-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@ranium/forge-mcp-server",
+        "--api-key=your_forge_api_key_here"
+      ]
+    }
+  }
+}
+```
+
 #### Option 2: Using node directly
 
 First, clone the repository and build the project:
@@ -55,6 +76,8 @@ npm run build
 ```
 
 Then add the following to your `claude_desktop_config.json`:
+
+**Using environment variable:**
 
 ```json
 {
@@ -72,7 +95,23 @@ Then add the following to your `claude_desktop_config.json`:
 }
 ```
 
-**Note:** Never commit your real API keys to version control. Use environment variables or secrets management in production.
+**Using command-line argument:**
+
+```json
+{
+  "mcpServers": {
+    "forge-mcp": {
+      "command": "node",
+      "args": [
+        "/path/to/forge_mcp/dist/server.js",
+        "--api-key=your_forge_api_key_here"
+      ]
+    }
+  }
+}
+```
+
+**Note:** You can use either the `FORGE_API_KEY` environment variable or the `--api-key` argument. If both are provided, the command-line argument takes precedence. Never commit your real API keys to version control. Use environment variables or secrets management in production.
 
 ## Screenshots
 
