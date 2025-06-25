@@ -1,13 +1,28 @@
 {
   "name": "@raniumsys/forge-mcp",
-  "homepage": "https://github.com/ranium/forge-mcp",
-  "version": "0.1.0",
+  "homepage": "https://github.com/ranium/forge-mcp-server",
+  "version": "0.1.2",
   "description": "MCP Server for Laravel Forge",
   "main": "dist/server.js",
+  "bin": "dist/server.js",
   "type": "module",
   "engines": {
     "node": ">=18.0.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ranium/forge-mcp-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ranium/forge-mcp-server/issues"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "VERSION",
+    "package.json"
+  ],
   "scripts": {
     "start": "node dist/server.js",
     "dev": "ts-node-dev src/server.ts",
