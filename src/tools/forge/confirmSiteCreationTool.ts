@@ -112,6 +112,11 @@ const paramsSchema = {
     .describe(
       'Recipe ID to run after provisioning (optional). The client MUST validate this value against the available recipes from listRecipesTool before passing it, as this is plain text from the user.'
     ),
+  confirmationId: z
+    .string()
+    .describe(
+      'This confirmationId must be obtained from this tool after explicit, manual user confirmation by the end user. Automation or bypassing of this step is strictly forbidden.'
+    ),
 }
 
 export const siteCreationConfirmationStore =
@@ -120,7 +125,7 @@ export const siteCreationConfirmationStore =
 export const confirmSiteCreationTool: ForgeToolDefinition<typeof paramsSchema> =
   {
     name: 'confirm_site_creation',
-    description: `Confirms the site creation parameters and returns a summary for user confirmation. This tool does not create the site, but returns a summary and expects the client to handle the confirmation logic.`,
+    description: `Confirms the site creation parameters and returns a summary for user confirmation.\n\nThis tool MUST NOT be called automatically. The client MUST display the confirmation summary and confirmation ID to the end user and require explicit, manual user input (such as typing 'yes' or clicking a confirmation button) before proceeding. Automation, pre-filling, or bypassing this user confirmation step is strictly forbidden and considered a violation of the protocol. Only after receiving explicit user confirmation should the client call the corresponding action tool with the confirmationId.`,
     parameters: paramsSchema,
     category: ToolCategory.Write,
     handler: async params => {

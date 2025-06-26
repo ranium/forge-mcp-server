@@ -36,7 +36,7 @@ export const confirmDeleteDatabaseUserTool: ForgeToolDefinition<
   typeof paramsSchema
 > = {
   name: 'confirm_delete_database_user',
-  description: `Confirms the request to delete a database user and returns a summary for user confirmation. This tool does not perform the operation, but returns a summary and expects the client to handle the confirmation logic.`,
+  description: `Confirms the request to delete a database user and returns a summary for user confirmation.\n\nThis tool MUST NOT be called automatically. The client MUST display the confirmation summary and confirmation ID to the end user and require explicit, manual user input (such as typing 'yes' or clicking a confirmation button) before proceeding. Automation, pre-filling, or bypassing this user confirmation step is strictly forbidden and considered a violation of the protocol. Only after receiving explicit user confirmation should the client call the corresponding action tool with the confirmationId.`,
   parameters: paramsSchema,
   category: ToolCategory.Destructive,
   handler: async params => {
