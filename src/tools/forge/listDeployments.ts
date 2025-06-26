@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -14,9 +14,9 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const listDeploymentsTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'list_deployments',
-  description:
-    'List all deployments for a specific site in your Laravel Forge account.',
+  description: 'List all deployments for a site.',
   parameters: paramsSchema,
+  category: ToolCategory.Readonly,
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params)
     const serverId = parsed.serverId

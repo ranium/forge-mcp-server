@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 
@@ -8,6 +8,7 @@ export const getUserTool: ForgeToolDefinition<typeof params> = {
   name: 'get_user',
   description: 'Get the current Forge user.',
   parameters: params,
+  category: ToolCategory.Readonly,
   handler: async (_params, forgeApiKey) => {
     try {
       const data = await callForgeApi<object>(

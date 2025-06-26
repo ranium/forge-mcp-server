@@ -1,4 +1,11 @@
-import { jest, describe, it, expect, beforeEach, afterEach } from '@jest/globals'
+import {
+  jest,
+  describe,
+  it,
+  expect,
+  beforeEach,
+  afterEach,
+} from '@jest/globals'
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 
 // Helper function to create a server instance for testing
@@ -28,7 +35,7 @@ describe('Forge MCP Server', () => {
     // Save original environment and argv
     originalEnv = { ...process.env }
     originalArgv = [...process.argv]
-    
+
     // Clear mocks
     jest.clearAllMocks()
   })
@@ -48,7 +55,7 @@ describe('Forge MCP Server', () => {
       // Test API key resolution
       const apiKey = testApiKeyResolution()
       expect(apiKey).toBe('valid-api-key-123')
-      
+
       // Test server creation
       expect(() => {
         createTestServer()
@@ -148,7 +155,13 @@ describe('Forge MCP Server', () => {
 
     it('should handle multiple command-line arguments', async () => {
       delete process.env.FORGE_API_KEY
-      process.argv = ['node', scriptPath, '--other-arg', '--api-key=test-key', '--another-arg']
+      process.argv = [
+        'node',
+        scriptPath,
+        '--other-arg',
+        '--api-key=test-key',
+        '--another-arg',
+      ]
 
       const apiKey = testApiKeyResolution()
       expect(apiKey).toBe('test-key')
@@ -172,4 +185,4 @@ describe('Forge MCP Server', () => {
       expect(apiKey).toBe(testApiKey)
     })
   })
-}) 
+})

@@ -1,4 +1,4 @@
-import { ForgeToolDefinition } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
@@ -33,6 +33,7 @@ export const confirmChangeSitePhpVersionTool: ForgeToolDefinition<
   name: 'confirm_change_site_php_version',
   description: `Confirms the PHP version change parameters for a site and returns a summary for user confirmation. This tool does not change the PHP version, but returns a summary and expects the client to handle the confirmation logic.`,
   parameters: paramsSchema,
+  category: ToolCategory.Write,
   handler: async params => {
     const entry = createConfirmation(
       changeSitePhpVersionConfirmationStore,

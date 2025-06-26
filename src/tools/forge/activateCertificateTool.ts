@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -45,6 +45,7 @@ export const activateCertificateTool: ForgeToolDefinition<typeof paramsSchema> =
     description:
       "Activates an SSL certificate for a site. Before calling this tool, the client MUST call the 'confirm_activate_certificate' tool and present the returned summary to the user for explicit confirmation.",
     parameters: paramsSchema,
+    category: ToolCategory.Write,
     handler: async (params, forgeApiKey) => {
       try {
         const parsed = paramsZodObject.parse(params)

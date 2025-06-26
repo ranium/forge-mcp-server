@@ -1,4 +1,4 @@
-import { ForgeToolDefinition } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
@@ -51,6 +51,7 @@ export const confirmServerCreationTool: ForgeToolDefinition<
   name: 'confirm_server_creation',
   description: `Confirms the server creation parameters and returns a summary for user confirmation. This tool does not create the server, but returns a summary and expects the client to handle the confirmation logic.`,
   parameters: paramsSchema,
+  category: ToolCategory.Write,
   handler: async params => {
     // Remove confirmationId from params for storage
     const { ...rest } = params

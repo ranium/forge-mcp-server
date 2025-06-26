@@ -1,4 +1,4 @@
-import { ForgeToolDefinition } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 
 const providers = [
@@ -16,6 +16,7 @@ export const listProvidersTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'list_providers',
   description: 'List all available server providers for Laravel Forge.',
   parameters: paramsSchema,
+  category: ToolCategory.Readonly,
   handler: async (_params, _forgeApiKey) => {
     return toMCPToolResult({ providers })
   },

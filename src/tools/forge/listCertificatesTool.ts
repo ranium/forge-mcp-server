@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -22,6 +22,7 @@ export const listCertificatesTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'list_certificates',
   description: 'Lists all SSL certificates for a site.',
   parameters: paramsSchema,
+  category: ToolCategory.Readonly,
   handler: async (params, forgeApiKey) => {
     try {
       const { serverId, siteId } = paramsZodObject.parse(params)

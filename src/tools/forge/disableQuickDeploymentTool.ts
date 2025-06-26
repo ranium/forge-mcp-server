@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -44,6 +44,7 @@ export const disableQuickDeploymentTool: ForgeToolDefinition<
   name: 'disable_quick_deployment',
   description: `Disables quick deployment for a site's Git project in Laravel Forge.\n\nBefore calling this tool, the client MUST call the 'confirm_disable_quick_deployment' tool and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool.`,
   parameters: paramsSchema,
+  category: ToolCategory.Write,
   handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params)

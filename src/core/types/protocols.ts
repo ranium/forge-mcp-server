@@ -11,10 +11,17 @@ export interface MCPToolResult {
   [key: string]: unknown
 }
 
+export enum ToolCategory {
+  Readonly = 'readonly',
+  Write = 'write',
+  Destructive = 'destructive',
+}
+
 export interface ForgeToolDefinition<TParams extends ZodRawShape> {
   name: string
   description: string
   parameters: TParams
+  category: ToolCategory
   handler: (
     params: Record<string, unknown>,
     forgeApiKey: string

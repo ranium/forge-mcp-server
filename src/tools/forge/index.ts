@@ -1,7 +1,7 @@
 import { listUbuntuVersionsTool } from './listUbuntuVersions.js'
 import { listServersTool } from './listServers.js'
 import { listPhpVersionsTool } from './listPhpVersions.js'
-import { listStaticPhpVersionsTool } from './listPhpVersions.js'
+import { listStaticPhpVersionsTool } from './listStaticPhpVersions.js'
 import { getUserTool } from './getUser.js'
 import { showServerTool } from './showServer.js'
 import { listSitesTool } from './listSites.js'
@@ -77,7 +77,13 @@ import { confirmDeleteCertificateTool } from './confirmDeleteCertificateTool.js'
 import { deleteCertificateTool } from './deleteCertificateTool.js'
 // Import other tools here as you add them
 
+// Categorize tools based on their functionality
+// READONLY: Safe read operations that don't modify anything
+// WRITE: Operations that create or modify resources
+// DESTRUCTIVE: Operations that delete or destroy resources
+
 export const forgeTools = [
+  // READONLY TOOLS
   listServersTool,
   listStaticPhpVersionsTool,
   listPhpVersionsTool,
@@ -103,30 +109,29 @@ export const forgeTools = [
   checkInertiaDaemonStatusTool,
   checkLaravelSchedulerStatusTool,
   listSizesTool,
+  listProjectTypesTool,
+  listDatabasesTool,
+  getDatabaseTool,
+  listDatabaseUsersTool,
+  getDatabaseUserTool,
+  listCertificatesTool,
+  getCertificateTool,
+  getSiteLogTool,
+
+  // WRITE TOOLS (Creation and Modification)
   confirmServerCreationTool,
   createServerTool,
   confirmCreateDatabaseTool,
   createDatabaseTool,
   syncDatabaseTool,
-  listDatabasesTool,
-  getDatabaseTool,
-  confirmDeleteDatabaseTool,
-  deleteDatabaseTool,
   confirmCreateDatabaseUserTool,
   createDatabaseUserTool,
-  listDatabaseUsersTool,
-  getDatabaseUserTool,
-  confirmDeleteDatabaseUserTool,
-  deleteDatabaseUserTool,
-  confirmServerDeletionTool,
-  deleteServerTool,
   confirmServerRebootTool,
   rebootServerTool,
   rebootNginxTool,
   rebootPhpTool,
   rebootMysqlTool,
   rebootPostgresTool,
-  listProjectTypesTool,
   confirmSiteCreationTool,
   createSiteTool,
   confirmInstallOrUpdateSiteGitTool,
@@ -142,17 +147,22 @@ export const forgeTools = [
   changeSitePhpVersionTool,
   confirmAddSiteAliasesTool,
   addSiteAliasesTool,
-  confirmSiteDeletionTool,
-  deleteSiteTool,
-  getSiteLogTool,
   confirmClearSiteLogTool,
   clearSiteLogTool,
   confirmLetsEncryptCertificateCreationTool,
   createLetsEncryptCertificateTool,
-  listCertificatesTool,
-  getCertificateTool,
   confirmActivateCertificateTool,
   activateCertificateTool,
+
+  // DESTRUCTIVE TOOLS (Deletion)
+  confirmServerDeletionTool,
+  deleteServerTool,
+  confirmDeleteDatabaseTool,
+  deleteDatabaseTool,
+  confirmDeleteDatabaseUserTool,
+  deleteDatabaseUserTool,
+  confirmSiteDeletionTool,
+  deleteSiteTool,
   confirmDeleteCertificateTool,
   deleteCertificateTool,
 ]

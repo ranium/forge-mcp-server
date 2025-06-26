@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -26,6 +26,7 @@ export const clearSiteLogTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'clear_site_log',
   description: `Clear the log output for a specific site in your Laravel Forge account.\n\nBefore calling this tool, the client MUST call the 'confirm_clear_site_log' tool and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool. This is a destructive action and cannot be undone.`,
   parameters: paramsSchema,
+  category: ToolCategory.Write,
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params)
     const { serverId, siteId, confirmationId } = parsed

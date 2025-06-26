@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -49,6 +49,7 @@ export const createDatabaseTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'create_database',
   description: `Creates a new database on a server in Laravel Forge.\n\nBefore calling this tool, the client MUST call the 'confirm_create_database' tool and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool.\n\nIf 'user' is provided, 'password' is required.`,
   parameters: paramsSchema,
+  category: ToolCategory.Write,
   handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params)

@@ -1,4 +1,4 @@
-import { ForgeToolDefinition } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
@@ -38,6 +38,7 @@ export const confirmDeleteDatabaseUserTool: ForgeToolDefinition<
   name: 'confirm_delete_database_user',
   description: `Confirms the request to delete a database user and returns a summary for user confirmation. This tool does not perform the operation, but returns a summary and expects the client to handle the confirmation logic.`,
   parameters: paramsSchema,
+  category: ToolCategory.Destructive,
   handler: async params => {
     const entry = createConfirmation(
       deleteDatabaseUserConfirmationStore,

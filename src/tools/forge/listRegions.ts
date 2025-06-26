@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { z } from 'zod'
@@ -18,6 +18,7 @@ export const listRegionsTool: ForgeToolDefinition<typeof paramsSchema> = {
   description:
     'List available regions for a given provider using the Forge API. Also allows custom/free-text entry.',
   parameters: paramsSchema,
+  category: ToolCategory.Readonly,
   handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params)

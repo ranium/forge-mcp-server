@@ -1,4 +1,4 @@
-import { ForgeToolDefinition } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
@@ -55,6 +55,7 @@ export const confirmInstallOrUpdateSiteGitTool: ForgeToolDefinition<
   name: 'confirm_install_or_update_site_git',
   description: `Confirms the Git installation/update parameters for a site and returns a summary for user confirmation. This tool does not perform the operation, but returns a summary and expects the client to handle the confirmation logic.`,
   parameters: paramsSchema,
+  category: ToolCategory.Write,
   handler: async params => {
     const entry = createConfirmation(
       installOrUpdateSiteGitConfirmationStore,

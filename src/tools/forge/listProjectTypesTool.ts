@@ -1,4 +1,4 @@
-import { ForgeToolDefinition } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 
 const projectTypes = [
@@ -17,6 +17,7 @@ export const listProjectTypesTool: ForgeToolDefinition<typeof paramsSchema> = {
   description:
     "Lists available project types for site creation in Laravel Forge. The 'php' type is the default.",
   parameters: paramsSchema,
+  category: ToolCategory.Readonly,
   handler: async () => {
     return toMCPToolResult(projectTypes)
   },

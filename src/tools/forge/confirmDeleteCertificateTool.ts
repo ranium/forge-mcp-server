@@ -1,4 +1,4 @@
-import { ForgeToolDefinition } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
@@ -40,6 +40,7 @@ export const confirmDeleteCertificateTool: ForgeToolDefinition<
   description:
     'Confirms the request to delete a certificate and returns a summary for user confirmation. This tool does not perform the operation, but returns a summary and expects the client to handle the confirmation logic.',
   parameters: paramsSchema,
+  category: ToolCategory.Destructive,
   handler: async params => {
     const entry = createConfirmation(deleteCertificateConfirmationStore, params)
     const summary = `Are you sure you want to delete the certificate from:

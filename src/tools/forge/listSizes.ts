@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { z } from 'zod'
@@ -21,6 +21,7 @@ export const listSizesTool: ForgeToolDefinition<typeof paramsSchema> = {
   description:
     'List available sizes for a given provider and region using the Forge API. Also allows custom/free-text entry.',
   parameters: paramsSchema,
+  category: ToolCategory.Readonly,
   handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params)

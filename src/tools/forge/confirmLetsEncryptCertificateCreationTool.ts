@@ -1,4 +1,4 @@
-import { ForgeToolDefinition } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
@@ -74,6 +74,7 @@ export const confirmLetsEncryptCertificateCreationTool: ForgeToolDefinition<
   description:
     "Confirms the request to create a Let's Encrypt SSL certificate for a site and returns a summary for user confirmation. This tool does not perform the operation, but returns a summary and expects the client to handle the confirmation logic.",
   parameters: paramsSchema,
+  category: ToolCategory.Write,
   handler: async params => {
     const validatedParams = paramsZodObject.parse(params) as Params
     const entry = createConfirmation(

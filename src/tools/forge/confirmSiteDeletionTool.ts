@@ -1,4 +1,4 @@
-import { ForgeToolDefinition } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
@@ -27,6 +27,7 @@ export const confirmSiteDeletionTool: ForgeToolDefinition<typeof paramsSchema> =
     name: 'confirm_site_deletion',
     description: `Confirms the site deletion parameters and returns a summary for user confirmation. This tool does not delete the site, but returns a summary and expects the client to handle the confirmation logic.`,
     parameters: paramsSchema,
+    category: ToolCategory.Write,
     handler: async params => {
       const entry = createConfirmation(siteDeletionConfirmationStore, params)
       const summary =

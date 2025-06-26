@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -37,6 +37,7 @@ export const addSiteAliasesTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'add_site_aliases',
   description: `Adds aliases to a site in Laravel Forge.\n\nBefore calling this tool, the client MUST call the 'confirm_add_site_aliases' tool and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool.`,
   parameters: paramsSchema,
+  category: ToolCategory.Write,
   handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params)

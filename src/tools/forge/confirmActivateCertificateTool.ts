@@ -1,4 +1,4 @@
-import { ForgeToolDefinition } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
@@ -43,6 +43,7 @@ export const confirmActivateCertificateTool: ForgeToolDefinition<
   description:
     'Confirms the request to activate an SSL certificate for a site and returns a summary for user confirmation.',
   parameters: paramsSchema,
+  category: ToolCategory.Write,
   handler: async params => {
     const validatedParams = paramsZodObject.parse(params) as Params
     const entry = createConfirmation(

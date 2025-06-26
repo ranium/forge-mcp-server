@@ -1,4 +1,4 @@
-import { ForgeToolDefinition } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 
 const databaseTypes = [
@@ -21,6 +21,7 @@ export const listDatabaseTypesTool: ForgeToolDefinition<typeof paramsSchema> = {
   description:
     'List valid database types for new server creation (static, as per Forge documentation).',
   parameters: paramsSchema,
+  category: ToolCategory.Readonly,
   handler: async (_params, _forgeApiKey) => {
     return toMCPToolResult({ databaseTypes })
   },

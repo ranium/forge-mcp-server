@@ -1,4 +1,4 @@
-import { ForgeToolDefinition } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
@@ -38,6 +38,7 @@ export const confirmDisableQuickDeploymentTool: ForgeToolDefinition<
   name: 'confirm_disable_quick_deployment',
   description: `Confirms the request to disable quick deployment for a site and returns a summary for user confirmation. This tool does not perform the operation, but returns a summary and expects the client to handle the confirmation logic.`,
   parameters: paramsSchema,
+  category: ToolCategory.Write,
   handler: async params => {
     const entry = createConfirmation(
       disableQuickDeploymentConfirmationStore,

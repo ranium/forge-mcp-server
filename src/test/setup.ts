@@ -17,4 +17,4 @@ process.exit = jest.fn() as unknown as (code?: number) => never
 // Restore process.exit after tests
 afterAll(() => {
   process.exit = originalExit
-}) 
+})

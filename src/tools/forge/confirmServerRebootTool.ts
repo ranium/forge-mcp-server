@@ -1,4 +1,4 @@
-import { ForgeToolDefinition } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
@@ -19,6 +19,7 @@ export const confirmServerRebootTool: ForgeToolDefinition<typeof paramsSchema> =
     name: 'confirm_server_reboot',
     description: `Confirms the server reboot request and returns a summary for user confirmation. This tool does not reboot the server, but returns a summary and expects the client to handle the confirmation logic.`,
     parameters: paramsSchema,
+    category: ToolCategory.Write,
     handler: async params => {
       const entry = createConfirmation(rebootConfirmationStore, params)
       const summary =
