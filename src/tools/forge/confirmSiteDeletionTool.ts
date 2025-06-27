@@ -5,6 +5,7 @@ import {
   createConfirmationStore,
   createConfirmation,
 } from '../../utils/confirmationStore.js'
+import { CONFIRMATION_DESCRIPTION } from '../../utils/protocolDescriptions.js'
 
 const paramsSchema = {
   serverId: z
@@ -22,10 +23,12 @@ const paramsSchema = {
 export const siteDeletionConfirmationStore =
   createConfirmationStore<Omit<typeof paramsSchema, never>>()
 
+const baseDescription = "Confirms the site deletion parameters and returns a summary for user confirmation."
+
 export const confirmSiteDeletionTool: ForgeToolDefinition<typeof paramsSchema> =
   {
     name: 'confirm_site_deletion',
-    description: `Confirms the site deletion parameters and returns a summary for user confirmation.\n\nThis tool MUST NOT be called automatically. The client MUST display the confirmation summary and confirmation ID to the end user and require explicit, manual user input (such as typing 'yes' or clicking a confirmation button) before proceeding. Automation, pre-filling, or bypassing this user confirmation step is strictly forbidden and considered a violation of the protocol. Only after receiving explicit user confirmation should the client call the corresponding action tool with the confirmationId.`,
+    description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
     parameters: paramsSchema,
     category: ToolCategory.Write,
     handler: async params => {
