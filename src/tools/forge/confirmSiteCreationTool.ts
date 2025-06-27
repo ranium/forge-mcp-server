@@ -1,10 +1,10 @@
-import { ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
+import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
   createConfirmationStore,
-  confirmationToolFactory,
+  createConfirmation,
 } from '../../utils/confirmationStore.js'
-import { CONFIRMATION_DESCRIPTION } from '../../utils/protocolDescriptions.js'
 
 const paramsSchema = {
   serverId: z
@@ -120,39 +120,52 @@ const paramsSchema = {
 }
 
 export const siteCreationConfirmationStore =
-  createConfirmationStore<z.infer<z.ZodObject<typeof paramsSchema>>>()
+  createConfirmationStore<Omit<typeof paramsSchema, never>>()
 
-function buildSummary(params: z.infer<z.ZodObject<typeof paramsSchema>>, confirmationId: string): string {
-  let summary = `Please confirm the site creation with the following settings:\n`
-  summary += `Server ID: ${params.serverId}\n`
-  summary += `Domain: ${params.domain}\n`
-  summary += `Project Type: ${params.projectType}\n`
-  if (params.directory) summary += `Directory: ${params.directory}\n`
-  if (params.isolated !== undefined) summary += `Isolated: ${params.isolated}\n`
-  if (params.wildcardSubdomains !== undefined) summary += `Wildcard Subdomains: ${params.wildcardSubdomains}\n`
-  if (params.phpVersion) summary += `PHP Version: ${params.phpVersion}\n`
-  if (params.database) summary += `Database: ${params.database}\n`
-  if (params.repository) summary += `Repository: ${params.repository}\n`
-  if (params.branch) summary += `Branch: ${params.branch}\n`
-  if (params.composer !== undefined) summary += `Composer: ${params.composer}\n`
-  if (params.installDependencies !== undefined) summary += `Install Dependencies: ${params.installDependencies}\n`
-  if (params.enableQuickDeploy !== undefined) summary += `Enable Quick Deploy: ${params.enableQuickDeploy}\n`
-  if (params.enableAutoDeploy !== undefined) summary += `Enable Auto Deploy: ${params.enableAutoDeploy}\n`
-  if (params.provider) summary += `Provider: ${params.provider}\n`
-  if (params.network) summary += `Network: ${params.network.join(', ')}\n`
-  if (params.environment) summary += `Environment: ${params.environment}\n`
-  if (params.recipeId) summary += `Recipe ID: ${params.recipeId}\n`
-  summary += `Confirmation ID: ${confirmationId}\n\nType \"yes\" to confirm or \"no\" to cancel.`
-  return summary
-}
-
-const baseDescription = "Confirms the site creation parameters and returns a summary for user confirmation."
-
-export const confirmSiteCreationTool = confirmationToolFactory({
-  name: 'confirm_site_creation',
-  description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
-  category: ToolCategory.Write,
-  paramsSchema,
-  store: siteCreationConfirmationStore,
-  buildSummary,
-})
+export const confirmSiteCreationTool: ForgeToolDefinition<typeof paramsSchema> =
+  {
+    name: 'confirm_site_creation',
+    description: `Confirms the site creation parameters and returns a summary for user confirmation.\n\nThis tool MUST NOT be called automatically. The client MUST display the confirmation summary and confirmation ID to the end user and require explicit, manual user input (such as typing 'yes' or clicking a confirmation button) before proceeding. Automation, pre-filling, or bypassing this user confirmation step is strictly forbidden and considered a violation of the protocol. Only after receiving explicit user confirmation should the client call the corresponding action tool with the confirmationId.`,
+    parameters: paramsSchema,
+    category: ToolCategory.Write,
+    handler: async params => {
+      const entry = createConfirmation(siteCreationConfirmationStore, params)
+      const summary =
+        `Please confirm the site creation with the following settings:\n` +
+        `Server ID: ${params.serverId}\n` +
+        `Domain: ${params.domain}\n` +
+        `Project Type: ${params.projectType}\n` +
+        (params.directory ? `Directory: ${params.directory}\n` : '') +
+        (params.isolated !== undefined
+          ? `Isolated: ${params.isolated}\n`
+          : '') +
+        (params.wildcardSubdomains !== undefined
+          ? `Wildcard Subdomains: ${params.wildcardSubdomains}\n`
+          : '') +
+        (params.phpVersion ? `PHP Version: ${params.phpVersion}\n` : '') +
+        (params.database ? `Database: ${params.database}\n` : '') +
+        (params.repository ? `Repository: ${params.repository}\n` : '') +
+        (params.branch ? `Branch: ${params.branch}\n` : '') +
+        (params.composer !== undefined
+          ? `Composer: ${params.composer}\n`
+          : '') +
+        (params.installDependencies !== undefined
+          ? `Install Dependencies: ${params.installDependencies}\n`
+          : '') +
+        (params.enableQuickDeploy !== undefined
+          ? `Quick Deploy: ${params.enableQuickDeploy}\n`
+          : '') +
+        (params.enableAutoDeploy !== undefined
+          ? `Auto Deploy: ${params.enableAutoDeploy}\n`
+          : '') +
+        (params.provider ? `Provider: ${params.provider}\n` : '') +
+        (Array.isArray(params.network) && params.network.length > 0
+          ? `Network: ${params.network.join(', ')}\n`
+          : '') +
+        (params.environment ? `Environment: ${params.environment}\n` : '') +
+        (params.recipeId ? `Recipe ID: ${params.recipeId}\n` : '') +
+        `Confirmation ID: ${entry.confirmationId}\n` +
+        `\nType "yes" to confirm or "no" to cancel.`
+      return toMCPToolResult({ summary, confirmationId: entry.confirmationId })
+    },
+  }

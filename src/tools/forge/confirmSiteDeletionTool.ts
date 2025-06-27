@@ -1,10 +1,10 @@
-import { ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
+import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
   createConfirmationStore,
-  confirmationToolFactory,
+  createConfirmation,
 } from '../../utils/confirmationStore.js'
-import { CONFIRMATION_DESCRIPTION } from '../../utils/protocolDescriptions.js'
 
 const paramsSchema = {
   serverId: z
@@ -20,23 +20,22 @@ const paramsSchema = {
 }
 
 export const siteDeletionConfirmationStore =
-  createConfirmationStore<z.infer<z.ZodObject<typeof paramsSchema>>>()
+  createConfirmationStore<Omit<typeof paramsSchema, never>>()
 
-function buildSummary(params: z.infer<z.ZodObject<typeof paramsSchema>>, confirmationId: string): string {
-  let summary = `Please confirm the site deletion with the following settings:\n`
-  summary += `Server ID: ${params.serverId}\n`
-  summary += `Site ID: ${params.siteId}\n`
-  summary += `Confirmation ID: ${confirmationId}\n\nType \"yes\" to confirm or \"no\" to cancel.`
-  return summary
-}
-
-const baseDescription = "Confirms the site deletion parameters and returns a summary for user confirmation."
-
-export const confirmSiteDeletionTool = confirmationToolFactory({
-  name: 'confirm_site_deletion',
-  description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
-  category: ToolCategory.Write,
-  paramsSchema,
-  store: siteDeletionConfirmationStore,
-  buildSummary,
-})
+export const confirmSiteDeletionTool: ForgeToolDefinition<typeof paramsSchema> =
+  {
+    name: 'confirm_site_deletion',
+    description: `Confirms the site deletion parameters and returns a summary for user confirmation.\n\nThis tool MUST NOT be called automatically. The client MUST display the confirmation summary and confirmation ID to the end user and require explicit, manual user input (such as typing 'yes' or clicking a confirmation button) before proceeding. Automation, pre-filling, or bypassing this user confirmation step is strictly forbidden and considered a violation of the protocol. Only after receiving explicit user confirmation should the client call the corresponding action tool with the confirmationId.`,
+    parameters: paramsSchema,
+    category: ToolCategory.Write,
+    handler: async params => {
+      const entry = createConfirmation(siteDeletionConfirmationStore, params)
+      const summary =
+        `Please confirm deletion of the following site:\n` +
+        `Server ID: ${params.serverId}\n` +
+        `Site ID: ${params.siteId}\n` +
+        `Confirmation ID: ${entry.confirmationId}\n` +
+        `\nType "yes" to confirm or "no" to cancel.`
+      return toMCPToolResult({ summary, confirmationId: entry.confirmationId })
+    },
+  }
