@@ -1,7 +1,7 @@
 {
   "name": "@raniumsys/forge-mcp",
   "homepage": "https://github.com/ranium/forge-mcp-server",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "MCP Server for Laravel Forge",
   "main": "dist/server.js",
   "bin": "dist/server.js",
@@ -35,7 +35,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "clean": "rm -rf dist",
-    "publish": "npm run build && npm publish --access public"
+    "publish": "npm version patch && npm run build && npm publish --access public"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",
