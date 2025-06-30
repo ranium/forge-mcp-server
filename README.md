@@ -153,20 +153,6 @@ Or in `claude_desktop_config.json`:
 }
 ```
 
-## Screenshots
-
-### Creating a Server
-![Creating a Server](docs/screenshots/create-server.png)
-*Demonstrates the server creation process through the MCP interface*
-
-### Creating a Site
-![Creating a Site](docs/screenshots/create-site.png)
-*Shows how to create a new site on an existing server*
-
-### Rebooting a Server
-![Rebooting a Server](docs/screenshots/reboot-server.png)
-*Illustrates the server reboot functionality*
-
 ## Available Tools (by Category)
 
 ### Readonly Tools
@@ -251,6 +237,20 @@ Or in `claude_desktop_config.json`:
 - `delete_site` - Delete a site
 - `confirm_delete_certificate` - Confirm certificate deletion
 - `delete_certificate` - Delete a certificate
+
+## Screenshots
+
+### Creating a Server
+![Creating a Server](docs/screenshots/create-server.png)
+*Demonstrates the server creation process through the MCP interface*
+
+### Creating a Site
+![Creating a Site](docs/screenshots/create-site.png)
+*Shows how to create a new site on an existing server*
+
+### Rebooting a Server
+![Rebooting a Server](docs/screenshots/reboot-server.png)
+*Illustrates the server reboot functionality*
 
 ## Project Structure
 - `src/server.ts` — Main MCP server entry point
