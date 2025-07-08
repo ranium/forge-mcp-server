@@ -15,10 +15,17 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const listDatabasesTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'list_databases',
-  description:
-    'List all databases for a specific server in your Laravel Forge account.',
   parameters: paramsSchema,
   category: ToolCategory.Readonly,
+  annotations: {
+    title: 'List Databases',
+    description: 'List all databases for a specific server in your Laravel Forge account.',
+    operation: 'list',
+    resource: 'databases',
+    safe: true,
+    readOnlyHint: true,
+    openWorldHint: true
+  },
   handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params)

@@ -28,9 +28,16 @@ const baseDescription = "Confirms the site deletion parameters and returns a sum
 export const confirmSiteDeletionTool: ForgeToolDefinition<typeof paramsSchema> =
   {
     name: 'confirm_site_deletion',
-    description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
     parameters: paramsSchema,
     category: ToolCategory.Write,
+    annotations: {
+      title: 'Confirm Site Deletion',
+      description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
+      operation: 'confirm',
+      resource: 'site_deletion',
+      readonly: false,
+      safe: true
+    },
     handler: async params => {
       const entry = createConfirmation(siteDeletionConfirmationStore, params)
       const summary =

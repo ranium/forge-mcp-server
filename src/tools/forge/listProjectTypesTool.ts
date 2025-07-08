@@ -14,10 +14,17 @@ const paramsSchema = {}
 
 export const listProjectTypesTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'list_project_types',
-  description:
-    "Lists available project types for site creation in Laravel Forge. The 'php' type is the default.",
   parameters: paramsSchema,
   category: ToolCategory.Readonly,
+  annotations: {
+    title: 'List Project Types',
+    description: "Lists available project types for site creation in Laravel Forge. The 'php' type is the default.",
+    operation: 'list',
+    resource: 'project_types',
+    safe: true,
+    readOnlyHint: true,
+    openWorldHint: false
+  },
   handler: async () => {
     return toMCPToolResult(projectTypes)
   },

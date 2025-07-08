@@ -11,10 +11,18 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const listDaemonsTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'list_daemons',
-  description:
-    'List all daemons on a specific server in your Laravel Forge account.',
   parameters: paramsSchema,
   category: ToolCategory.Readonly,
+  annotations: {
+    title: 'List Daemons',
+    description:
+      'List all daemons on a specific server in your Laravel Forge account.',
+    operation: 'list',
+    resource: 'daemons',
+    safe: true,
+    readOnlyHint: true,
+    openWorldHint: true
+  },
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params)
     const serverId = parsed.serverId

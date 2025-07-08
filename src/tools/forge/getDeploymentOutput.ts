@@ -20,10 +20,18 @@ const paramsZodObject = z.object(paramsSchema)
 export const getDeploymentOutputTool: ForgeToolDefinition<typeof paramsSchema> =
   {
     name: 'get_deployment_output',
-    description:
-      'Get the output (log) for a specific deployment on a site in your Laravel Forge account.',
     parameters: paramsSchema,
     category: ToolCategory.Readonly,
+    annotations: {
+      title: 'Get Deployment Output',
+      description:
+    'Get the output (log) for a specific deployment on a site in your Laravel Forge account.',
+      operation: 'get',
+      resource: 'deployment_output',
+      safe: true,
+      readOnlyHint: true,
+      openWorldHint: true
+    },
     handler: async (params, forgeApiKey) => {
       const parsed = paramsZodObject.parse(params)
       const serverId = parsed.serverId

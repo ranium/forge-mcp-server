@@ -11,9 +11,16 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const rebootMysqlTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'reboot_mysql',
-  description: `Reboots (restarts) the MySQL service on a server in Laravel Forge.`,
   parameters: paramsSchema,
   category: ToolCategory.Write,
+  annotations: {
+    title: 'Reboot MySQL',
+    description: 'Reboots (restarts) the MySQL service on a server in Laravel Forge.',
+    operation: 'restart',
+    resource: 'mysql_service',
+    readonly: false,
+    safe: true
+  },
   handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params)

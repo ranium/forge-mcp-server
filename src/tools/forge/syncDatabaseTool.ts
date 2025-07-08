@@ -20,9 +20,16 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const syncDatabaseTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'sync_database',
-  description: `Syncs the specified database on a server in Laravel Forge.`,
   parameters: paramsSchema,
   category: ToolCategory.Write,
+  annotations: {
+    title: 'Sync Database',
+    description: 'Syncs the specified database on a server in Laravel Forge.',
+    operation: 'sync',
+    resource: 'database',
+    readonly: false,
+    safe: true
+  },
   handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params)

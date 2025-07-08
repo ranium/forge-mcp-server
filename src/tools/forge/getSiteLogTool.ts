@@ -14,10 +14,18 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const getSiteLogTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'get_site_log',
-  description:
-    'Retrieve the log output for a specific site in your Laravel Forge account. This returns the raw log as plain text.',
   parameters: paramsSchema,
   category: ToolCategory.Readonly,
+  annotations: {
+    title: 'Get Site Log',
+    description:
+      'Retrieve the log output for a specific site in your Laravel Forge account. This returns the raw log as plain text.',
+    operation: 'get',
+    resource: 'site_log',
+    safe: true,
+    readOnlyHint: true,
+    openWorldHint: true
+  },
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params)
     const serverId = parsed.serverId

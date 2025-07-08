@@ -48,7 +48,11 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const createServerTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'create_server',
-  description: `Creates a new server in Laravel Forge.
+  parameters: paramsSchema,
+  category: ToolCategory.Write,
+  annotations: {
+    title: 'Create Server',
+    description: `Creates a new server in Laravel Forge.
 
 All parameters are required and must be provided by the client. The client should use the following tools to collect the necessary parameters:
 - list_providers
@@ -65,8 +69,11 @@ The php_version parameter must be one of the valid Forge API IDs as provided by 
 Before calling this tool, the client MUST call the 'confirm_server_creation' tool with the same parameters and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool.
 
 The client should collect all required parameters using the above tools, call 'confirm_server_creation', and finally call this tool with the collected values and confirmationId only after confirmation.`,
-  parameters: paramsSchema,
-  category: ToolCategory.Write,
+    operation: 'create',
+    resource: 'server',
+    readonly: false,
+    safe: false
+  },
   handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params)

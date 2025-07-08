@@ -18,10 +18,18 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const listSizesTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'list_sizes',
-  description:
-    'List available sizes for a given provider and region using the Forge API. Also allows custom/free-text entry.',
   parameters: paramsSchema,
   category: ToolCategory.Readonly,
+  annotations: {
+    title: 'List Sizes',
+    description:
+      'List available sizes for a given provider and region using the Forge API. Also allows custom/free-text entry.',
+    operation: 'list',
+    resource: 'sizes',
+    safe: true,
+    readOnlyHint: true,
+    openWorldHint: true
+  },
   handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params)

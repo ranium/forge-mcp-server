@@ -52,9 +52,16 @@ export const confirmServerCreationTool: ForgeToolDefinition<
   typeof paramsSchema
 > = {
   name: 'confirm_server_creation',
-  description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
   parameters: paramsSchema,
   category: ToolCategory.Write,
+  annotations: {
+    title: 'Confirm Server Creation',
+    description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
+    operation: 'confirm',
+    resource: 'server_creation',
+    readonly: false,
+    safe: true
+  },
   handler: async params => {
     // Remove confirmationId from params for storage
     const { ...rest } = params

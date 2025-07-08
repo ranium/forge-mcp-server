@@ -11,9 +11,16 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const rebootPostgresTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'reboot_postgres',
-  description: `Reboots (restarts) the Postgres service on a server in Laravel Forge.`,
   parameters: paramsSchema,
   category: ToolCategory.Write,
+  annotations: {
+    title: 'Reboot Postgres',
+    description: 'Reboots (restarts) the Postgres service on a server in Laravel Forge.',
+    operation: 'restart',
+    resource: 'postgres_service',
+    readonly: false,
+    safe: true
+  },
   handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params)

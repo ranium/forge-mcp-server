@@ -22,10 +22,18 @@ export const getComposerPackagesAuthTool: ForgeToolDefinition<
   typeof paramsSchema
 > = {
   name: 'get_composer_packages_auth',
-  description:
-    'Get Composer packages authentication credentials for a specific site in your Laravel Forge account.',
   parameters: paramsSchema,
   category: ToolCategory.Readonly,
+  annotations: {
+    title: 'Get Composer Packages Auth',
+    description:
+    'Get Composer packages authentication credentials for a specific site in your Laravel Forge account.',
+    operation: 'get',
+    resource: 'composer_auth',
+    safe: true,
+    readOnlyHint: true,
+    openWorldHint: true
+  },
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params)
     const serverId = parsed.serverId

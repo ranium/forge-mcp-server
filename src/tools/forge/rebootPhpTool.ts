@@ -11,9 +11,16 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const rebootPhpTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'reboot_php',
-  description: `Reboots (restarts) the PHP service on a server in Laravel Forge.`,
   parameters: paramsSchema,
   category: ToolCategory.Write,
+  annotations: {
+    title: 'Reboot PHP',
+    description: 'Reboots (restarts) the PHP service on a server in Laravel Forge.',
+    operation: 'restart',
+    resource: 'php_service',
+    readonly: false,
+    safe: true
+  },
   handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params)

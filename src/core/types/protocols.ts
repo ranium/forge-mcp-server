@@ -1,3 +1,4 @@
+import { ToolAnnotations } from '@modelcontextprotocol/sdk/types.js';
 import { ZodRawShape } from 'zod'
 
 export type MCPToolContent =
@@ -19,9 +20,9 @@ export enum ToolCategory {
 
 export interface ForgeToolDefinition<TParams extends ZodRawShape> {
   name: string
-  description: string
   parameters: TParams
   category: ToolCategory
+  annotations?: ToolAnnotations
   handler: (
     params: Record<string, unknown>,
     forgeApiKey: string

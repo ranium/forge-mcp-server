@@ -91,7 +91,7 @@ for (const tool of filteredTools) {
   server.tool(
     tool.name,
     tool.parameters,
-    { description: tool.description },
+    tool.annotations || {},
     async (params: Record<string, unknown>) =>
       await tool.handler(params, FORGE_API_KEY)
   )

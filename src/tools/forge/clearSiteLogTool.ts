@@ -24,9 +24,16 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const clearSiteLogTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'clear_site_log',
-  description: `Clear the log output for a specific site in your Laravel Forge account.\n\nBefore calling this tool, the client MUST call the 'confirm_clear_site_log' tool and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool. This is a destructive action and cannot be undone.`,
   parameters: paramsSchema,
   category: ToolCategory.Write,
+  annotations: {
+    title: 'Clear Site Log',
+    description: 'Clear the log output for a specific site in your Laravel Forge account.\n\nBefore calling this tool, the client MUST call the \'confirm_clear_site_log\' tool and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool. This is a destructive action and cannot be undone.',
+    operation: 'clear',
+    resource: 'site_log',
+    readonly: false,
+    safe: false
+  },
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params)
     const { serverId, siteId, confirmationId } = parsed

@@ -22,9 +22,16 @@ export const enableQuickDeploymentTool: ForgeToolDefinition<
   typeof paramsSchema
 > = {
   name: 'enable_quick_deployment',
-  description: `Enables quick deployment (triggers a deployment) for a site's Git project in Laravel Forge. This will immediately trigger a deployment for the specified site.`,
   parameters: paramsSchema,
   category: ToolCategory.Write,
+  annotations: {
+    title: 'Enable Quick Deployment',
+    description: 'Enables quick deployment (triggers a deployment) for a site\'s Git project in Laravel Forge. This will immediately trigger a deployment for the specified site.',
+    operation: 'enable',
+    resource: 'quick_deployment',
+    readonly: false,
+    safe: true
+  },
   handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params)

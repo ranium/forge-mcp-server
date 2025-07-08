@@ -21,9 +21,16 @@ export const confirmServerDeletionTool: ForgeToolDefinition<
   typeof paramsSchema
 > = {
   name: 'confirm_server_deletion',
-  description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
   parameters: paramsSchema,
   category: ToolCategory.Write,
+  annotations: {
+    title: 'Confirm Server Deletion',
+    description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
+    operation: 'confirm',
+    resource: 'server_deletion',
+    readonly: false,
+    safe: true
+  },
   handler: async params => {
     const entry = createConfirmation(deletionConfirmationStore, params)
     const summary =

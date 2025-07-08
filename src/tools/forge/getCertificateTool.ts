@@ -23,9 +23,17 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const getCertificateTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'get_certificate',
-  description: 'Gets details of a specific SSL certificate for a site.',
   parameters: paramsSchema,
   category: ToolCategory.Readonly,
+  annotations: {
+    title: 'Get Certificate',
+    description: 'Gets details of a specific SSL certificate for a site.',
+    operation: 'get',
+    resource: 'certificate',
+    safe: true,
+    readOnlyHint: true,
+    openWorldHint: true
+  },
   handler: async (params, forgeApiKey) => {
     try {
       const { serverId, siteId, certificateId } = paramsZodObject.parse(params)

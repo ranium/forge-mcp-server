@@ -20,9 +20,16 @@ const baseDescription = "Confirms the request to reboot a server and returns a s
 export const confirmServerRebootTool: ForgeToolDefinition<typeof paramsSchema> =
   {
     name: 'confirm_server_reboot',
-    description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
     parameters: paramsSchema,
     category: ToolCategory.Write,
+    annotations: {
+      title: 'Confirm Server Reboot',
+      description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
+      operation: 'confirm',
+      resource: 'server_reboot',
+      readonly: false,
+      safe: true
+    },
     handler: async params => {
       const entry = createConfirmation(rebootConfirmationStore, params)
       const summary =

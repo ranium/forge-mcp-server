@@ -11,10 +11,18 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const listSitesTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'list_sites',
-  description:
-    'List all sites on a specific server in your Laravel Forge account.',
   parameters: paramsSchema,
   category: ToolCategory.Readonly,
+  annotations: {
+    title: 'List Sites',
+    description:
+      'List all sites on a specific server in your Laravel Forge account.',
+    operation: 'list',
+    resource: 'sites',
+    safe: true,
+    readOnlyHint: true,
+    openWorldHint: true
+  },
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params)
     const serverId = parsed.serverId

@@ -15,9 +15,17 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const getDeploymentTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'get_deployment',
-  description: 'Get details of a specific deployment.',
   parameters: paramsSchema,
   category: ToolCategory.Readonly,
+  annotations: {
+    title: 'Get Deployment',
+    description: 'Get details of a specific deployment.',
+    operation: 'get',
+    resource: 'deployment',
+    safe: true,
+    readOnlyHint: true,
+    openWorldHint: true
+  },
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params)
     const serverId = parsed.serverId

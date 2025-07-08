@@ -18,10 +18,18 @@ export const checkPulseDaemonStatusTool: ForgeToolDefinition<
   typeof paramsSchema
 > = {
   name: 'check_pulse_daemon_status',
-  description:
-    'Check if a Pulse daemon is enabled for a specific site in your Laravel Forge account.',
   parameters: paramsSchema,
   category: ToolCategory.Readonly,
+  annotations: {
+    title: 'Check Pulse Daemon Status',
+    description:
+      'Check if a Pulse daemon is enabled for a specific site in your Laravel Forge account.',
+    operation: 'check',
+    resource: 'pulse_daemon_status',
+    safe: true,
+    readOnlyHint: true,
+    openWorldHint: true
+  },
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params)
     const serverId = parsed.serverId

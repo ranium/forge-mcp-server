@@ -14,9 +14,17 @@ const paramsSchema = {}
 
 export const listProvidersTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'list_providers',
-  description: 'List all available server providers for Laravel Forge.',
   parameters: paramsSchema,
   category: ToolCategory.Readonly,
+  annotations: {
+    title: 'List Providers',
+    description: 'List all available server providers for Laravel Forge.',
+    operation: 'list',
+    resource: 'providers',
+    safe: true,
+    readOnlyHint: true,
+    openWorldHint: false
+  },
   handler: async (_params, _forgeApiKey) => {
     return toMCPToolResult({ providers })
   },

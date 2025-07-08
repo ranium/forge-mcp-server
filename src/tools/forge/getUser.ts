@@ -6,9 +6,17 @@ const params = {}
 
 export const getUserTool: ForgeToolDefinition<typeof params> = {
   name: 'get_user',
-  description: 'Get the current Forge user.',
   parameters: params,
   category: ToolCategory.Readonly,
+  annotations: {
+    title: 'Get User',
+    description: 'Get the current Forge user.',
+    operation: 'get',
+    resource: 'user',
+    safe: true,
+    readOnlyHint: true,
+    openWorldHint: true
+  },
   handler: async (_params, forgeApiKey) => {
     try {
       const data = await callForgeApi<object>(

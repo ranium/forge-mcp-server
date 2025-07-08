@@ -18,10 +18,18 @@ const paramsSchema = {}
 
 export const listDatabaseTypesTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'list_database_types',
-  description:
-    'List valid database types for new server creation (static, as per Forge documentation).',
   parameters: paramsSchema,
   category: ToolCategory.Readonly,
+  annotations: {
+    title: 'List Database Types',
+    description:
+      'List valid database types for new server creation (static, as per Forge documentation).',
+    operation: 'list',
+    resource: 'database_types',
+    safe: true,
+    readOnlyHint: true,
+    openWorldHint: false
+  },
   handler: async (_params, _forgeApiKey) => {
     return toMCPToolResult({ databaseTypes })
   },
