@@ -39,9 +39,17 @@ export const confirmDeleteDatabaseTool: ForgeToolDefinition<
   typeof paramsSchema
 > = {
   name: 'confirm_delete_database',
-  description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
   parameters: paramsSchema,
   category: ToolCategory.Destructive,
+  annotations: {
+    title: 'Confirm Delete Database',
+    description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
+    operation: 'confirm',
+    resource: 'database',
+    safe: false,
+    destructiveHint: true,
+    readOnlyHint: false
+  },
   handler: async params => {
     const entry = createConfirmation(deleteDatabaseConfirmationStore, params)
     const summary =

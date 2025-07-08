@@ -41,10 +41,17 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const deleteCertificateTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'delete_certificate',
-  description:
-    "Deletes a certificate from a site in Laravel Forge.\n\nBefore calling this tool, the client MUST call the 'confirm_certificate_deletion' tool and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool.",
   parameters: paramsSchema,
   category: ToolCategory.Destructive,
+  annotations: {
+    title: 'Delete Certificate',
+    description: `Deletes an SSL certificate from a site in Laravel Forge.\n\nBefore calling this tool, the client MUST call the 'confirm_delete_certificate' tool and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool.`,
+    operation: 'delete',
+    resource: 'certificate',
+    safe: false,
+    destructiveHint: true,
+    readOnlyHint: false
+  },
   handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params)

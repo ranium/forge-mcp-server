@@ -22,14 +22,15 @@ export const confirmServerDeletionTool: ForgeToolDefinition<
 > = {
   name: 'confirm_server_deletion',
   parameters: paramsSchema,
-  category: ToolCategory.Write,
+  category: ToolCategory.Destructive,
   annotations: {
     title: 'Confirm Server Deletion',
     description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
     operation: 'confirm',
-    resource: 'server_deletion',
-    readonly: false,
-    safe: true
+    resource: 'server',
+    safe: false,
+    destructiveHint: true,
+    readOnlyHint: false
   },
   handler: async params => {
     const entry = createConfirmation(deletionConfirmationStore, params)

@@ -28,8 +28,9 @@ export const deleteServerTool: ForgeToolDefinition<typeof paramsSchema> = {
     description: 'Deletes a server in Laravel Forge.\n\nBefore calling this tool, the client MUST call the \'confirm_server_deletion\' tool and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool.',
     operation: 'delete',
     resource: 'server',
-    readonly: false,
-    safe: false
+    safe: false,
+    destructiveHint: true,
+    readOnlyHint: false
   },
   handler: async (params, forgeApiKey) => {
     try {

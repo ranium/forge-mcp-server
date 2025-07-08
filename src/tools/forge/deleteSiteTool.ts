@@ -30,9 +30,17 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const deleteSiteTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'delete_site',
-  description: `Deletes a site in Laravel Forge.\n\nBefore calling this tool, the client MUST call the 'confirm_site_deletion' tool and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool.`,
   parameters: paramsSchema,
   category: ToolCategory.Destructive,
+  annotations: {
+    title: 'Delete Site',
+    description: `Deletes a site in Laravel Forge.\n\nBefore calling this tool, the client MUST call the 'confirm_site_deletion' tool and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool.`,
+    operation: 'delete',
+    resource: 'site',
+    safe: false,
+    destructiveHint: true,
+    readOnlyHint: false
+  },
   handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params)

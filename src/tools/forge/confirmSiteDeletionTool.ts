@@ -29,14 +29,15 @@ export const confirmSiteDeletionTool: ForgeToolDefinition<typeof paramsSchema> =
   {
     name: 'confirm_site_deletion',
     parameters: paramsSchema,
-    category: ToolCategory.Write,
+    category: ToolCategory.Destructive,
     annotations: {
       title: 'Confirm Site Deletion',
       description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
       operation: 'confirm',
-      resource: 'site_deletion',
-      readonly: false,
-      safe: true
+      resource: 'site',
+      safe: false,
+      destructiveHint: true,
+      readOnlyHint: false
     },
     handler: async params => {
       const entry = createConfirmation(siteDeletionConfirmationStore, params)

@@ -40,9 +40,17 @@ export const confirmDeleteCertificateTool: ForgeToolDefinition<
   typeof paramsSchema
 > = {
   name: 'confirm_certificate_deletion',
-  description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
   parameters: paramsSchema,
   category: ToolCategory.Destructive,
+  annotations: {
+    title: 'Confirm Delete Certificate',
+    description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
+    operation: 'confirm',
+    resource: 'certificate',
+    safe: false,
+    destructiveHint: true,
+    readOnlyHint: false
+  },
   handler: async params => {
     const entry = createConfirmation(deleteCertificateConfirmationStore, params)
     const summary = `Are you sure you want to delete the certificate from:
