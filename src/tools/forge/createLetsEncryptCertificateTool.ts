@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -75,7 +75,6 @@ export const createLetsEncryptCertificateTool: ForgeToolDefinition<
 > = {
   name: 'create_lets_encrypt_certificate',
   parameters: paramsSchema,
-  category: ToolCategory.Write,
   annotations: {
     title: 'Create Let\'s Encrypt Certificate',
     description:

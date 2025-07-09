@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
@@ -38,7 +38,6 @@ const baseDescription = "Confirms the request to deploy now for a site and retur
 export const confirmDeployNowTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'confirm_deploy_now',
   parameters: paramsSchema,
-  category: ToolCategory.Write,
   annotations: {
     title: 'Confirm Deploy Now',
     description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,

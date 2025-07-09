@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -12,7 +12,6 @@ const paramsZodObject = z.object(paramsSchema)
 export const rebootPostgresTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'reboot_postgres',
   parameters: paramsSchema,
-  category: ToolCategory.Write,
   annotations: {
     title: 'Reboot Postgres',
     description: 'Reboots (restarts) the Postgres service on a server in Laravel Forge.',

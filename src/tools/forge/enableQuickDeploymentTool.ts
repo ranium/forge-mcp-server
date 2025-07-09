@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -23,7 +23,6 @@ export const enableQuickDeploymentTool: ForgeToolDefinition<
 > = {
   name: 'enable_quick_deployment',
   parameters: paramsSchema,
-  category: ToolCategory.Write,
   annotations: {
     title: 'Enable Quick Deployment',
     description: 'Enables quick deployment (triggers a deployment) for a site\'s Git project in Laravel Forge. This will immediately trigger a deployment for the specified site.',

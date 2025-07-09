@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -22,7 +22,6 @@ const paramsZodObject = z.object(paramsSchema)
 export const rebootServerTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'reboot_server',
   parameters: paramsSchema,
-  category: ToolCategory.Write,
   annotations: {
     title: 'Reboot Server',
     description: 'Reboots a server in Laravel Forge.\n\nBefore calling this tool, the client MUST call the \'confirm_server_reboot\' tool and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool.',

@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -43,7 +43,6 @@ export const activateCertificateTool: ForgeToolDefinition<typeof paramsSchema> =
   {
     name: 'activate_certificate',
     parameters: paramsSchema,
-    category: ToolCategory.Write,
     annotations: {
       title: 'Activate Certificate',
       description:

@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 
 const staticPhpVersions = [
@@ -21,7 +21,6 @@ export const listStaticPhpVersionsTool: ForgeToolDefinition<
 > = {
   name: 'list_static_php_versions',
   parameters: staticParamsSchema,
-  category: ToolCategory.Readonly,
   annotations: {
     title: 'List Static PHP Versions',
     description:

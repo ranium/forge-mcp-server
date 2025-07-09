@@ -4,7 +4,6 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { z } from 'zod'
 import { forgeTools } from './tools/forge/index.js'
-import { ToolCategory } from './core/types/protocols.js'
 
 // Support --api-key argument as well as FORGE_API_KEY env variable
 function getForgeApiKey(): string | undefined {
@@ -16,18 +15,18 @@ function getForgeApiKey(): string | undefined {
 }
 
 // Parse --tools argument to determine which tool categories to enable
-function getToolCategories(): ToolCategory[] {
+function getToolCategories(): string[] {
   const toolsArg = process.argv.find(arg => arg.startsWith('--tools='))
   if (!toolsArg) {
     // Default to readonly only
-    return [ToolCategory.Readonly]
+    return ['readonly']
   }
   
   const categories = toolsArg.split('=')[1].split(',').map(cat => cat.trim())
   
   // Validate categories
-  const validCategories = [ToolCategory.Readonly, ToolCategory.Write, ToolCategory.Destructive]
-  const invalidCategories = categories.filter(cat => !validCategories.includes(cat as ToolCategory))
+  const validCategories = ['readonly', 'readWrite', 'destructive']
+  const invalidCategories = categories.filter(cat => !validCategories.includes(cat))
   
   if (invalidCategories.length > 0) {
     console.error(`Error: Invalid tool categories: ${invalidCategories.join(', ')}. Valid categories are: ${validCategories.join(', ')}`)
@@ -35,21 +34,35 @@ function getToolCategories(): ToolCategory[] {
   }
   
   // If destructive is included, include all categories
-  if (categories.includes(ToolCategory.Destructive)) {
-    return [ToolCategory.Readonly, ToolCategory.Write, ToolCategory.Destructive]
+  if (categories.includes('destructive')) {
+    return ['readonly', 'write', 'destructive']
   }
   
   // If write is included, include readonly and write
-  if (categories.includes(ToolCategory.Write)) {
-    return [ToolCategory.Readonly, ToolCategory.Write]
+  if (categories.includes('write')) {
+    return ['readonly', 'write']
   }
   
-  return categories as ToolCategory[]
+  return categories
 }
 
-// Filter tools based on selected categories
-function filterToolsByCategory(tools: typeof forgeTools, categories: ToolCategory[]) {
-  return tools.filter(tool => categories.includes(tool.category))
+// Filter tools based on selected categories using annotations
+function filterToolsByCategory(tools: typeof forgeTools, categories: string[]) {
+  return tools.filter(tool => {
+    const annotations = tool.annotations
+    
+    // Determine tool category based on annotations
+    let toolCategory: string
+    if (annotations.destructiveHint) {
+      toolCategory = 'destructive'
+    } else if (annotations.readWriteHint && !annotations.readOnlyHint && !annotations.destructiveHint) {
+      toolCategory = 'write'
+    } else {
+      toolCategory = 'readonly'
+    }
+    
+    return categories.includes(toolCategory)
+  })
 }
 
 const FORGE_API_KEY = getForgeApiKey()
@@ -91,11 +104,23 @@ for (const tool of filteredTools) {
   server.tool(
     tool.name,
     tool.parameters,
-    tool.annotations || {},
+    tool.annotations,
     async (params: Record<string, unknown>) =>
       await tool.handler(params, FORGE_API_KEY)
   )
-  console.error(`Forge MCP server: tool registered (${tool.name}) [${tool.category}]`)
+  
+  // Determine tool category for logging
+  const annotations = tool.annotations
+  let toolCategory: string
+  if (annotations.destructiveHint) {
+    toolCategory = 'destructive'
+  } else if (annotations.readWriteHint && !annotations.readOnlyHint && !annotations.destructiveHint) {
+    toolCategory = 'write'
+  } else {
+    toolCategory = 'readonly'
+  }
+  
+  console.error(`Forge MCP server: tool registered (${tool.name}) [${toolCategory}]`)
 }
 
 process.on('unhandledRejection', (reason, _promise) => {

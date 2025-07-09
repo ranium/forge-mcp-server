@@ -12,12 +12,6 @@ export interface MCPToolResult {
   [key: string]: unknown
 }
 
-export enum ToolCategory {
-  Readonly = 'readonly',
-  Write = 'write',
-  Destructive = 'destructive',
-}
-
 // Custom annotation properties that we use across all tools
 export interface CustomToolAnnotations {
   /** Human-readable title for the tool */
@@ -40,7 +34,6 @@ export type ChildToolAnnotation = ToolAnnotations & CustomToolAnnotations
 export interface ForgeToolDefinition<TParams extends ZodRawShape> {
   name: string
   parameters: TParams
-  category: ToolCategory
   annotations: ChildToolAnnotation // Now required and type-safe
   handler: (
     params: Record<string, unknown>,

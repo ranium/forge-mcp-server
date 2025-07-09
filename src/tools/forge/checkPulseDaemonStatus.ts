@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -19,7 +19,6 @@ export const checkPulseDaemonStatusTool: ForgeToolDefinition<
 > = {
   name: 'check_pulse_daemon_status',
   parameters: paramsSchema,
-  category: ToolCategory.Readonly,
   annotations: {
     title: 'Check Pulse Daemon Status',
     description:

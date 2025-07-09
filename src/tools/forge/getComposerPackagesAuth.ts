@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -23,7 +23,6 @@ export const getComposerPackagesAuthTool: ForgeToolDefinition<
 > = {
   name: 'get_composer_packages_auth',
   parameters: paramsSchema,
-  category: ToolCategory.Readonly,
   annotations: {
     title: 'Get Composer Packages Auth',
     description:

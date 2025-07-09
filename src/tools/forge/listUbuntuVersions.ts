@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 
 const ubuntuVersions = [
@@ -13,7 +13,6 @@ export const listUbuntuVersionsTool: ForgeToolDefinition<typeof paramsSchema> =
   {
     name: 'list_ubuntu_versions',
     parameters: paramsSchema,
-    category: ToolCategory.Readonly,
     annotations: {
       title: 'List Ubuntu Versions',
       description:

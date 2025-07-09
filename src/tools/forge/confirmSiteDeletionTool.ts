@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
@@ -29,7 +29,6 @@ export const confirmSiteDeletionTool: ForgeToolDefinition<typeof paramsSchema> =
   {
     name: 'confirm_site_deletion',
     parameters: paramsSchema,
-    category: ToolCategory.Destructive,
     annotations: {
       title: 'Confirm Site Deletion',
       description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,

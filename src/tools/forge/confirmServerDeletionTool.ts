@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
@@ -22,7 +22,6 @@ export const confirmServerDeletionTool: ForgeToolDefinition<
 > = {
   name: 'confirm_server_deletion',
   parameters: paramsSchema,
-  category: ToolCategory.Destructive,
   annotations: {
     title: 'Confirm Server Deletion',
     description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,

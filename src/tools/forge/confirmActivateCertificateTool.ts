@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
@@ -44,7 +44,6 @@ export const confirmActivateCertificateTool: ForgeToolDefinition<
 > = {
   name: 'confirm_activate_certificate',
   parameters: paramsSchema,
-  category: ToolCategory.Write,
   annotations: {
     title: 'Confirm Activate Certificate',
     description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,

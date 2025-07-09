@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
@@ -53,7 +53,6 @@ export const confirmServerCreationTool: ForgeToolDefinition<
 > = {
   name: 'confirm_server_creation',
   parameters: paramsSchema,
-  category: ToolCategory.Write,
   annotations: {
     title: 'Confirm Server Creation',
     description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,

@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -16,7 +16,6 @@ const paramsZodObject = z.object(paramsSchema)
 export const listDatabasesTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'list_databases',
   parameters: paramsSchema,
-  category: ToolCategory.Readonly,
   annotations: {
     title: 'List Databases',
     description: 'List all databases for a specific server in your Laravel Forge account.',

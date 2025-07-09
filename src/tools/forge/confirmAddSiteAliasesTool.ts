@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
@@ -35,7 +35,6 @@ export const confirmAddSiteAliasesTool: ForgeToolDefinition<
 > = {
   name: 'confirm_add_site_aliases',
   parameters: paramsSchema,
-  category: ToolCategory.Write,
   annotations: {
     title: 'Confirm Add Site Aliases',
     description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,

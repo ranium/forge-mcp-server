@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -19,7 +19,6 @@ export const checkLaravelMaintenanceStatusTool: ForgeToolDefinition<
 > = {
   name: 'check_laravel_maintenance_status',
   parameters: paramsSchema,
-  category: ToolCategory.Readonly,
   annotations: {
     title: 'Check Laravel Maintenance Status',
     description:

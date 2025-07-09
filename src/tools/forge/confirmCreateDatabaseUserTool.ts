@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
@@ -45,7 +45,6 @@ export const confirmCreateDatabaseUserTool: ForgeToolDefinition<
 > = {
   name: 'confirm_create_database_user',
   parameters: paramsSchema,
-  category: ToolCategory.Write,
   annotations: {
     title: 'Confirm Create Database User',
     description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,

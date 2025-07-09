@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -47,7 +47,6 @@ export const createDatabaseUserTool: ForgeToolDefinition<typeof paramsSchema> =
   {
     name: 'create_database_user',
     parameters: paramsSchema,
-    category: ToolCategory.Write,
     annotations: {
       title: 'Create Database User',
       description: `Creates a new database user on a server in Laravel Forge.\n\nBefore calling this tool, the client MUST call the 'confirm_create_database_user' tool and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool.`,

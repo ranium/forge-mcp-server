@@ -2,7 +2,6 @@ import {
   ForgeToolDefinition,
   HttpMethod,
   MCPToolResult,
-  ToolCategory,
 } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
@@ -19,7 +18,6 @@ const paramsZodObject = z.object(paramsSchema)
 export const listPhpVersionsTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'list_php_versions',
   parameters: paramsSchema,
-  category: ToolCategory.Readonly,
   annotations: {
     title: 'List PHP Versions',
     description:

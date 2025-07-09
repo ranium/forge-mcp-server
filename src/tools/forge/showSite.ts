@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -13,7 +13,6 @@ const paramsZodObject = z.object(paramsSchema)
 export const showSiteTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'show_site',
   parameters: paramsSchema,
-  category: ToolCategory.Readonly,
   annotations: {
     title: 'Show Site',
     description:
