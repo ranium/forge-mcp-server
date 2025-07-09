@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -22,9 +22,18 @@ export const enableQuickDeploymentTool: ForgeToolDefinition<
   typeof paramsSchema
 > = {
   name: 'enable_quick_deployment',
-  description: `Enables quick deployment (triggers a deployment) for a site's Git project in Laravel Forge. This will immediately trigger a deployment for the specified site.`,
   parameters: paramsSchema,
-  category: ToolCategory.Write,
+  annotations: {
+    title: 'Enable Quick Deployment',
+    description: 'Enables quick deployment (triggers a deployment) for a site\'s Git project in Laravel Forge. This will immediately trigger a deployment for the specified site.',
+    operation: 'enable',
+    resource: 'quick_deployment',
+    safe: true,
+    readOnlyHint: false,
+    openWorldHint: true,
+    readWriteHint: true,
+    destructiveHint: false
+  },
   handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params)

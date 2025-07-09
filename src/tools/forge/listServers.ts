@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 
@@ -6,9 +6,18 @@ const params = {}
 
 export const listServersTool: ForgeToolDefinition<typeof params> = {
   name: 'list_servers',
-  description: 'List all servers in your Laravel Forge account.',
   parameters: params, // No parameters needed, use Zod raw shape
-  category: ToolCategory.Readonly,
+  annotations: {
+    title: 'List Servers',
+    description: 'List all servers in your Laravel Forge account.',
+    operation: 'list',
+    resource: 'servers',
+    safe: true,
+    readOnlyHint: true,
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
+  },
   handler: async (_params, forgeApiKey) => {
     try {
       const data = await callForgeApi<object>(

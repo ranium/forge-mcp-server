@@ -2,7 +2,6 @@ import {
   ForgeToolDefinition,
   HttpMethod,
   MCPToolResult,
-  ToolCategory,
 } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
@@ -18,10 +17,19 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const listPhpVersionsTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'list_php_versions',
-  description:
-    'List all available PHP versions for a specific server in Laravel Forge.',
   parameters: paramsSchema,
-  category: ToolCategory.Readonly,
+  annotations: {
+    title: 'List PHP Versions',
+    description:
+      'List all available PHP versions for a specific server in Laravel Forge.',
+    operation: 'list',
+    resource: 'php_versions',
+    safe: true,
+    readOnlyHint: true,
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
+  },
   handler: async (params, forgeApiKey): Promise<MCPToolResult> => {
     const parsed = paramsZodObject.parse(params)
     const serverId = parsed.serverId

@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -20,9 +20,18 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const syncDatabaseTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'sync_database',
-  description: `Syncs the specified database on a server in Laravel Forge.`,
   parameters: paramsSchema,
-  category: ToolCategory.Write,
+  annotations: {
+    title: 'Sync Database',
+    description: 'Syncs the specified database on a server in Laravel Forge.',
+    operation: 'sync',
+    resource: 'database',
+    safe: false,
+    readOnlyHint: false,
+    openWorldHint: true,
+    readWriteHint: true,
+    destructiveHint: false
+  },
   handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params)

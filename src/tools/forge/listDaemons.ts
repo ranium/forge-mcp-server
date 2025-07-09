@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -11,10 +11,19 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const listDaemonsTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'list_daemons',
-  description:
-    'List all daemons on a specific server in your Laravel Forge account.',
   parameters: paramsSchema,
-  category: ToolCategory.Readonly,
+  annotations: {
+    title: 'List Daemons',
+    description:
+      'List all daemons on a specific server in your Laravel Forge account.',
+    operation: 'list',
+    resource: 'daemons',
+    safe: true,
+    readOnlyHint: true,
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
+  },
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params)
     const serverId = parsed.serverId

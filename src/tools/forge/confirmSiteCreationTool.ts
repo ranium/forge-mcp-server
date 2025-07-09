@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
@@ -127,9 +127,18 @@ const baseDescription = "Confirms the site creation parameters and returns a sum
 
 export const confirmSiteCreationTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'confirm_site_creation',
-  description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
   parameters: paramsSchema,
-  category: ToolCategory.Write,
+  annotations: {
+    title: 'Confirm Site Creation',
+    description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
+    operation: 'confirm',
+    resource: 'site_creation',
+    safe: false,
+    readOnlyHint: false,
+    openWorldHint: true,
+    readWriteHint: true,
+    destructiveHint: false
+  },
   handler: async params => {
     const entry = createConfirmation(siteCreationConfirmationStore, params)
     const summary =

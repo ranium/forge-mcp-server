@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 
@@ -6,9 +6,18 @@ const paramsSchema = {}
 
 export const listCredentialsTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'list_credentials',
-  description: 'List all credentials in your Laravel Forge account.',
   parameters: paramsSchema,
-  category: ToolCategory.Readonly,
+  annotations: {
+    title: 'List Credentials',
+    description: 'List all credentials in your Laravel Forge account.',
+    operation: 'list',
+    resource: 'credentials',
+    safe: true,
+    readOnlyHint: true,
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
+  },
   handler: async (_params, forgeApiKey) => {
     try {
       const data = await callForgeApi<object>(

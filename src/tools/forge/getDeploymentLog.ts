@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -16,9 +16,18 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const getDeploymentLogTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'get_deployment_log',
-  description: 'Get the log for a specific deployment.',
   parameters: paramsSchema,
-  category: ToolCategory.Readonly,
+  annotations: {
+    title: 'Get Deployment Log',
+    description: 'Get the log for a specific deployment.',
+    operation: 'get',
+    resource: 'deployment_log',
+    safe: true,
+    readOnlyHint: true,
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
+  },
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params)
     const serverId = parsed.serverId

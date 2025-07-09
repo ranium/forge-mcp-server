@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -21,9 +21,17 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const deleteServerTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'delete_server',
-  description: `Deletes a server in Laravel Forge.\n\nBefore calling this tool, the client MUST call the 'confirm_server_deletion' tool and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool.`,
   parameters: paramsSchema,
-  category: ToolCategory.Destructive,
+  annotations: {
+    title: 'Delete Server',
+    description: 'Deletes a server in Laravel Forge.\n\nBefore calling this tool, the client MUST call the \'confirm_server_deletion\' tool and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool.',
+    operation: 'delete',
+    resource: 'server',
+    safe: false,
+    destructiveHint: true,
+    readOnlyHint: false,
+    readWriteHint: true
+  },
   handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params)

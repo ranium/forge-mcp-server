@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
@@ -39,9 +39,17 @@ export const confirmDeleteDatabaseTool: ForgeToolDefinition<
   typeof paramsSchema
 > = {
   name: 'confirm_delete_database',
-  description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
   parameters: paramsSchema,
-  category: ToolCategory.Destructive,
+  annotations: {
+    title: 'Confirm Delete Database',
+    description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
+    operation: 'confirm',
+    resource: 'database',
+    safe: false,
+    destructiveHint: true,
+    readOnlyHint: false,
+    readWriteHint: true
+  },
   handler: async params => {
     const entry = createConfirmation(deleteDatabaseConfirmationStore, params)
     const summary =

@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition } from '../../core/types/protocols.js'
 import { toMCPToolResult } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
 import {
@@ -28,9 +28,18 @@ const baseDescription = "Confirms the clear site log parameters and returns a su
 export const confirmClearSiteLogTool: ForgeToolDefinition<typeof paramsSchema> =
   {
     name: 'confirm_clear_site_log',
-    description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
     parameters: paramsSchema,
-    category: ToolCategory.Write,
+    annotations: {
+      title: 'Confirm Clear Site Log',
+      description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
+      operation: 'confirm',
+      resource: 'site_log_clear',
+      safe: false,
+      readOnlyHint: false,
+      openWorldHint: true,
+      readWriteHint: true,
+      destructiveHint: false
+    },
     handler: async params => {
       const entry = createConfirmation(clearSiteLogConfirmationStore, params)
       const summary =

@@ -1,4 +1,4 @@
-import { ForgeToolDefinition, HttpMethod, ToolCategory } from '../../core/types/protocols.js'
+import { ForgeToolDefinition, HttpMethod } from '../../core/types/protocols.js'
 import { callForgeApi } from '../../utils/forgeApi.js'
 import { toMCPToolResult, toMCPToolError } from '../../utils/mcpToolResult.js'
 import { z } from 'zod'
@@ -12,10 +12,19 @@ const paramsZodObject = z.object(paramsSchema)
 
 export const showSiteTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'show_site',
-  description:
-    'Show details for a specific site on a server in your Laravel Forge account.',
   parameters: paramsSchema,
-  category: ToolCategory.Readonly,
+  annotations: {
+    title: 'Show Site',
+    description:
+      'Show details for a specific site on a server in your Laravel Forge account.',
+    operation: 'show',
+    resource: 'site',
+    safe: true,
+    readOnlyHint: true,
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
+  },
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params)
     const serverId = parsed.serverId
