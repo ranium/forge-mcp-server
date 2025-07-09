@@ -103,6 +103,7 @@ for (const tool of filteredTools) {
   // Ensure parameters is always a ZodRawShape
   server.tool(
     tool.name,
+    tool.annotations.description,
     tool.parameters,
     tool.annotations,
     async (params: Record<string, unknown>) =>
