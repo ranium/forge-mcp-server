@@ -21,7 +21,9 @@ export const showServerTool: ForgeToolDefinition<typeof paramsSchema> = {
     resource: 'server',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: true
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params)

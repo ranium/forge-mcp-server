@@ -25,7 +25,9 @@ export const getDeploymentLogTool: ForgeToolDefinition<typeof paramsSchema> = {
     resource: 'deployment_log',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: true
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params)

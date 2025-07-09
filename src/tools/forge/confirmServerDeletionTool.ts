@@ -30,7 +30,8 @@ export const confirmServerDeletionTool: ForgeToolDefinition<
     resource: 'server',
     safe: false,
     destructiveHint: true,
-    readOnlyHint: false
+    readOnlyHint: false,
+    readWriteHint: true
   },
   handler: async params => {
     const entry = createConfirmation(deletionConfirmationStore, params)

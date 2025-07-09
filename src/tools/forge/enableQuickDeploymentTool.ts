@@ -29,8 +29,11 @@ export const enableQuickDeploymentTool: ForgeToolDefinition<
     description: 'Enables quick deployment (triggers a deployment) for a site\'s Git project in Laravel Forge. This will immediately trigger a deployment for the specified site.',
     operation: 'enable',
     resource: 'quick_deployment',
-    readonly: false,
-    safe: true
+    safe: true,
+    readOnlyHint: false,
+    openWorldHint: true,
+    readWriteHint: true,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey) => {
     try {

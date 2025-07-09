@@ -29,7 +29,9 @@ export const listCertificatesTool: ForgeToolDefinition<typeof paramsSchema> = {
     resource: 'certificates',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: true
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey) => {
     try {

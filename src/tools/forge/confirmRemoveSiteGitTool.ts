@@ -39,9 +39,19 @@ export const confirmRemoveSiteGitTool: ForgeToolDefinition<
   typeof paramsSchema
 > = {
   name: 'confirm_remove_site_git',
-  description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
   parameters: paramsSchema,
   category: ToolCategory.Write,
+  annotations: {
+    title: 'Confirm Remove Site Git',
+    description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
+    operation: 'confirm',
+    resource: 'site_git_removal',
+    safe: false,
+    readOnlyHint: false,
+    openWorldHint: true,
+    readWriteHint: true,
+    destructiveHint: true
+  },
   handler: async params => {
     const entry = createConfirmation(removeSiteGitConfirmationStore, params)
     const summary =

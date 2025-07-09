@@ -24,7 +24,9 @@ export const listDatabasesTool: ForgeToolDefinition<typeof paramsSchema> = {
     resource: 'databases',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: true
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey) => {
     try {

@@ -15,7 +15,9 @@ export const getUserTool: ForgeToolDefinition<typeof params> = {
     resource: 'user',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: true
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async (_params, forgeApiKey) => {
     try {

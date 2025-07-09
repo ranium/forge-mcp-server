@@ -50,7 +50,8 @@ export const deleteCertificateTool: ForgeToolDefinition<typeof paramsSchema> = {
     resource: 'certificate',
     safe: false,
     destructiveHint: true,
-    readOnlyHint: false
+    readOnlyHint: false,
+    readWriteHint: true
   },
   handler: async (params, forgeApiKey) => {
     try {

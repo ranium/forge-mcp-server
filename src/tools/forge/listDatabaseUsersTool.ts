@@ -25,7 +25,9 @@ export const listDatabaseUsersTool: ForgeToolDefinition<typeof paramsSchema> = {
     resource: 'database_users',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: true
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey) => {
     try {

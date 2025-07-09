@@ -43,9 +43,19 @@ export const confirmActivateCertificateTool: ForgeToolDefinition<
   typeof paramsSchema
 > = {
   name: 'confirm_activate_certificate',
-  description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
   parameters: paramsSchema,
   category: ToolCategory.Write,
+  annotations: {
+    title: 'Confirm Activate Certificate',
+    description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
+    operation: 'confirm',
+    resource: 'certificate_activation',
+    safe: false,
+    readOnlyHint: false,
+    openWorldHint: true,
+    readWriteHint: true,
+    destructiveHint: false
+  },
   handler: async params => {
     const validatedParams = paramsZodObject.parse(params) as Params
     const entry = createConfirmation(

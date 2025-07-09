@@ -48,7 +48,8 @@ export const confirmDeleteDatabaseTool: ForgeToolDefinition<
     resource: 'database',
     safe: false,
     destructiveHint: true,
-    readOnlyHint: false
+    readOnlyHint: false,
+    readWriteHint: true
   },
   handler: async params => {
     const entry = createConfirmation(deleteDatabaseConfirmationStore, params)

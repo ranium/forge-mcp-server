@@ -74,10 +74,20 @@ export const createLetsEncryptCertificateTool: ForgeToolDefinition<
   typeof paramsSchema
 > = {
   name: 'create_lets_encrypt_certificate',
-  description:
-    "Creates a Let's Encrypt SSL certificate for a site. Before calling this tool, the client MUST call the 'confirm_lets_encrypt_certificate_creation' tool and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool.",
   parameters: paramsSchema,
   category: ToolCategory.Write,
+  annotations: {
+    title: 'Create Let\'s Encrypt Certificate',
+    description:
+      "Creates a Let's Encrypt SSL certificate for a site. Before calling this tool, the client MUST call the 'confirm_lets_encrypt_certificate_creation' tool and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool.",
+    operation: 'create',
+    resource: 'certificate',
+    safe: false,
+    readOnlyHint: false,
+    openWorldHint: true,
+    readWriteHint: true,
+    destructiveHint: false
+  },
   handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params)

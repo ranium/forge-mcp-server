@@ -71,8 +71,10 @@ Before calling this tool, the client MUST call the 'confirm_server_creation' too
 The client should collect all required parameters using the above tools, call 'confirm_server_creation', and finally call this tool with the collected values and confirmationId only after confirmation.`,
     operation: 'create',
     resource: 'server',
-    readonly: false,
-    safe: false
+    safe: false,
+    destructiveHint: false,
+    readOnlyHint: false,
+    readWriteHint: true
   },
   handler: async (params, forgeApiKey) => {
     try {

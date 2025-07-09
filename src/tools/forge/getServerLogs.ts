@@ -20,7 +20,9 @@ export const getServerLogsTool: ForgeToolDefinition<typeof paramsSchema> = {
     resource: 'server_logs',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: true
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params)

@@ -34,9 +34,19 @@ export const confirmAddSiteAliasesTool: ForgeToolDefinition<
   typeof paramsSchema
 > = {
   name: 'confirm_add_site_aliases',
-  description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
   parameters: paramsSchema,
   category: ToolCategory.Write,
+  annotations: {
+    title: 'Confirm Add Site Aliases',
+    description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
+    operation: 'confirm',
+    resource: 'site_aliases_addition',
+    safe: false,
+    readOnlyHint: false,
+    openWorldHint: true,
+    readWriteHint: true,
+    destructiveHint: false
+  },
   handler: async params => {
     const entry = createConfirmation(addSiteAliasesConfirmationStore, params)
     const summary =

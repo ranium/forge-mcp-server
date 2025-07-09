@@ -39,9 +39,19 @@ export const confirmDisableQuickDeploymentTool: ForgeToolDefinition<
   typeof paramsSchema
 > = {
   name: 'confirm_disable_quick_deployment',
-  description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
   parameters: paramsSchema,
   category: ToolCategory.Write,
+  annotations: {
+    title: 'Confirm Disable Quick Deployment',
+    description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
+    operation: 'confirm',
+    resource: 'quick_deployment_disable',
+    safe: false,
+    readOnlyHint: false,
+    openWorldHint: true,
+    readWriteHint: true,
+    destructiveHint: false
+  },
   handler: async params => {
     const entry = createConfirmation(
       disableQuickDeploymentConfirmationStore,

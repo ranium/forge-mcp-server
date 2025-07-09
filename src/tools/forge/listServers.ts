@@ -15,7 +15,9 @@ export const listServersTool: ForgeToolDefinition<typeof params> = {
     resource: 'servers',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: true
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async (_params, forgeApiKey) => {
     try {

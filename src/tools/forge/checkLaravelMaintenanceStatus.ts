@@ -28,7 +28,9 @@ export const checkLaravelMaintenanceStatusTool: ForgeToolDefinition<
     resource: 'laravel_maintenance_status',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: true
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params)

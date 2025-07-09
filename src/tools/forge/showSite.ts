@@ -22,7 +22,9 @@ export const showSiteTool: ForgeToolDefinition<typeof paramsSchema> = {
     resource: 'site',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: true
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params)

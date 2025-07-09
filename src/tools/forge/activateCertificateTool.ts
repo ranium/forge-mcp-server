@@ -42,10 +42,20 @@ const paramsZodObject = z.object(paramsSchema)
 export const activateCertificateTool: ForgeToolDefinition<typeof paramsSchema> =
   {
     name: 'activate_certificate',
-    description:
-      "Activates an SSL certificate for a site. Before calling this tool, the client MUST call the 'confirm_activate_certificate' tool and present the returned summary to the user for explicit confirmation.",
     parameters: paramsSchema,
     category: ToolCategory.Write,
+    annotations: {
+      title: 'Activate Certificate',
+      description:
+        "Activates an SSL certificate for a site. Before calling this tool, the client MUST call the 'confirm_activate_certificate' tool and present the returned summary to the user for explicit confirmation.",
+      operation: 'enable',
+      resource: 'certificate',
+      safe: true,
+      readOnlyHint: false,
+      openWorldHint: true,
+      readWriteHint: true,
+      destructiveHint: false
+    },
     handler: async (params, forgeApiKey) => {
       try {
         const parsed = paramsZodObject.parse(params)

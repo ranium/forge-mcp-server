@@ -46,9 +46,19 @@ export const confirmCreateDatabaseTool: ForgeToolDefinition<
   typeof paramsSchema
 > = {
   name: 'confirm_create_database',
-  description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
   parameters: paramsSchema,
   category: ToolCategory.Write,
+  annotations: {
+    title: 'Confirm Create Database',
+    description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
+    operation: 'confirm',
+    resource: 'database_creation',
+    safe: false,
+    readOnlyHint: false,
+    openWorldHint: true,
+    readWriteHint: true,
+    destructiveHint: false
+  },
   handler: async params => {
     const entry = createConfirmation(createDatabaseConfirmationStore, params)
     let summary =

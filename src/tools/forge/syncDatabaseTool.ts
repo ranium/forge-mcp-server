@@ -27,8 +27,11 @@ export const syncDatabaseTool: ForgeToolDefinition<typeof paramsSchema> = {
     description: 'Syncs the specified database on a server in Laravel Forge.',
     operation: 'sync',
     resource: 'database',
-    readonly: false,
-    safe: true
+    safe: false,
+    readOnlyHint: false,
+    openWorldHint: true,
+    readWriteHint: true,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey) => {
     try {

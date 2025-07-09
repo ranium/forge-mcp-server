@@ -34,9 +34,19 @@ export const confirmChangeSitePhpVersionTool: ForgeToolDefinition<
   typeof paramsSchema
 > = {
   name: 'confirm_change_site_php_version',
-  description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
   parameters: paramsSchema,
   category: ToolCategory.Write,
+  annotations: {
+    title: 'Confirm Change Site PHP Version',
+    description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
+    operation: 'confirm',
+    resource: 'site_php_version_change',
+    safe: false,
+    readOnlyHint: false,
+    openWorldHint: true,
+    readWriteHint: true,
+    destructiveHint: false
+  },
   handler: async params => {
     const entry = createConfirmation(
       changeSitePhpVersionConfirmationStore,

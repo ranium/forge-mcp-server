@@ -39,7 +39,8 @@ export const deleteSiteTool: ForgeToolDefinition<typeof paramsSchema> = {
     resource: 'site',
     safe: false,
     destructiveHint: true,
-    readOnlyHint: false
+    readOnlyHint: false,
+    readWriteHint: true
   },
   handler: async (params, forgeApiKey) => {
     try {

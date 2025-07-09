@@ -59,8 +59,11 @@ export const confirmServerCreationTool: ForgeToolDefinition<
     description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
     operation: 'confirm',
     resource: 'server_creation',
-    readonly: false,
-    safe: true
+    safe: false,
+    readOnlyHint: false,
+    openWorldHint: true,
+    readWriteHint: true,
+    destructiveHint: false
   },
   handler: async params => {
     // Remove confirmationId from params for storage

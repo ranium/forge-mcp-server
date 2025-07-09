@@ -56,9 +56,19 @@ export const confirmInstallOrUpdateSiteGitTool: ForgeToolDefinition<
   typeof paramsSchema
 > = {
   name: 'confirm_install_or_update_site_git',
-  description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
   parameters: paramsSchema,
   category: ToolCategory.Write,
+  annotations: {
+    title: 'Confirm Install or Update Site Git',
+    description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
+    operation: 'confirm',
+    resource: 'site_git_installation',
+    safe: false,
+    readOnlyHint: false,
+    openWorldHint: true,
+    readWriteHint: true,
+    destructiveHint: false
+  },
   handler: async params => {
     const entry = createConfirmation(
       installOrUpdateSiteGitConfirmationStore,

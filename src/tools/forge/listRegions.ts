@@ -25,7 +25,9 @@ export const listRegionsTool: ForgeToolDefinition<typeof paramsSchema> = {
     resource: 'regions',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: true
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey) => {
     try {

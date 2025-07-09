@@ -28,7 +28,9 @@ export const listSizesTool: ForgeToolDefinition<typeof paramsSchema> = {
     resource: 'sizes',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: true
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey) => {
     try {

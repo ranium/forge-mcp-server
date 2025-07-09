@@ -49,8 +49,11 @@ export const disableQuickDeploymentTool: ForgeToolDefinition<
     description: 'Disables quick deployment for a site\'s Git project in Laravel Forge.\n\nBefore calling this tool, the client MUST call the \'confirm_disable_quick_deployment\' tool and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool.',
     operation: 'disable',
     resource: 'quick_deployment',
-    readonly: false,
-    safe: true
+    safe: true,
+    readOnlyHint: false,
+    openWorldHint: true,
+    readWriteHint: true,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey) => {
     try {

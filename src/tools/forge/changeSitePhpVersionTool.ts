@@ -37,9 +37,19 @@ export const changeSitePhpVersionTool: ForgeToolDefinition<
   typeof paramsSchema
 > = {
   name: 'change_site_php_version',
-  description: `Changes the PHP version of a site in Laravel Forge.\n\nBefore calling this tool, the client MUST call the 'confirm_change_site_php_version' tool and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool.`,
   parameters: paramsSchema,
   category: ToolCategory.Write,
+  annotations: {
+    title: 'Change Site PHP Version',
+    description: `Changes the PHP version of a site in Laravel Forge.\n\nBefore calling this tool, the client MUST call the 'confirm_change_site_php_version' tool and present the returned summary to the user for explicit confirmation. Only if the user confirms, the client should proceed to call this tool.`,
+    operation: 'update',
+    resource: 'site_php_version',
+    safe: true,
+    readOnlyHint: false,
+    openWorldHint: true,
+    readWriteHint: true,
+    destructiveHint: false
+  },
   handler: async (params, forgeApiKey) => {
     try {
       const parsed = paramsZodObject.parse(params)

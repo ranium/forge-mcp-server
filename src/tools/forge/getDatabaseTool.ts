@@ -30,7 +30,9 @@ export const getDatabaseTool: ForgeToolDefinition<typeof paramsSchema> = {
     resource: 'database',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: true
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey) => {
     try {

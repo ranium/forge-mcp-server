@@ -49,7 +49,8 @@ export const deleteDatabaseUserTool: ForgeToolDefinition<typeof paramsSchema> = 
     resource: 'database_user',
     safe: false,
     destructiveHint: true,
-    readOnlyHint: false
+    readOnlyHint: false,
+    readWriteHint: true
   },
   handler: async (params, forgeApiKey) => {
       try {

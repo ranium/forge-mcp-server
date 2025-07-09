@@ -32,7 +32,9 @@ export const getComposerPackagesAuthTool: ForgeToolDefinition<
     resource: 'composer_auth',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: true
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params)

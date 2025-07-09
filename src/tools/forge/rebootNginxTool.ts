@@ -16,10 +16,13 @@ export const rebootNginxTool: ForgeToolDefinition<typeof paramsSchema> = {
   annotations: {
     title: 'Reboot Nginx',
     description: 'Reboots (restarts) the Nginx service on a server in Laravel Forge.',
-    operation: 'restart',
+    operation: 'reboot',
     resource: 'nginx_service',
-    readonly: false,
-    safe: true
+    safe: false,
+    readOnlyHint: false,
+    openWorldHint: true,
+    readWriteHint: true,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey) => {
     try {

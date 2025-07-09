@@ -28,7 +28,9 @@ export const listDatabaseTypesTool: ForgeToolDefinition<typeof paramsSchema> = {
     resource: 'database_types',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: false
+    openWorldHint: false,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async (_params, _forgeApiKey) => {
     return toMCPToolResult({ databaseTypes })

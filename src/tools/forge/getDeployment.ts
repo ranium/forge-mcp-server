@@ -24,7 +24,9 @@ export const getDeploymentTool: ForgeToolDefinition<typeof paramsSchema> = {
     resource: 'deployment',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: true
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params)

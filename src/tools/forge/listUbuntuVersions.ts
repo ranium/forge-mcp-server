@@ -22,7 +22,9 @@ export const listUbuntuVersionsTool: ForgeToolDefinition<typeof paramsSchema> =
       resource: 'ubuntu_versions',
       safe: true,
       readOnlyHint: true,
-      openWorldHint: false
+      openWorldHint: false,
+      readWriteHint: false,
+      destructiveHint: false
     },
     handler: async (_params, _forgeApiKey) => {
       return toMCPToolResult({ ubuntuVersions })

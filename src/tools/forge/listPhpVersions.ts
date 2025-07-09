@@ -28,7 +28,9 @@ export const listPhpVersionsTool: ForgeToolDefinition<typeof paramsSchema> = {
     resource: 'php_versions',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: true
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey): Promise<MCPToolResult> => {
     const parsed = paramsZodObject.parse(params)

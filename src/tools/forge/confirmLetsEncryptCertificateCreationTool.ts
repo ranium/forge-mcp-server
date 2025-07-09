@@ -74,9 +74,19 @@ export const confirmLetsEncryptCertificateCreationTool: ForgeToolDefinition<
   typeof paramsSchema
 > = {
   name: 'confirm_lets_encrypt_certificate_creation',
-  description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
   parameters: paramsSchema,
   category: ToolCategory.Write,
+  annotations: {
+    title: 'Confirm Let\'s Encrypt Certificate Creation',
+    description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
+    operation: 'confirm',
+    resource: 'certificate_creation',
+    safe: false,
+    readOnlyHint: false,
+    openWorldHint: true,
+    readWriteHint: true,
+    destructiveHint: false
+  },
   handler: async params => {
     const validatedParams = paramsZodObject.parse(params) as Params
     const entry = createConfirmation(

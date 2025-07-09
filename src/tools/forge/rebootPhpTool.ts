@@ -16,10 +16,13 @@ export const rebootPhpTool: ForgeToolDefinition<typeof paramsSchema> = {
   annotations: {
     title: 'Reboot PHP',
     description: 'Reboots (restarts) the PHP service on a server in Laravel Forge.',
-    operation: 'restart',
+    operation: 'reboot',
     resource: 'php_service',
-    readonly: false,
-    safe: true
+    safe: false,
+    readOnlyHint: false,
+    openWorldHint: true,
+    readWriteHint: true,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey) => {
     try {

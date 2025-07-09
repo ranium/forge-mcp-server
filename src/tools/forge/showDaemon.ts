@@ -22,7 +22,9 @@ export const showDaemonTool: ForgeToolDefinition<typeof paramsSchema> = {
     resource: 'daemon',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: true
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params)

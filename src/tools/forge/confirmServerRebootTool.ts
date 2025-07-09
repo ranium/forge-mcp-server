@@ -27,8 +27,11 @@ export const confirmServerRebootTool: ForgeToolDefinition<typeof paramsSchema> =
       description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
       operation: 'confirm',
       resource: 'server_reboot',
-      readonly: false,
-      safe: true
+      safe: false,
+      readOnlyHint: false,
+      openWorldHint: true,
+      readWriteHint: true,
+      destructiveHint: false
     },
     handler: async params => {
       const entry = createConfirmation(rebootConfirmationStore, params)

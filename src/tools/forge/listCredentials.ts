@@ -15,7 +15,9 @@ export const listCredentialsTool: ForgeToolDefinition<typeof paramsSchema> = {
     resource: 'credentials',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: true
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async (_params, forgeApiKey) => {
     try {

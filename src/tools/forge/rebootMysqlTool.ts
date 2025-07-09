@@ -16,10 +16,13 @@ export const rebootMysqlTool: ForgeToolDefinition<typeof paramsSchema> = {
   annotations: {
     title: 'Reboot MySQL',
     description: 'Reboots (restarts) the MySQL service on a server in Laravel Forge.',
-    operation: 'restart',
+    operation: 'reboot',
     resource: 'mysql_service',
-    readonly: false,
-    safe: true
+    safe: false,
+    readOnlyHint: false,
+    openWorldHint: true,
+    readWriteHint: true,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey) => {
     try {

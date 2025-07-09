@@ -37,9 +37,19 @@ const baseDescription = "Confirms the request to deploy now for a site and retur
 
 export const confirmDeployNowTool: ForgeToolDefinition<typeof paramsSchema> = {
   name: 'confirm_deploy_now',
-  description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
   parameters: paramsSchema,
   category: ToolCategory.Write,
+  annotations: {
+    title: 'Confirm Deploy Now',
+    description: `${baseDescription}\n\n${CONFIRMATION_DESCRIPTION}`,
+    operation: 'confirm',
+    resource: 'deploy_now',
+    safe: false,
+    readOnlyHint: false,
+    openWorldHint: true,
+    readWriteHint: true,
+    destructiveHint: false
+  },
   handler: async params => {
     const entry = createConfirmation(deployNowConfirmationStore, params)
     const summary =

@@ -23,7 +23,9 @@ export const listProjectTypesTool: ForgeToolDefinition<typeof paramsSchema> = {
     resource: 'project_types',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: false
+    openWorldHint: false,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async () => {
     return toMCPToolResult(projectTypes)

@@ -23,7 +23,9 @@ export const listProvidersTool: ForgeToolDefinition<typeof paramsSchema> = {
     resource: 'providers',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: false
+    openWorldHint: false,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async (_params, _forgeApiKey) => {
     return toMCPToolResult({ providers })

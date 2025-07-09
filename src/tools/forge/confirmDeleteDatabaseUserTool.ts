@@ -48,7 +48,8 @@ export const confirmDeleteDatabaseUserTool: ForgeToolDefinition<
     resource: 'database_user',
     safe: false,
     destructiveHint: true,
-    readOnlyHint: false
+    readOnlyHint: false,
+    readWriteHint: true
   },
   handler: async params => {
     const entry = createConfirmation(

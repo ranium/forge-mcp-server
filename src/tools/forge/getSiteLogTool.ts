@@ -24,7 +24,9 @@ export const getSiteLogTool: ForgeToolDefinition<typeof paramsSchema> = {
     resource: 'site_log',
     safe: true,
     readOnlyHint: true,
-    openWorldHint: true
+    openWorldHint: true,
+    readWriteHint: false,
+    destructiveHint: false
   },
   handler: async (params, forgeApiKey) => {
     const parsed = paramsZodObject.parse(params)
