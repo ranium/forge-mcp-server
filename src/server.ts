@@ -25,7 +25,7 @@ function getToolCategories(): string[] {
   const categories = toolsArg.split('=')[1].split(',').map(cat => cat.trim())
   
   // Validate categories
-  const validCategories = ['readonly', 'readWrite', 'destructive']
+  const validCategories = ['readonly', 'write', 'destructive']
   const invalidCategories = categories.filter(cat => !validCategories.includes(cat))
   
   if (invalidCategories.length > 0) {
