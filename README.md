@@ -240,3 +240,11 @@ Or in `claude_desktop_config.json`:
 ---
 
 For more information on MCP, see the [Model Context Protocol documentation](https://modelcontextprotocol.org/).
+
+## Disclaimer
+
+Forge MCP server is an independent product and not officially affiliated with, endorsed by, or sponsored by Laravel or Laravel LLC. 'Laravel' is a registered trademark of Laravel LLC. Forge MCP server is developed and maintained independently from the official Laravel project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
