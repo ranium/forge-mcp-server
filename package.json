@@ -1,7 +1,7 @@
 {
   "name": "@raniumsys/forge-mcp",
   "homepage": "https://github.com/ranium/forge-mcp-server",
-  "version": "0.1.5",
+  "version": "0.1.10",
   "description": "MCP Server for Laravel Forge",
   "main": "dist/server.js",
   "bin": "dist/server.js",
