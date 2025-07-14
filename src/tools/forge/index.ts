@@ -71,6 +71,7 @@ import { confirmLetsEncryptCertificateCreationTool } from './confirmLetsEncryptC
 import { createLetsEncryptCertificateTool } from './createLetsEncryptCertificateTool.js'
 import { listCertificatesTool } from './listCertificatesTool.js'
 import { getCertificateTool } from './getCertificateTool.js'
+import { getSiteEnvTool } from './getSiteEnvTool.js'
 import { confirmActivateCertificateTool } from './confirmActivateCertificateTool.js'
 import { activateCertificateTool } from './activateCertificateTool.js'
 import { confirmDeleteCertificateTool } from './confirmDeleteCertificateTool.js'
@@ -116,6 +117,7 @@ export const forgeTools = [
   getDatabaseUserTool,
   listCertificatesTool,
   getCertificateTool,
+  getSiteEnvTool,
   getSiteLogTool,
 
   // WRITE TOOLS (Creation and Modification)
@@ -136,8 +138,6 @@ export const forgeTools = [
   createSiteTool,
   confirmInstallOrUpdateSiteGitTool,
   installOrUpdateSiteGitTool,
-  confirmRemoveSiteGitTool,
-  removeSiteGitTool,
   enableQuickDeploymentTool,
   confirmDisableQuickDeploymentTool,
   disableQuickDeploymentTool,
@@ -154,15 +154,20 @@ export const forgeTools = [
   confirmActivateCertificateTool,
   activateCertificateTool,
 
-  // DESTRUCTIVE TOOLS (Deletion)
-  confirmServerDeletionTool,
-  deleteServerTool,
-  confirmDeleteDatabaseTool,
-  deleteDatabaseTool,
-  confirmDeleteDatabaseUserTool,
-  deleteDatabaseUserTool,
-  confirmSiteDeletionTool,
-  deleteSiteTool,
-  confirmDeleteCertificateTool,
-  deleteCertificateTool,
+  // DESTRUCTIVE TOOLS (Deletion) - UNDER DEVELOPMENT
+  // These tools are currently disabled due to the high risk involved in destructive operations.
+  // They may be enabled in future releases after thorough testing and safety measures.
+  // 
+  // confirmServerDeletionTool,
+  // deleteServerTool,
+  // confirmDeleteDatabaseTool,
+  // deleteDatabaseTool,
+  // confirmDeleteDatabaseUserTool,
+  // deleteDatabaseUserTool,
+  // confirmSiteDeletionTool,
+  // deleteSiteTool,
+  // confirmRemoveSiteGitTool,
+  // removeSiteGitTool,
+  // confirmDeleteCertificateTool,
+  // deleteCertificateTool,
 ]

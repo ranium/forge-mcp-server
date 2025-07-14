@@ -19,7 +19,7 @@
   "files": [
     "dist",
     "README.md",
-    "LICENSE",
+    "LICENSE.md",
     "VERSION",
     "package.json"
   ],
@@ -34,8 +34,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "clean": "rm -rf dist",
-    "publish": "npm version patch && npm run build && npm publish --access public"
+    "clean": "rm -rf dist"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",
