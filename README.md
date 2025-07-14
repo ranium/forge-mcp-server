@@ -115,19 +115,15 @@ Then add the following to your `claude_desktop_config.json`:
 
 ## Tool Categories & Access Control
 
-All tools are grouped into three categories:
+All tools are grouped into two categories:
 
 - **Readonly**: Safe, non-modifying operations (e.g., listing, viewing, status checks).
 - **Write**: Operations that create or modify resources (e.g., create, update, reboot, enable/disable features).
-- **Destructive**: Operations that delete or irreversibly destroy resources (e.g., delete server, site, database, user, certificate).
 
-By default, **only readonly tools are enabled**. To enable write or destructive tools, use the `--tools` flag:
+By default, **only readonly tools are enabled**. To enable write tools, use the `--tools` flag:
 
 - `--tools=readonly` (default)
 - `--tools=readonly,write` (enables readonly and write tools)
-- `--tools=readonly,write,destructive` (enables all tools)
-
-If `destructive` is included, all categories are enabled. If `write` is included, both readonly and write tools are enabled.
 
 **Example:**
 
@@ -152,6 +148,8 @@ Or in `claude_desktop_config.json`:
   }
 }
 ```
+
+
 
 ## Available Tools (by Category)
 
@@ -224,19 +222,7 @@ Or in `claude_desktop_config.json`:
 - `confirm_activate_certificate` - Confirm certificate activation
 - `activate_certificate` - Activate a certificate
 
-### Destructive Tools
-- `confirm_server_deletion` - Confirm server deletion
-- `delete_server` - Delete a server
-- `confirm_delete_database` - Confirm database deletion
-- `delete_database` - Delete a database
-- `confirm_delete_database_user` - Confirm database user deletion
-- `delete_database_user` - Delete a database user
-- `confirm_site_deletion` - Confirm site deletion
-- `delete_site` - Delete a site
-- `confirm_remove_site_git` - Confirm Git removal
-- `remove_site_git` - Remove Git repository
-- `confirm_delete_certificate` - Confirm certificate deletion
-- `delete_certificate` - Delete a certificate
+
 
 ## Screenshots
 

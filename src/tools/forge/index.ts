@@ -152,17 +152,20 @@ export const forgeTools = [
   confirmActivateCertificateTool,
   activateCertificateTool,
 
-  // DESTRUCTIVE TOOLS (Deletion)
-  confirmServerDeletionTool,
-  deleteServerTool,
-  confirmDeleteDatabaseTool,
-  deleteDatabaseTool,
-  confirmDeleteDatabaseUserTool,
-  deleteDatabaseUserTool,
-  confirmSiteDeletionTool,
-  deleteSiteTool,
-  confirmRemoveSiteGitTool,
-  removeSiteGitTool,
-  confirmDeleteCertificateTool,
-  deleteCertificateTool,
+  // DESTRUCTIVE TOOLS (Deletion) - UNDER DEVELOPMENT
+  // These tools are currently disabled due to the high risk involved in destructive operations.
+  // They may be enabled in future releases after thorough testing and safety measures.
+  // 
+  // confirmServerDeletionTool,
+  // deleteServerTool,
+  // confirmDeleteDatabaseTool,
+  // deleteDatabaseTool,
+  // confirmDeleteDatabaseUserTool,
+  // deleteDatabaseUserTool,
+  // confirmSiteDeletionTool,
+  // deleteSiteTool,
+  // confirmRemoveSiteGitTool,
+  // removeSiteGitTool,
+  // confirmDeleteCertificateTool,
+  // deleteCertificateTool,
 ]
