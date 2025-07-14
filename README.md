@@ -244,7 +244,7 @@ For more information on MCP, see the [Model Context Protocol documentation](http
 
 ## Disclaimer
 
-Forge MCP server is an independent product and not officially affiliated with, endorsed by, or sponsored by Laravel or Laravel LLC. 'Laravel' is a registered trademark of Laravel LLC. Forge MCP server is developed and maintained independently from the official Laravel project.
+Forge MCP server is an independent product and not officially affiliated with, endorsed by, or sponsored by Laravel or Taylor Otwell. 'Laravel' is a registered trademark owned by Taylor Otwell. Forge MCP server is developed and maintained independently from the official Laravel project.
 
 ## License
 
