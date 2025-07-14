@@ -1,0 +1,59 @@
+name: Publish to NPM
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Extract and validate version
+        id: version
+        run: |
+          # Extract version from tag
+          VERSION=${GITHUB_REF#refs/tags/}
+          VERSION=${VERSION#v}
+          
+          # Validate semantic version format
+          if [[ ! $VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+([+-][0-9a-zA-Z.-]+)?$ ]]; then
+            echo "Invalid version format: $VERSION"
+            exit 1
+          fi
+          
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Publishing version: $VERSION"
+
+      - name: Update package.json version
+        run: npm version ${{ steps.version.outputs.version }} --no-git-tag-version
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Publish to NPM
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Commit version bump
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add package.json package-lock.json
+          git commit -m "Bump version to ${{ steps.version.outputs.version }}" || exit 0
+          git push
