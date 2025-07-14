@@ -71,6 +71,7 @@ import { confirmLetsEncryptCertificateCreationTool } from './confirmLetsEncryptC
 import { createLetsEncryptCertificateTool } from './createLetsEncryptCertificateTool.js'
 import { listCertificatesTool } from './listCertificatesTool.js'
 import { getCertificateTool } from './getCertificateTool.js'
+import { getSiteEnvTool } from './getSiteEnvTool.js'
 import { confirmActivateCertificateTool } from './confirmActivateCertificateTool.js'
 import { activateCertificateTool } from './activateCertificateTool.js'
 import { confirmDeleteCertificateTool } from './confirmDeleteCertificateTool.js'
@@ -116,6 +117,7 @@ export const forgeTools = [
   getDatabaseUserTool,
   listCertificatesTool,
   getCertificateTool,
+  getSiteEnvTool,
   getSiteLogTool,
 
   // WRITE TOOLS (Creation and Modification)

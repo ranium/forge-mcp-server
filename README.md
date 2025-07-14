@@ -186,6 +186,7 @@ Or in `claude_desktop_config.json`:
 - `get_database_user` - Get database user details
 - `list_certificates` - List SSL certificates
 - `get_certificate` - Get certificate details
+- `get_site_env` - Get site environment file (.env)
 - `get_site_log` - Get site logs
 
 ### Write Tools
