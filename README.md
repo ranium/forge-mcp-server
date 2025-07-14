@@ -208,8 +208,6 @@ Or in `claude_desktop_config.json`:
 - `create_site` - Create a new site
 - `confirm_install_or_update_site_git` - Confirm Git installation/update
 - `install_or_update_site_git` - Install or update Git repository
-- `confirm_remove_site_git` - Confirm Git removal
-- `remove_site_git` - Remove Git repository
 - `enable_quick_deployment` - Enable quick deployment
 - `confirm_disable_quick_deployment` - Confirm disabling quick deployment
 - `disable_quick_deployment` - Disable quick deployment
@@ -235,6 +233,8 @@ Or in `claude_desktop_config.json`:
 - `delete_database_user` - Delete a database user
 - `confirm_site_deletion` - Confirm site deletion
 - `delete_site` - Delete a site
+- `confirm_remove_site_git` - Confirm Git removal
+- `remove_site_git` - Remove Git repository
 - `confirm_delete_certificate` - Confirm certificate deletion
 - `delete_certificate` - Delete a certificate
 

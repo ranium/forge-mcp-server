@@ -136,8 +136,6 @@ export const forgeTools = [
   createSiteTool,
   confirmInstallOrUpdateSiteGitTool,
   installOrUpdateSiteGitTool,
-  confirmRemoveSiteGitTool,
-  removeSiteGitTool,
   enableQuickDeploymentTool,
   confirmDisableQuickDeploymentTool,
   disableQuickDeploymentTool,
@@ -163,6 +161,8 @@ export const forgeTools = [
   deleteDatabaseUserTool,
   confirmSiteDeletionTool,
   deleteSiteTool,
+  confirmRemoveSiteGitTool,
+  removeSiteGitTool,
   confirmDeleteCertificateTool,
   deleteCertificateTool,
 ]
