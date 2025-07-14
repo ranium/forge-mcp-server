@@ -189,37 +189,24 @@ Or in `claude_desktop_config.json`:
 - `get_site_log` - Get site logs
 
 ### Write Tools
-- `confirm_server_creation` - Confirm server creation
 - `create_server` - Create a new server
-- `confirm_create_database` - Confirm database creation
 - `create_database` - Create a new database
 - `sync_database` - Sync database
-- `confirm_create_database_user` - Confirm database user creation
 - `create_database_user` - Create a new database user
-- `confirm_server_reboot` - Confirm server reboot
 - `reboot_server` - Reboot a server
 - `reboot_nginx` - Reboot Nginx service
 - `reboot_php` - Reboot PHP service
 - `reboot_mysql` - Reboot MySQL service
 - `reboot_postgres` - Reboot PostgreSQL service
-- `confirm_site_creation` - Confirm site creation
 - `create_site` - Create a new site
-- `confirm_install_or_update_site_git` - Confirm Git installation/update
 - `install_or_update_site_git` - Install or update Git repository
 - `enable_quick_deployment` - Enable quick deployment
-- `confirm_disable_quick_deployment` - Confirm disabling quick deployment
 - `disable_quick_deployment` - Disable quick deployment
-- `confirm_deploy_now` - Confirm immediate deployment
 - `deploy_now` - Deploy immediately
-- `confirm_change_site_php_version` - Confirm PHP version change
 - `change_site_php_version` - Change site PHP version
-- `confirm_add_site_aliases` - Confirm site aliases addition
 - `add_site_aliases` - Add site aliases
-- `confirm_clear_site_log` - Confirm site log clearing
 - `clear_site_log` - Clear site logs
-- `confirm_lets_encrypt_certificate_creation` - Confirm Let's Encrypt certificate creation
 - `create_lets_encrypt_certificate` - Create Let's Encrypt certificate
-- `confirm_activate_certificate` - Confirm certificate activation
 - `activate_certificate` - Activate a certificate
 
 
